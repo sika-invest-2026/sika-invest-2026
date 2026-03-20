@@ -2,34 +2,31 @@ name: Mise à jour quotidienne BRVM
 
 on:
   schedule:
-    - cron: '0 17 * * 1-5'
+    - cron: '30 17 * * 1-5'
   workflow_dispatch:
 
 jobs:
-  update:
+  update-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.11'
+          node-version: '20'
 
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
-
-      - name: Scrape BRVM data
-        run: python scripts/update_data.py
-
-      - name: Inject data into HTML
-        run: python scripts/inject_data.py
+      - name: Lancer le scraper
+        run: node scraper.js
 
       - name: Commit & push
         run: |
-          git config user.name "sika-bot"
+          git config user.name  "sika-bot"
           git config user.email "bot@sika-invest.com"
-          git add data.json index.html
+          git add data/daily-data.js data/history.json
           git diff --staged --quiet || git commit -m "Auto-update BRVM $(date '+%d/%m/%Y %H:%M')"
           git push
