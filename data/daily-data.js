@@ -1,7 +1,7 @@
-// Données SIKA INVEST — Mis à jour le 23/03/2026 19:55
+// Données SIKA INVEST — Mis à jour le 24/03/2026 19:56
 // Source : brvm.org · 0/44 cours live
 const dailyData = {
-  "date": "23/03/2026 19:55",
+  "date": "24/03/2026 19:56",
   "valeurs": [
     {
       "t": "PALC",
@@ -20,7 +20,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 53/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SOGB",
@@ -39,7 +39,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 53/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SPHC",
@@ -58,7 +58,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 53/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SCRC",
@@ -77,7 +77,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 53/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "CBIBF",
@@ -96,7 +96,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ONTBF",
@@ -115,7 +115,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SIVC",
@@ -134,7 +134,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "STLC",
@@ -153,7 +153,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "TTLS",
@@ -172,7 +172,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SHEC",
@@ -191,7 +191,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ABJC",
@@ -210,7 +210,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BICB",
@@ -229,7 +229,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BICC",
@@ -248,7 +248,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BNBC",
@@ -267,7 +267,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOAB",
@@ -286,7 +286,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOABF",
@@ -305,7 +305,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOAC",
@@ -324,7 +324,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOAM",
@@ -343,7 +343,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOAN",
@@ -362,7 +362,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "BOAS",
@@ -381,7 +381,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "CABC",
@@ -400,7 +400,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "CIEC",
@@ -419,7 +419,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "FTSC",
@@ -438,7 +438,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "LNBB",
@@ -457,7 +457,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "NEIC",
@@ -476,7 +476,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ORAC",
@@ -495,7 +495,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ORGT",
@@ -514,7 +514,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "PRSC",
@@ -533,7 +533,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SAFC",
@@ -552,7 +552,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SDSC",
@@ -571,7 +571,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SEMC",
@@ -590,7 +590,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SIBC",
@@ -609,7 +609,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SICC",
@@ -628,7 +628,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SLBC",
@@ -647,7 +647,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SNTS",
@@ -666,7 +666,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "STAC",
@@ -685,7 +685,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "UNXC",
@@ -704,7 +704,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 43/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "CFAC",
@@ -723,7 +723,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ECOC",
@@ -742,7 +742,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "NSBC",
@@ -761,7 +761,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "NTLC",
@@ -780,7 +780,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "SGBC",
@@ -799,7 +799,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "UNLC",
@@ -818,7 +818,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 38/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     },
     {
       "t": "ETIT",
@@ -837,7 +837,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "historique",
       "actu": "Score 33/100 · RSI 50 · NEUTRE.",
-      "risq": "Données historiques · 23/03/2026 19:55"
+      "risq": "Données historiques · 24/03/2026 19:56"
     }
   ]
 };
