@@ -164,11 +164,11 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">DÉCISION BRVM · 23 MARS 2026</div>
+    <div class="logo-sub" id="date-sub">DÉCISION BRVM · 25 MARS 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">23 MARS 2026</div>
+    <div class="tag tg" id="date-tag">25 MARS 2026</div>
     <div class="tag tw">MAX 10%/VALEUR · 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ RAFRAÎCHIR</button>
   </div>
@@ -234,6 +234,7 @@ tr:last-child td{border-bottom:none}
           <th onclick="tri('rsi')">RSI ↕</th>
           <th onclick="tri('tend')">TEND.</th>
           <th onclick="tri('conviction')">CONV. ↕</th>
+          <th onclick="tri('risque')">RISQUE ↕</th>
           <th onclick="tri('signal')">SIGNAL</th>
         </tr></thead>
         <tbody id="tbl"></tbody>
@@ -243,11 +244,11 @@ tr:last-child td{border-bottom:none}
 
   <div class="row2">
     <div class="card">
-      <div class="sec-title">TOP 12 CONVICTION — 23 MARS 2026</div>
+      <div class="sec-title">TOP 12 CONVICTION — 25 MARS 2026</div>
       <div class="cw2"><canvas id="ch1"></canvas></div>
     </div>
     <div class="card">
-      <div class="sec-title">VARIATIONS DU JOUR — 23 MARS 2026</div>
+      <div class="sec-title">VARIATIONS DU JOUR — 25 MARS 2026</div>
       <div class="cw2"><canvas id="ch2"></canvas></div>
     </div>
   </div>
@@ -348,7 +349,7 @@ tr:last-child td{border-bottom:none}
 
   <!-- POURQUOI CES ACTIONS -->
   <div class="card">
-    <div class="sec-title">JUSTIFICATION DES MEILLEURES OPPORTUNITÉS — 23 MARS 2026</div>
+    <div class="sec-title">JUSTIFICATION DES MEILLEURES OPPORTUNITÉS — 25 MARS 2026</div>
     <div class="why-grid" id="why-grid"></div>
   </div>
 
@@ -402,7 +403,7 @@ tr:last-child td{border-bottom:none}
 <div id="ov" onclick="closeMod(event)">
   <div class="mod">
     <button class="mc" onclick="closeMod()">FERMER ✕</button>
-    <div class="ml2">SIKA INVEST · ANALYSE · 23 MARS 2026</div>
+    <div class="ml2">SIKA INVEST · ANALYSE · 25 MARS 2026</div>
     <div class="mt" id="m-t">—</div>
     <div class="mm" id="m-m">—</div>
     <hr class="md2">
@@ -444,10 +445,22 @@ const SEANCES = [
     var:{SDSC:0.0,BOAB:0.0,BOABF:0.0,BOAC:0.0,BOAM:0.0,BOAN:0.0,BOAS:0.0,BICB:0.0,BNBC:0.0,BICC:0.0,CFAC:0.0,CIEC:0.0,CBIBF:0.0,SEMC:0.0,ECOC:0.0,SIVC:0.0,ETIT:0.0,FTSC:0.0,LNBB:0.0,SVOC:0.0,NEIC:0.0,NTLC:0.0,NSBC:0.0,ONTBF:0.0,ORGT:0.0,ORAC:0.0,PALC:0.0,SAFC:0.0,SPHC:0.0,ABJC:0.0,STAC:0.0,SGBC:0.0,CABC:0.0,SICC:0.0,SITAB:0.0,SMBC:0.0,SIBC:0.0,SDCC:0.0,SOGB:0.0,SLBC:0.0,SNTS:0.0,SCRC:0.0,STLC:0.0,TTLS:0.0,PRSC:0.0,UNLC:0.0,UNXC:0.0,SHEC:0.0}
   },
   {
-    date:"23/03/2026",
+    date:"25/03/2026",
     vol:{SDSC:4188,BOAB:1767,BOABF:4920,BOAC:3959,BOAM:14163,BOAN:14412,BOAS:6519,BICB:2382,BNBC:1125,BICC:1558,CFAC:3368,CIEC:35503,CBIBF:1055,SEMC:3598,ECOC:790,SIVC:1826,ETIT:978577,FTSC:1349,LNBB:639,SVOC:0,NEIC:6467,NTLC:508,NSBC:2010,ONTBF:5910,ORGT:36643,ORAC:8259,PALC:3629,SAFC:2871,SPHC:4620,ABJC:4655,STAC:4973,SGBC:2002,CABC:2365,SICC:114,SITAB:1277,SMBC:342,SIBC:3779,SDCC:425,SOGB:5921,SLBC:274,SNTS:16961,SCRC:7444,STLC:19837,TTLS:12064,PRSC:1263,UNLC:148,UNXC:9584,SHEC:2180},
     cours:{SDSC:1825,BOAB:7815,BOABF:5400,BOAC:8790,BOAM:4790,BOAN:2460,BOAS:6890,BICB:5185,BNBC:1605,BICC:24745,CFAC:1750,CIEC:3340,CBIBF:13705,SEMC:1990,ECOC:16700,SIVC:2675,ETIT:32,FTSC:2290,LNBB:3825,SVOC:2395,NEIC:1380,NTLC:12890,NSBC:14000,ONTBF:3000,ORGT:3615,ORAC:14200,PALC:9400,SAFC:5805,SPHC:7240,ABJC:3730,STAC:2450,SGBC:35000,CABC:3275,SICC:3850,SITAB:21985,SMBC:13295,SIBC:6915,SDCC:7700,SOGB:8500,SLBC:38920,SNTS:28200,SCRC:1590,STLC:2995,TTLS:3025,PRSC:4800,UNLC:54580,UNXC:2095,SHEC:2150},
     var:{SDSC:7.35,BOAB:-0.45,BOABF:0.09,BOAC:1.03,BOAM:0.63,BOAN:-2.96,BOAS:-0.14,BICB:-0.29,BNBC:0.31,BICC:-3.17,CFAC:-2.51,CIEC:1.21,CBIBF:0.04,SEMC:0.51,ECOC:-1.21,SIVC:0.00,ETIT:0.00,FTSC:-1.29,LNBB:-0.65,SVOC:0.00,NEIC:-2.13,NTLC:0.00,NSBC:-1.06,ONTBF:0.00,ORGT:7.43,ORAC:-2.41,PALC:0.53,SAFC:-6.30,SPHC:-6.28,ABJC:6.88,STAC:4.03,SGBC:-1.41,CABC:-0.15,SICC:0.00,SITAB:0.00,SMBC:-0.04,SIBC:-1.91,SDCC:0.00,SOGB:-2.30,SLBC:-0.71,SNTS:-2.08,SCRC:3.25,STLC:1.53,TTLS:-7.35,PRSC:2.13,UNLC:-7.49,UNXC:4.75,SHEC:-2.27}
+  },
+  {
+    date:"24/03/2026",
+    vol:{SDSC:14866,BOAB:3089,BOABF:3122,BOAC:7514,BOAM:8710,BOAN:5655,BOAS:7712,BICB:554,BNBC:2430,BICC:817,CFAC:2272,CIEC:10021,CBIBF:568,SEMC:6032,ECOC:790,SIVC:4633,ETIT:316858,FTSC:2936,LNBB:3592,SVOC:0,NEIC:1518,NTLC:50573,NSBC:911,ONTBF:1610,ORGT:10095,ORAC:1115,PALC:2140,SAFC:2610,SPHC:12319,ABJC:1941,STAC:752,SGBC:609,CABC:2938,SICC:9,SITAB:870,SMBC:1176,SIBC:2742,SDCC:192,SOGB:3480,SLBC:218,SNTS:4303,SCRC:3222,STLC:27668,TTLS:925,PRSC:1929,UNLC:82,UNXC:11296,SHEC:3513},
+    cours:{SDSC:1920,BOAB:7650,BOABF:5415,BOAC:8700,BOAM:4760,BOAN:2575,BOAS:6720,BICB:5100,BNBC:1580,BICC:24400,CFAC:1675,CIEC:3345,CBIBF:13715,SEMC:2050,ECOC:16300,SIVC:2775,ETIT:32,FTSC:2295,LNBB:3825,SVOC:2395,NEIC:1350,NTLC:13000,NSBC:14000,ONTBF:2995,ORGT:3780,ORAC:14600,PALC:8695,SAFC:5995,SPHC:7600,ABJC:3545,STAC:2360,SGBC:34995,CABC:3165,SICC:4135,SITAB:21990,SMBC:12740,SIBC:6860,SDCC:7500,SOGB:7990,SLBC:39000,SNTS:28205,SCRC:1540,STLC:2810,TTLS:3190,PRSC:4890,UNLC:58000,UNXC:2095,SHEC:2175},
+    var:{SDSC:5.21,BOAB:-2.11,BOABF:0.28,BOAC:-1.02,BOAM:-0.63,BOAN:4.67,BOAS:-2.47,BICB:-1.64,BNBC:-1.56,BICC:-1.39,CFAC:-4.29,CIEC:0.15,CBIBF:0.07,SEMC:3.02,ECOC:-2.40,SIVC:3.74,ETIT:0.00,FTSC:0.22,LNBB:0.00,SVOC:0.00,NEIC:-2.17,NTLC:0.85,NSBC:0.00,ONTBF:-0.17,ORGT:4.56,ORAC:2.82,PALC:-7.50,SAFC:3.27,SPHC:4.97,ABJC:-4.96,STAC:-3.67,SGBC:-0.01,CABC:-3.36,SICC:7.40,SITAB:0.02,SMBC:-4.17,SIBC:-0.80,SDCC:-2.60,SOGB:-6.00,SLBC:0.21,SNTS:0.02,SCRC:-3.14,STLC:-6.18,TTLS:5.45,PRSC:1.88,UNLC:6.27,UNXC:0.00,SHEC:1.16}
+  },
+  {
+    date:"25/03/2026",
+    vol:{SDSC:22727,BOAB:2352,BOABF:7832,BOAC:5525,BOAM:23706,BOAN:3950,BOAS:62000,BICB:1429,BNBC:671,BICC:2460,CFAC:2007,CIEC:4398,CBIBF:251,SEMC:1698,ECOC:3083,SIVC:3708,ETIT:477023,FTSC:758,LNBB:487,SVOC:0,NEIC:3697,NTLC:568,NSBC:3266,ONTBF:970,ORGT:14594,ORAC:1208,PALC:2512,SAFC:6077,SPHC:4064,ABJC:5803,STAC:1504,SGBC:808,CABC:1762,SICC:42,SITAB:2250,SMBC:513,SIBC:13846,SDCC:496,SOGB:2977,SLBC:86,SNTS:5456,SCRC:3070,STLC:33317,TTLS:844,PRSC:2103,UNLC:16,UNXC:10793,SHEC:4290},
+    cours:{SDSC:2060,BOAB:7300,BOABF:5445,BOAC:8750,BOAM:4760,BOAN:2610,BOAS:6400,BICB:5000,BNBC:1600,BICC:24900,CFAC:1630,CIEC:3200,CBIBF:13800,SEMC:2200,ECOC:16300,SIVC:2835,ETIT:32,FTSC:2345,LNBB:3765,SVOC:2395,NEIC:1400,NTLC:12945,NSBC:14000,ONTBF:2990,ORGT:3700,ORAC:14500,PALC:8045,SAFC:6350,SPHC:7055,ABJC:3465,STAC:2310,SGBC:34995,CABC:3165,SICC:4135,SITAB:21500,SMBC:12995,SIBC:6900,SDCC:7500,SOGB:7700,SLBC:38950,SNTS:28005,SCRC:1515,STLC:2815,TTLS:3015,PRSC:4900,UNLC:53650,UNXC:2075,SHEC:2200},
+    var:{SDSC:7.29,BOAB:-4.58,BOABF:0.55,BOAC:0.57,BOAM:0.00,BOAN:1.36,BOAS:-4.76,BICB:-1.96,BNBC:1.27,BICC:2.05,CFAC:-2.69,CIEC:-4.33,CBIBF:0.62,SEMC:7.32,ECOC:0.00,SIVC:2.16,ETIT:0.00,FTSC:2.18,LNBB:-1.57,SVOC:0.00,NEIC:3.70,NTLC:-0.42,NSBC:0.00,ONTBF:-0.17,ORGT:-2.12,ORAC:-0.68,PALC:-7.48,SAFC:5.92,SPHC:-7.17,ABJC:-2.26,STAC:-2.12,SGBC:0.00,CABC:0.00,SICC:0.00,SITAB:-2.23,SMBC:2.00,SIBC:0.58,SDCC:0.00,SOGB:-3.63,SLBC:-0.13,SNTS:-0.71,SCRC:-1.62,STLC:0.18,TTLS:-5.49,PRSC:0.20,UNLC:-7.50,UNXC:-0.95,SHEC:1.15}
   }
 ];
 
@@ -561,6 +574,71 @@ function scoreFond(div,per,per_s,vol){
 
 function getSig(c){ return c>=70?'FORT ACHAT':c>=45?'ACHAT':c>=30?'NEUTRE':'ÉVITER'; }
 
+
+/* ══ ATR (Average True Range) — Volatilité ══ */
+function calcATR(hist, vols, period=10){
+  if(hist.length<3) return {atr:0,atr_pct:0,niveau:'faible'};
+  const trs=[];
+  for(let i=1;i<hist.length;i++){
+    const h=hist[i]*1.015, l=hist[i]*0.985, prev=hist[i-1];
+    trs.push(Math.max(h-l, Math.abs(h-prev), Math.abs(l-prev)));
+  }
+  const rec=trs.slice(-period);
+  const atr=Math.round(rec.reduce((a,b)=>a+b,0)/rec.length);
+  const atr_pct=parseFloat((atr/hist[hist.length-1]*100).toFixed(2));
+  return {atr, atr_pct, niveau: atr_pct>5?'TRÈS ÉLEVÉE':atr_pct>3?'ÉLEVÉE':atr_pct>1.5?'MODÉRÉE':'FAIBLE'};
+}
+
+/* ══ Volume Surge Detector ══ */
+function calcVolSurge(vols, period=5){
+  if(vols.length<period+1) return {surge:1,signal:'NORMAL'};
+  const recent=vols.slice(-period-1,-1).filter(v=>v>0);
+  if(!recent.length) return {surge:0,signal:'ILLIQUIDITÉ'};
+  const avg=recent.reduce((a,b)=>a+b,0)/recent.length;
+  if(avg===0) return {surge:0,signal:'ILLIQUIDITÉ'};
+  const surge=parseFloat((vols[vols.length-1]/avg).toFixed(2));
+  const signal=surge>=3?'SURGE FORT ⚡':surge>=1.5?'SURGE MODÉRÉ':surge<=0.3?'VOLUME FAIBLE':'NORMAL';
+  return {surge, signal};
+}
+
+/* ══ Support & Résistance Dynamiques ══ */
+function calcSupportResistance(hist, period=10){
+  if(hist.length<3) return {support:hist[0]||0,resistance:hist[0]||0};
+  const recent=hist.slice(-Math.min(period,hist.length));
+  return {
+    support:   Math.min(...recent),
+    resistance:Math.max(...recent),
+    pct_support:   parseFloat(((hist[hist.length-1]-Math.min(...recent))/Math.min(...recent)*100).toFixed(1)),
+    pct_resistance:parseFloat(((hist[hist.length-1]-Math.max(...recent))/Math.max(...recent)*100).toFixed(1))
+  };
+}
+
+/* ══ Order Flow — Déséquilibre Acheteurs/Vendeurs ══ */
+function calcOrderFlow(hist, vols){
+  if(hist.length<2||vols.length<2) return {flow:0,signal:'NEUTRE'};
+  let buyPres=0, sellPres=0;
+  for(let i=1;i<hist.length;i++){
+    const vol=vols[i]||0;
+    if(hist[i]>hist[i-1]) buyPres+=vol;
+    else if(hist[i]<hist[i-1]) sellPres+=vol;
+  }
+  const total=buyPres+sellPres;
+  if(total===0) return {flow:50,signal:'NEUTRE'};
+  const flow=Math.round(buyPres/total*100);
+  const signal=flow>=65?'ACHETEURS DOMINENT 🟢':flow<=35?'VENDEURS DOMINENT 🔴':'ÉQUILIBRÉ';
+  return {flow, buyPres, sellPres, signal};
+}
+
+/* ══ Score de Risque (0=sûr, 100=très risqué) ══ */
+function calcRisque(rsi, atr_pct, surge, pct_resistance){
+  let r=0;
+  if(rsi>=75) r+=35; else if(rsi>=65) r+=20; else if(rsi<=25) r+=10;
+  if(atr_pct>=5) r+=25; else if(atr_pct>=3) r+=15; else if(atr_pct>=1.5) r+=5;
+  if(surge>=3) r+=20; else if(surge>=1.5) r+=10;
+  if(pct_resistance>=-2&&pct_resistance<=0) r+=20; // proche résistance
+  return Math.min(r,100);
+}
+
 /* ══ CONSTRUIRE DATA ══ */
 function buildData(){
   const derniere = SEANCES[SEANCES.length-1];
@@ -583,9 +661,18 @@ function buildData(){
     const sf   = scoreFond(meta.div,per,meta.per_s,vol);
     const conv = st+sf;
     const varJan = meta.jan>0?parseFloat(((cours-meta.jan)/meta.jan*100).toFixed(1)):0;
+    // Volumes historiques
+    const histVols = SEANCES.map(s=>s.vol?s.vol[ticker]||0:0);
+    // Nouveaux indicateurs
+    const atrData  = calcATR(hist, histVols);
+    const surgeData= calcVolSurge(histVols);
+    const srData   = calcSupportResistance(hist);
+    const flowData = calcOrderFlow(hist, histVols);
+    const risque   = calcRisque(rsi, atrData.atr_pct, surgeData.surge, srData.pct_resistance);
     return {
-      t:ticker, ...meta, hist, cours, var:varJ, vol,
-      per, rsi, tend, st, sf, conviction:conv, signal:getSig(conv), varJan
+      t:ticker, ...meta, hist, histVols, cours, var:varJ, vol,
+      per, rsi, tend, st, sf, conviction:conv, signal:getSig(conv), varJan,
+      atr:atrData, surge:surgeData, sr:srData, flow:flowData, risque
     };
   }).sort((a,b)=>b.conviction-a.conviction);
 }
@@ -630,6 +717,7 @@ function renderTable(){
       <td class="${tc}">${v.tend==='up'?'▲':v.tend==='down'?'▼':'▬'}</td>
       <td><div class="cw"><div class="cb"><div class="cf" style="width:${v.conviction}%;background:${bc}"></div></div><span style="font-size:10px;font-weight:700;color:${bc}">${v.conviction}</span></div></td>
       <td><span class="b ${sc}">${v.signal}</span></td>
+      <td><span style="font-size:9px;font-weight:700;color:${v.risque>=60?'#dc2626':v.risque>=35?'#d97706':'#16a34a'}">${v.risque>=60?'⚠ ÉLEVÉ':v.risque>=35?'▲ MODÉRÉ':'✓ FAIBLE'}</span></td>
     </tr>`;
   }).join('');
 }
@@ -861,6 +949,12 @@ function openFiche(ticker){
     {l:'RSI ('+SEANCES.length+'j)',v:v.rsi,s:v.rsi>=30&&v.rsi<50?'Zone ACHAT ★':v.rsi>=70?'SURACHAT ⚠':v.rsi<30?'SURVENTE':'Neutre'},
     {l:'TENDANCE',v:v.tend==='up'?'▲ HAUSSE':v.tend==='down'?'▼ BAISSE':'▬ STABLE',s:'vs moyenne'},
     {l:'CONVICTION',v:v.conviction+'/100',s:v.signal},
+    {l:'ATR VOLATIL.',v:v.atr?v.atr.atr_pct+'%':'-',s:v.atr?v.atr.niveau:'-'},
+    {l:'VOL. SURGE',v:v.surge?v.surge.surge+'x':'-',s:v.surge?v.surge.signal:'-'},
+    {l:'SUPPORT',v:v.sr?v.sr.support.toLocaleString('fr-FR'):'-',s:v.sr?v.sr.pct_support+'% du cours':'-'},
+    {l:'RÉSISTANCE',v:v.sr?v.sr.resistance.toLocaleString('fr-FR'):'-',s:v.sr?v.sr.pct_resistance+'% du cours':'-'},
+    {l:'ORDER FLOW',v:v.flow?v.flow.flow+'%':'-',s:v.flow?v.flow.signal:'-'},
+    {l:'SCORE RISQUE',v:v.risque+'/100',s:v.risque>=60?'⚠ RISQUE ÉLEVÉ':v.risque>=35?'Risque modéré':'✓ Risque faible'},
   ].map(k=>`<div class="mk"><div class="mkl">${k.l}</div><div class="mkv">${k.v}</div><div class="mks">${k.s}</div></div>`).join('');
 
   // Mini chart
@@ -904,7 +998,8 @@ function openFiche(ticker){
   const montant=Math.min(MAX_POS,dispo);
   const qte=Math.floor(montant/v.cours);
   let reco='';
-  if(v.conviction>=70) reco=`<strong>Signal d'achat fort</strong> — ${qte.toLocaleString('fr-FR')} titres pour ~${(qte*v.cours).toLocaleString('fr-FR')} FCFA.`;
+  if(v.risque>=60) reco=`<strong>⚠ RISQUE ÉLEVÉ</strong> — Score risque ${v.risque}/100. ATR ${v.atr?v.atr.atr_pct+'%':'-'} (volatilité ${v.atr?v.atr.niveau:'-'}). ${v.sr&&v.sr.pct_resistance>=-3&&v.sr.pct_resistance<=0?'Cours proche de la résistance — zone de prise de bénéfices. ':''}<strong>Attendre un repli avant d'entrer.</strong>`;
+  else if(v.conviction>=70) reco=`<strong>Signal d'achat fort</strong> — ${qte.toLocaleString('fr-FR')} titres pour ~${(qte*v.cours).toLocaleString('fr-FR')} FCFA.`;
   else if(v.conviction>=45) reco=`<strong>Signal d'achat modéré</strong> — Fondamentaux corrects. Utile pour diversifier.`;
   else if(v.conviction>=30) reco=`<strong>Attendre.</strong> Pas de signal suffisant.`;
   else reco=`<strong>Éviter.</strong> Signal faible ou risque trop élevé.`;
