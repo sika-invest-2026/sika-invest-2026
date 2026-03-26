@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIKA INVEST — Décision BRVM</title>
+<title>SIKA INVEST — Assistant Décision BRVM</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-height:100vh}
 #app{padding:1.25rem;max-width:1500px;margin:0 auto}
-
-/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:1rem;border-bottom:2px solid #1a1a1a;flex-wrap:wrap;gap:10px}
 .logo{font-size:20px;font-weight:700;letter-spacing:6px}
 .logo-sub{font-size:9px;letter-spacing:3px;color:#888;margin-top:2px}
@@ -23,59 +21,42 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .btn-dark:hover{background:#333}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s infinite;margin-right:4px}
-
-/* TABS */
-.tabs{display:flex;gap:4px;margin-bottom:1rem;border-bottom:1px solid #e0ddd6;padding-bottom:0}
+.tabs{display:flex;gap:4px;margin-bottom:1rem;border-bottom:1px solid #e0ddd6}
 .tab{font-size:10px;letter-spacing:2px;padding:8px 16px;cursor:pointer;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;color:#888;background:transparent;font-family:'Courier Prime',monospace}
 .tab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
 .tab:hover:not(.active){background:#eceae3;color:#1a1a1a}
-.panel{display:none}
-.panel.active{display:block}
-
-/* CONTEXTE */
-.ctx{background:#1a1a1a;color:#fff;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.panel{display:none}.panel.active{display:block}
+.ctx{background:#1a1a1a;color:#fff;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
 .ck-l{font-size:9px;letter-spacing:2px;color:#666;margin-bottom:3px}
 .ck-v{font-size:15px;font-weight:700}
 .ck-s{font-size:9px;color:#555;margin-top:2px}
 .cp{color:#4ade80}.cn{color:#f87171}
-
-/* ALERTES */
 .alerts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
-.ap{font-size:10px;padding:4px 10px;border-radius:16px;letter-spacing:.5px}
-.ag{background:#dcfce7;color:#15803d}
-.ar{background:#fee2e2;color:#b91c1c}
-.ao{background:#fef3c7;color:#b45309}
-.ab{background:#dbeafe;color:#1d4ed8}
-
-/* MÉTRIQUES */
+.ap{font-size:10px;padding:4px 10px;border-radius:16px}
+.ag{background:#dcfce7;color:#15803d}.ar{background:#fee2e2;color:#b91c1c}
+.ao{background:#fef3c7;color:#b45309}.ab{background:#dbeafe;color:#1d4ed8}
 .mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:1rem}
 .met{background:#eceae3;border-radius:8px;padding:11px 13px}
 .ml{font-size:9px;letter-spacing:2px;color:#888;margin-bottom:3px}
 .mv{font-size:15px;font-weight:700;color:#1a1a1a;line-height:1}
 .md{font-size:10px;margin-top:3px}
 .pos{color:#16a34a}.neg{color:#dc2626}.neu{color:#888}
-
-/* PORTEFEUILLE */
-.pfc{background:#1a1a1a;border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1rem}
-.pft{font-size:9px;letter-spacing:3px;color:#555;margin-bottom:.65rem}
-.pfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:.65rem}
-.pk{background:rgba(255,255,255,.07);border-radius:8px;padding:9px 11px}
-.pkl{font-size:9px;letter-spacing:2px;color:#555;margin-bottom:3px}
-.pkv{font-size:14px;font-weight:700;color:#fff}
-.pks{font-size:9px;color:#444;margin-top:2px}
-.pflines{border-top:1px solid rgba(255,255,255,.07);padding-top:.6rem}
-.pfl{display:flex;align-items:center;padding:5px 0;font-size:10px;border-bottom:1px solid rgba(255,255,255,.04);gap:6px}
-.pfl:last-child{border-bottom:none}
-.pfempty{color:#333;font-size:10px;letter-spacing:1px;padding:4px 0}
-
-/* TABLEAU */
+.dec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem}
+.dec-card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1rem}
+.dec-header{font-size:9px;letter-spacing:3px;margin-bottom:10px;font-weight:700}
+.dec-item{padding:7px 0;border-bottom:1px solid #f0eeea;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.dec-item:last-child{border-bottom:none}
+.dec-item:hover{background:#f8f7f3}
+.dec-nom{font-size:11px;font-weight:700}
+.dec-detail{font-size:9px;color:#888;margin-top:1px}
+.dec-val{text-align:right;font-size:11px;font-weight:700}
 .card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px}
 .sec-title{font-size:9px;letter-spacing:3px;color:#888;margin-bottom:8px}
 .ctrl{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:.65rem}
 .cl{font-size:9px;letter-spacing:2px;color:#888}
 .ft{font-size:9px;letter-spacing:1px;padding:4px 9px;cursor:pointer;border:1px solid #ccc;border-radius:8px;background:transparent;color:#888;font-family:'Courier Prime',monospace}
 .ft.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
-.sb{font-family:'Courier Prime',monospace;font-size:11px;padding:4px 10px;border:1px solid #ccc;border-radius:8px;background:#fff;color:#1a1a1a;outline:none;width:150px}
+.sb{font-family:'Courier Prime',monospace;font-size:11px;padding:4px 10px;border:1px solid #ccc;border-radius:8px;background:#fff;color:#1a1a1a;outline:none;width:160px}
 .sb:focus{border-color:#1a1a1a}
 .tw-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:11px}
@@ -85,11 +66,10 @@ td{padding:7px 10px 7px 0;border-bottom:1px solid #e0ddd6;color:#1a1a1a;white-sp
 tr:last-child td{border-bottom:none}
 .tr{cursor:pointer;transition:background .1s}
 .tr:hover td{background:#f8f7f3}
-.tr.ip td{background:#fdf9f0}
-.tr.ip td:first-child{border-left:3px solid #b5922a}
 .b{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px}
 .bg{background:#dcfce7;color:#15803d}
 .bo{background:#fef3c7;color:#b45309}
+.ba{background:#fdf6e3;color:#b5922a}
 .bgr{background:#f0efea;color:#888}
 .br{background:#fee2e2;color:#b91c1c}
 .cw{display:flex;align-items:center;gap:5px}
@@ -97,37 +77,30 @@ tr:last-child td{border-bottom:none}
 .cf{height:4px;border-radius:2px}
 .lgr{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:7px;font-size:9px;color:#888;align-items:center}
 .ld{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px}
-
-/* HISTORIQUE TRANSACTIONS */
 .hist-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e0ddd6;font-size:11px;flex-wrap:wrap;gap:6px}
-.hist-item:last-child{border-bottom:none}
 .hist-empty{font-size:10px;color:#aaa;letter-spacing:1px;padding:8px 0}
-
-/* STRATÉGIE */
-.strat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:1rem}
+.strat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-bottom:1rem}
 .strat-card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1.25rem}
 .strat-icon{font-size:22px;margin-bottom:8px}
 .strat-title{font-size:11px;font-weight:700;letter-spacing:2px;color:#1a1a1a;margin-bottom:6px}
-.strat-text{font-size:11px;line-height:1.7;color:#444}
+.strat-text{font-size:11px;line-height:1.75;color:#444}
 .strat-text strong{color:#1a1a1a;font-weight:700}
-.rule-box{background:#f8f6ef;border-left:3px solid #b5922a;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin-top:.7rem;font-size:10px;line-height:1.6;color:#444}
-.score-legend{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:.7rem}
-.sl{background:#f0efea;border-radius:6px;padding:6px 10px;font-size:10px}
-.sl-v{font-weight:700;color:#1a1a1a}
-.sl-d{color:#888;margin-left:4px}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:1rem}
+.rule-box{background:#f8f6ef;border-left:3px solid #b5922a;border-radius:0 8px 8px 0;padding:.7rem 1rem;margin-top:.7rem;font-size:10px;line-height:1.65;color:#444}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
 .why-card{background:#fff;border:1px solid #e0ddd6;border-radius:10px;padding:1rem}
 .why-t{font-size:9px;letter-spacing:3px;color:#b5922a;margin-bottom:6px}
 .why-n{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
 .why-r{font-size:10px;line-height:1.6;color:#444}
-.why-sig{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:6px}
-
-/* GRAPHIQUES */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 @media(max-width:700px){.row2{grid-template-columns:1fr}}
 .cw2{position:relative;width:100%;height:220px}
-
-/* MODALE */
+.profile-selector{display:flex;gap:10px;margin-bottom:15px;justify-content:flex-end}
+.profile-btn{font-size:9px;padding:4px 12px;border-radius:20px;cursor:pointer;background:#f0efea;border:none;font-family:'Courier Prime',monospace}
+.profile-btn.active{background:#1a1a1a;color:#fff}
+.badge{display:inline-block;padding:2px 6px;border-radius:12px;font-size:8px;font-weight:700;margin-left:4px}
+.badge-vert{background:#dcfce7;color:#15803d}
+.badge-rouge{background:#fee2e2;color:#b91c1c}
+.badge-orange{background:#fef3c7;color:#b45309}
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;padding:1rem}
 #ov.open{display:flex}
 .mod{background:#fffef9;border:1px solid #d4b96a;border-left:4px solid #b5922a;border-radius:14px;padding:1.5rem 1.75rem;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
@@ -150,11 +123,6 @@ tr:last-child td{border-bottom:none}
 .mverd{background:#fdf6e3;border:1px solid #e8d9a0;border-radius:8px;padding:.8rem 1rem;margin-bottom:.7rem}
 .mvl{font-size:9px;letter-spacing:3px;color:#b5922a;margin-bottom:4px}
 .mvt{font-family:'Playfair Display',serif;font-size:12.5px;color:#1a1a1a;line-height:1.7}
-.badd{width:100%;padding:9px;background:#1a1a1a;color:#fff;border:none;border-radius:8px;font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;cursor:pointer;margin-top:.4rem}
-.badd:hover{background:#333}
-.bsell{width:100%;padding:9px;background:#b91c1c;color:#fff;border:none;border-radius:8px;font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:2px;cursor:pointer;margin-top:.4rem}
-.mini-chart{height:40px;display:flex;align-items:flex-end;gap:2px;margin-top:8px}
-.mini-bar{flex:1;border-radius:2px 2px 0 0;min-height:2px}
 .surachat-alert{background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:11px;color:#92400e}
 </style>
 </head>
@@ -164,40 +132,60 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">DÉCISION BRVM · 25 MARS 2026</div>
+    <div class="logo-sub" id="date-sub">ASSISTANT DÉCISION BRVM · 26 MARS 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">25 MARS 2026</div>
+    <div class="tag tg" id="date-tag">26 MARS 2026</div>
     <div class="tag tw">MAX 10%/VALEUR · 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ RAFRAÎCHIR</button>
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab active" onclick="showTab('scanner',this)">SCANNER</button>
+  <button class="tab" onclick="showTab('decisions',this)">DÉCISIONS DU SOIR</button>
   <button class="tab" onclick="showTab('strategie',this)">STRATÉGIE</button>
-  <button class="tab" onclick="showTab('portefeuille',this)">PORTEFEUILLE</button>
   <button class="tab" onclick="showTab('historique',this)">HISTORIQUE</button>
 </div>
 
-<!-- ═══════════ TAB 1 : SCANNER ═══════════ -->
+<!-- ══ SCANNER ══ -->
 <div id="tab-scanner" class="panel active">
-
-  <div class="ctx" id="ctx-marche">
-    <div><div class="ck-l">BRVM COMPOSITE</div><div class="ck-v cp" id="ctx-comp">—</div><div class="ck-s" id="ctx-comp-s">—</div></div>
-    <div><div class="ck-l">SÉANCES ENREGISTRÉES</div><div class="ck-v" id="ctx-seances">—</div><div class="ck-s">depuis le 19/03/2026</div></div>
-    <div><div class="ck-l">VALEURS SUIVIES</div><div class="ck-v">48</div><div class="ck-s">toutes catégories BRVM</div></div>
+  <div class="ctx">
+    <div><div class="ck-l">SÉANCES ENREGISTRÉES</div><div class="ck-v" id="ctx-seances">6</div><div class="ck-s">depuis le 19/03/2026</div></div>
     <div><div class="ck-l">FORT ACHAT</div><div class="ck-v cp" id="ctx-fa">—</div><div class="ck-s">signaux forts</div></div>
+    <div><div class="ck-l">ACHAT</div><div class="ck-v cp" id="ctx-ac">—</div><div class="ck-s">signaux modérés</div></div>
+    <div><div class="ck-l">ATTENTE</div><div class="ck-v" id="ctx-at">—</div><div class="ck-s">risque ou timing</div></div>
     <div><div class="ck-l">TOP DIVIDENDE</div><div class="ck-v cp" id="ctx-div">—</div><div class="ck-s">rendement 2024</div></div>
     <div><div class="ck-l">BRVM 2025</div><div class="ck-v cp">+25,26%</div><div class="ck-s">performance annuelle</div></div>
   </div>
-
+  
+  <!-- Profil investisseur -->
+  <div class="profile-selector">
+    <span style="font-size:9px;color:#888;margin-right:5px">PROFIL :</span>
+    <button class="profile-btn" onclick="setProfile('prudent')">🛡️ PRUDENT</button>
+    <button class="profile-btn active" onclick="setProfile('equilibre')">⚖️ ÉQUILIBRÉ</button>
+    <button class="profile-btn" onclick="setProfile('agressif')">⚡ AGRESSIF</button>
+  </div>
+  
   <div class="alerts" id="alerts-live"></div>
   <div id="surachat-zone"></div>
   <div class="mets" id="mets"></div>
-
+  <div style="background:#fdf9f0;border:1px solid #e8d9a0;border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:10px;color:#92400e">
+    ⚠ RSI en phase d'apprentissage : <strong id="rsi-status">6/14 séances</strong>. Le RSI sera fiable à partir de 14 séances (mi-avril).
+  </div>
+  
+  <!-- Mini tableau TOP RECOMMANDATIONS -->
+  <div class="card">
+    <div class="sec-title">🏆 TOP RECOMMANDATIONS</div>
+    <div class="tw-wrap">
+      <table style="font-size:10px">
+        <thead><tr><th>ACTION</th><th>RSI</th><th>DIV.</th><th>CONV.</th><th>SIGNAL</th><th>BADGE</th></tr></thead>
+        <tbody id="top-reco-table"></tbody>
+       </table>
+    </div>
+  </div>
+  
   <div class="card">
     <div class="ctrl">
       <span class="cl">SECTEUR :</span>
@@ -210,150 +198,123 @@ tr:last-child td{border-bottom:none}
       <button class="ft" onclick="fSec('CD',this)">CONSO.</button>
       <span class="cl" style="margin-left:8px">SIGNAL :</span>
       <button class="ft" onclick="fSig('FORT ACHAT',this)">FORT ACHAT</button>
+      <button class="ft" onclick="fSig('ACHAT',this)">ACHAT</button>
+      <button class="ft" onclick="fSig('ATTENTE',this)">⏳ ATTENTE</button>
       <button class="ft active" onclick="fSig('ALL',this)">TOUS</button>
       <input class="sb" id="search" placeholder="Rechercher..." oninput="renderTable()">
     </div>
     <div class="lgr">
-      <span><span class="ld" style="background:#22c55e"></span>≥70 FORT ACHAT</span>
-      <span><span class="ld" style="background:#f59e0b"></span>45–69 ACHAT</span>
-      <span><span class="ld" style="background:#94a3b8"></span>30–44 NEUTRE</span>
-      <span><span class="ld" style="background:#ef4444"></span>&lt;30 ÉVITER</span>
-      <span style="margin-left:auto;color:#b5922a;font-size:9px">★ portefeuille · RSI calculé sur <span id="rsi-nb">?</span> séances réelles</span>
+      <span><span class="ld" style="background:#22c55e"></span>FORT ACHAT ≥70</span>
+      <span><span class="ld" style="background:#f59e0b"></span>ACHAT 45–69</span>
+      <span><span class="ld" style="background:#b5922a"></span>⏳ ATTENTE</span>
+      <span><span class="ld" style="background:#94a3b8"></span>NEUTRE 30–44</span>
+      <span><span class="ld" style="background:#ef4444"></span>ÉVITER &lt;30</span>
+      <span style="margin-left:auto;color:#b5922a;font-size:9px">★ = dans mes positions</span>
     </div>
     <div class="tw-wrap">
-      <table>
-        <thead><tr>
-          <th onclick="tri('nom')">ACTION</th>
-          <th onclick="tri('pays')">PAYS</th>
-          <th onclick="tri('cours')">COURS ↕</th>
-          <th onclick="tri('var')">VAR.J ↕</th>
-          <th onclick="tri('varJan')">VAR.JAN ↕</th>
-          <th onclick="tri('vol')">VOLUME</th>
-          <th onclick="tri('div')">DIV. ↕</th>
-          <th onclick="tri('per')">PER ↕</th>
-          <th onclick="tri('rsi')">RSI ↕</th>
-          <th onclick="tri('tend')">TEND.</th>
-          <th onclick="tri('conviction')">CONV. ↕</th>
-          <th onclick="tri('risque')">RISQUE ↕</th>
-          <th onclick="tri('signal')">SIGNAL</th>
-        </tr></thead>
+      <table id="stock-table">
+        <thead>
+          32
+            <th onclick="tri('nom')">ACTION</th>
+            <th onclick="tri('pays')">PAYS</th>
+            <th onclick="tri('cours')">COURS ↕</th>
+            <th onclick="tri('var')">VAR.J ↕</th>
+            <th onclick="tri('varJan')">VAR.JAN ↕</th>
+            <th onclick="tri('div')">DIV. ↕</th>
+            <th onclick="tri('per')">PER ↕</th>
+            <th onclick="tri('rsi')">RSI ↕</th>
+            <th onclick="tri('conviction')">CONV. ↕</th>
+            <th onclick="tri('timing')">TIMING ↕</th>
+            <th onclick="tri('confiance')">CONF. ↕</th>
+            <th onclick="tri('signal')">SIGNAL</th>
+          32
+        </thead>
         <tbody id="tbl"></tbody>
-      </table>
+       </table>
     </div>
   </div>
-
   <div class="row2">
     <div class="card">
-      <div class="sec-title">TOP 12 CONVICTION — 25 MARS 2026</div>
+      <div class="sec-title">TOP 12 CONVICTION — 26 MARS 2026</div>
       <div class="cw2"><canvas id="ch1"></canvas></div>
     </div>
     <div class="card">
-      <div class="sec-title">VARIATIONS DU JOUR — 25 MARS 2026</div>
+      <div class="sec-title">VARIATIONS DU JOUR — 26 MARS 2026</div>
       <div class="cw2"><canvas id="ch2"></canvas></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ TAB 2 : STRATÉGIE ═══════════ -->
+<!-- ══ DÉCISIONS DU SOIR ══ -->
+<div id="tab-decisions" class="panel">
+  <p style="font-size:11px;color:#888;margin-bottom:1rem;line-height:1.7">
+    Ce panneau vous aide à préparer vos ordres <strong>ce soir</strong> pour <strong>demain matin</strong>.
+  </p>
+  
+  <div class="card" style="margin-bottom:10px">
+    <div class="sec-title">📋 MES POSITIONS RÉELLES</div>
+    <div id="mes-positions" style="font-size:10px;padding:6px 0">
+      <div class="hist-empty">Aucune position renseignée.</div>
+    </div>
+    <div style="font-size:9px;color:#888;margin-top:6px;padding-top:6px;border-top:1px solid #e0ddd6">
+      💡 Pour ajouter vos achats réels, modifiez la variable <strong>POSITIONS_REAL</strong> dans le code JavaScript.
+    </div>
+  </div>
+  
+  <div class="dec-grid" id="dec-grid"></div>
+  
+  <div class="card" style="margin-top:10px">
+    <div class="sec-title">EXPLICATION DES DÉCISIONS</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;font-size:11px;line-height:1.7;color:#444">
+      <div><strong style="color:#22c55e">✓ ACHETER DEMAIN</strong><br>FORT ACHAT ou ACHAT avec confiance élevée et timing favorable.</div>
+      <div><strong style="color:#b45309">⏳ ATTENDRE</strong><br>Bons fondamentaux mais RSI trop haut, proche résistance ou volatilité excessive.</div>
+      <div><strong style="color:#dc2626">🔴 VENDRE DEMAIN</strong><br>Pour vos positions réelles : stop-loss, objectif atteint, surachat ou signal ÉVITER.</div>
+      <div><strong style="color:#1d4ed8">📊 SURVEILLER</strong><br>Actions en correction qui pourraient offrir un bon point d'entrée.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STRATÉGIE ══ -->
 <div id="tab-strategie" class="panel">
-
   <div class="strat-grid">
-
     <div class="strat-card">
       <div class="strat-icon">🎯</div>
-      <div class="strat-title">PHILOSOPHIE GÉNÉRALE</div>
-      <div class="strat-text">
-        Sur la BRVM, <strong>le dividende est roi</strong>. Contrairement aux marchés développés, la majorité du rendement vient du dividende — pas de la plus-value. La stratégie optimale consiste à acheter des actions avec un <strong>dividende supérieur à 9%</strong> (moyenne BRVM) et un <strong>PER inférieur à la moyenne sectorielle</strong>, en entrant quand le RSI indique une zone de faiblesse passagère.
-      </div>
-      <div class="rule-box">
-        📌 Règle d'or : dividende ≥ 9% + PER &lt; moyenne secteur + RSI entre 30 et 55 = opportunité d'achat.
-      </div>
+      <div class="strat-title">PHILOSOPHIE BRVM</div>
+      <div class="strat-text">Sur la BRVM, <strong>le dividende est roi</strong>. Stratégie : acheter avec dividende >9% et PER sous la moyenne sectorielle, entrer quand RSI entre 30 et 55.</div>
+      <div class="rule-box">📌 Règle d'or : Div ≥9% + PER &lt; secteur + RSI 30–55 = opportunité.</div>
     </div>
-
     <div class="strat-card">
       <div class="strat-icon">📊</div>
       <div class="strat-title">SCORE DE CONVICTION (0–100)</div>
-      <div class="strat-text">Chaque action reçoit un score composé de deux parties égales :</div>
-      <div class="score-legend">
-        <div class="sl"><div class="sl-v">Score Technique /50</div><div class="sl-d">RSI (25pts) + Tendance MA10 (15pts) + Momentum jour (10pts)</div></div>
-        <div class="sl"><div class="sl-v">Score Fondamental /50</div><div class="sl-d">Dividende vs moy. BRVM (20pts) + PER vs secteur (20pts) + liquidité (10pts)</div></div>
-      </div>
-      <div class="rule-box">
-        ≥70 FORT ACHAT · 45–69 ACHAT · 30–44 NEUTRE · &lt;30 ÉVITER
-      </div>
+      <div class="strat-text"><strong>Score Technique /50</strong> : RSI (25pts) + Tendance MA (15pts) + Momentum jour (10pts)<br><br><strong>Score Fondamental /50</strong> : Dividende vs moyenne BRVM (20pts) + PER vs secteur (20pts) + liquidité (10pts)</div>
+      <div class="rule-box">≥70 FORT ACHAT · 45–69 ACHAT · 30–44 NEUTRE · &lt;30 ÉVITER</div>
     </div>
-
     <div class="strat-card">
-      <div class="strat-icon">📉</div>
-      <div class="strat-title">LECTURE DU RSI</div>
-      <div class="strat-text">
-        Le RSI (Relative Strength Index) mesure la <strong>force des acheteurs vs vendeurs</strong> sur les 14 dernières séances.
-        <br><br>
-        <strong>RSI 30–50</strong> — Zone d'achat optimale. Les vendeurs s'épuisent, les acheteurs reprennent le contrôle. C'est ici qu'on entre.<br><br>
-        <strong>RSI 50–65</strong> — Tendance haussière confirmée. On peut encore acheter mais le risque augmente.<br><br>
-        <strong>RSI &gt;70</strong> — Surachat. L'action a trop monté trop vite. Risque de correction — ne pas acheter, envisager de vendre.<br><br>
-        <strong>RSI &lt;30</strong> — Survente. Rebond probable mais attendre confirmation avant d'entrer.
-      </div>
+      <div class="strat-icon">⏱️</div>
+      <div class="strat-title">TIMING SCORE (0–100)</div>
+      <div class="strat-text"><strong>≥70 🟢 TIMING PARFAIT</strong> — entrer<br><strong>40–69 🟠 BON MOMENT</strong> — peut entrer<br><strong>&lt;40 🔴 MAUVAIS TIMING</strong> — attendre</div>
     </div>
-
     <div class="strat-card">
-      <div class="strat-icon">⚖️</div>
-      <div class="strat-title">GESTION DU CAPITAL — 20M FCFA</div>
-      <div class="strat-text">
-        Le concours impose un maximum de <strong>10% par position</strong> = 2 000 000 FCFA par action maximum.
-        <br><br>
-        <strong>Règle de diversification :</strong> ne jamais mettre plus de 15% dans un seul secteur. Viser 8 à 10 positions différentes pour réduire le risque.<br><br>
-        <strong>Ordre de priorité :</strong><br>
-        1. Actions signal FORT ACHAT (conviction ≥70)<br>
-        2. Actions signal ACHAT avec dividende ≥9%<br>
-        3. Garder 20–30% en liquidités pour saisir les opportunités
-      </div>
-      <div class="rule-box">
-        💡 Objectif concours : battre le BRVM Composite (+25,26% en 2025). Cible : +30% sur 3 mois.
-      </div>
+      <div class="strat-icon">📡</div>
+      <div class="strat-title">INDICATEURS AVANCÉS</div>
+      <div class="strat-text"><strong>ATR</strong> — Volatilité moyenne. >3% = action peut bouger brutalement.<br><br><strong>Volume Surge</strong> — Volume anormal vs moyenne.<br><br><strong>Support/Résistance</strong> — Acheter près du support.</div>
     </div>
-
     <div class="strat-card">
       <div class="strat-icon">🚪</div>
-      <div class="strat-title">RÈGLES D'ENTRÉE ET DE SORTIE</div>
-      <div class="strat-text">
-        <strong>ENTRER quand :</strong><br>
-        · Conviction ≥ 70 (FORT ACHAT)<br>
-        · RSI entre 30 et 55<br>
-        · Tendance haussière ou plate<br>
-        · Volume > 0 (liquidité suffisante)<br>
-        · Dividende ≥ 9%<br><br>
-        <strong>SORTIR quand :</strong><br>
-        · RSI dépasse 75 (surachat extrême)<br>
-        · L'action a gagné +15% depuis l'entrée<br>
-        · Signal passe en ÉVITER<br>
-        · Profit Warning ou news négatif
-      </div>
+      <div class="strat-title">RÈGLES DE SORTIE</div>
+      <div class="strat-text"><strong>VENDRE quand :</strong><br>· Perte ≥ -10% (stop-loss)<br>· Gain ≥ +15% atteint<br>· RSI ≥ 75 (surachat extrême)<br><br><strong>ALLÉGER quand :</strong><br>· Gain ≥ +10%<br>· RSI ≥ 68</div>
     </div>
-
     <div class="strat-card">
       <div class="strat-icon">⚠️</div>
-      <div class="strat-title">ACTIONS À ÉVITER ABSOLUMENT</div>
-      <div class="strat-text">
-        <strong>BOA NIGER</strong> — Profit Warning officiel. La direction a annoncé des résultats en forte baisse. Risque de chute supplémentaire.<br><br>
-        <strong>ETI TG</strong> — Zéro dividende malgré un BN record. Sans dividende sur la BRVM = sans catalyseur de hausse.<br><br>
-        <strong>MOVIS CI</strong> — Volume nul. Impossible de passer des ordres. Piège de liquidité.<br><br>
-        <strong>Actions RSI &gt; 75</strong> — Toute action en surachat extrême est un risque de correction imminent.
-      </div>
-      <div class="rule-box">
-        🔴 BOA NIGER, ETI TG et MOVIS CI sont en liste noire permanente.
-      </div>
+      <div class="strat-title">LISTE NOIRE</div>
+      <div class="strat-text"><strong>BOA NIGER</strong> — Profit Warning.<br><strong>ETI TG</strong> — Zéro dividende.<br><strong>MOVIS CI</strong> — Volume nul.</div>
+      <div class="rule-box">🔴 BOA NIGER · ETI TG · MOVIS CI = jamais acheter.</div>
     </div>
-
   </div>
-
-  <!-- POURQUOI CES ACTIONS -->
   <div class="card">
-    <div class="sec-title">JUSTIFICATION DES MEILLEURES OPPORTUNITÉS — 25 MARS 2026</div>
+    <div class="sec-title">MEILLEURES OPPORTUNITÉS</div>
     <div class="why-grid" id="why-grid"></div>
   </div>
-
-  <!-- COMPARAISON SECTEURS -->
   <div class="row2">
     <div class="card">
       <div class="sec-title">SCORE MOYEN PAR SECTEUR</div>
@@ -364,46 +325,27 @@ tr:last-child td{border-bottom:none}
       <div class="cw2"><canvas id="ch-signaux"></canvas></div>
     </div>
   </div>
-
 </div>
 
-<!-- ═══════════ TAB 3 : PORTEFEUILLE ═══════════ -->
-<div id="tab-portefeuille" class="panel">
-  <div class="pfc">
-    <div class="pft">MON PORTEFEUILLE VIRTUEL — SIKA INVEST CHALLENGE (20 000 000 FCFA)</div>
-    <div class="pfg" id="pf-kpis"></div>
-    <div class="pflines" id="pf-lines"><div class="pfempty">Aucune position. Allez dans le Scanner et cliquez sur une action.</div></div>
-  </div>
-  <div class="card">
-    <div class="sec-title">HISTORIQUE DES TRANSACTIONS</div>
-    <div id="hist-trans"><div class="hist-empty">Aucune transaction.</div></div>
-  </div>
-</div>
-
-<!-- ═══════════ TAB 4 : HISTORIQUE SÉANCES ═══════════ -->
+<!-- ══ HISTORIQUE ══ -->
 <div id="tab-historique" class="panel">
   <div class="card">
-    <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES RÉELLES DEPUIS LE 19/03/2026</div>
+    <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES RÉELLES</div>
     <p style="font-size:10px;color:#888;margin-bottom:1rem;line-height:1.6">
-      Chaque séance est enregistrée définitivement. Le RSI est calculé sur ces vraies données réelles accumulées. Plus il y a de séances, plus le RSI est précis.
+      <span id="rsi-status2">6</span> séances enregistrées. RSI fiable à partir de 14 séances.
     </p>
-    <div class="ctrl">
-      <input class="sb" id="search-hist" placeholder="Rechercher une action..." oninput="renderHist()" style="width:200px">
-    </div>
+    <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
     <div class="tw-wrap">
-      <table id="hist-table">
-        <thead id="hist-thead"></thead>
-        <tbody id="hist-tbody"></tbody>
-      </table>
+      <table id="hist-table"><thead id="hist-thead"></thead><tbody id="hist-tbody"></tbody></table>
     </div>
   </div>
 </div>
 
-<!-- MODALE -->
+<!-- ══ MODALE ══ -->
 <div id="ov" onclick="closeMod(event)">
   <div class="mod">
     <button class="mc" onclick="closeMod()">FERMER ✕</button>
-    <div class="ml2">SIKA INVEST · ANALYSE · 25 MARS 2026</div>
+    <div class="ml2">SIKA INVEST · ANALYSE</div>
     <div class="mt" id="m-t">—</div>
     <div class="mm" id="m-m">—</div>
     <hr class="md2">
@@ -416,270 +358,303 @@ tr:last-child td{border-bottom:none}
       <div><div class="mbt">ANALYSE TECHNIQUE</div><div class="mtxt" id="m-tech">—</div></div>
       <div><div class="mbt">ANALYSE FONDAMENTALE</div><div class="mtxt" id="m-fond">—</div></div>
       <div><div class="mbt">POURQUOI ACHETER ?</div><div class="mtxt" id="m-why">—</div></div>
-      <div><div class="mbt">RISQUES</div><div class="mtxt" id="m-risq">—</div></div>
+      <div><div class="mbt">RISQUES &amp; SORTIE</div><div class="mtxt" id="m-risq">—</div></div>
     </div>
-    <div class="mverd"><div class="mvl">RECOMMANDATION SIKA</div><div class="mvt" id="m-reco">—</div></div>
+    <div class="mverd"><div class="mvl">RECOMMANDATION</div><div class="mvt" id="m-reco">—</div></div>
     <div id="m-act"></div>
   </div>
 </div>
 
-</div><!-- /app -->
+</div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   HISTORIQUE CUMULATIF — données réelles séance par séance
-   Chaque colonne = une séance réelle
-   Format : {date, cours{ticker:valeur}, var{ticker:valeur}}
-   ══════════════════════════════════════════════════════════════ */
+// ==================== DONNÉES ====================
 const SEANCES = [
-  {
-    date:"19/03/2026",
-    vol:{SDSC:12470,BOAB:4067,BOABF:3233,BOAC:3767,BOAM:4765,BOAN:20168,BOAS:17974,BICB:947,BNBC:1911,BICC:408,CFAC:3644,CIEC:2661,CBIBF:4943,SEMC:3165,ECOC:2940,SIVC:2260,ETIT:582860,FTSC:1769,LNBB:702,SVOC:0,NEIC:1689,NTLC:296,NSBC:741,ONTBF:897,ORGT:11074,ORAC:500,PALC:2709,SAFC:1049,SPHC:474,ABJC:1016,STAC:6264,SGBC:313,CABC:813,SICC:0,SITAB:0,SMBC:0,SIBC:0,SDCC:0,SOGB:0,SLBC:0,SNTS:0,SCRC:0,STLC:0,TTLS:0,PRSC:0,UNLC:0,UNXC:0,SHEC:0},
-    cours:{SDSC:1820,BOAB:7845,BOABF:5420,BOAC:8940,BOAM:4785,BOAN:2610,BOAS:6900,BICB:5200,BNBC:1575,BICC:26000,CFAC:1760,CIEC:3200,CBIBF:13510,SEMC:1975,ECOC:16795,SIVC:2690,ETIT:32,FTSC:2315,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14000,ONTBF:2835,ORGT:3500,ORAC:15050,PALC:9305,SAFC:5780,SPHC:8350,ABJC:3250,STAC:2285,SGBC:36000,CABC:3245,SICC:4095,SITAB:21985,SMBC:13250,SIBC:7200,SDCC:7400,SOGB:8350,SLBC:39510,SNTS:26695,SCRC:1550,STLC:2395,TTLS:3285,PRSC:4885,UNLC:16000,UNXC:1980,SHEC:2240},
-    var:{SDSC:-7.38,BOAB:2.08,BOABF:2.26,BOAC:0.45,BOAM:0.31,BOAN:-4.40,BOAS:1.17,BICB:-0.95,BNBC:-2.17,BICC:0.39,CFAC:0.86,CIEC:-3.03,CBIBF:0.04,SEMC:0.00,ECOC:3.16,SIVC:-0.19,ETIT:0.00,FTSC:1.09,LNBB:1.32,SVOC:0.00,NEIC:0.00,NTLC:-0.08,NSBC:-1.41,ONTBF:-4.87,ORGT:-5.41,ORAC:0.00,PALC:-1.43,SAFC:0.52,SPHC:-0.54,ABJC:0.00,STAC:-7.30,SGBC:3.15,CABC:-1.07,SICC:0.00,SITAB:0.00,SMBC:0.00,SIBC:0.00,SDCC:0.00,SOGB:0.00,SLBC:0.00,SNTS:0.00,SCRC:0.00,STLC:0.00,TTLS:0.00,PRSC:0.00,UNLC:0.00,UNXC:0.00,SHEC:0.00}
-  },
-  {
-    date:"21/03/2026",
-    vol:{SDSC:11729,BOAB:4309,BOABF:3377,BOAC:6713,BOAM:7006,BOAN:11069,BOAS:4316,BICB:1413,BNBC:328,BICC:2038,CFAC:7594,CIEC:5328,CBIBF:57,SEMC:4905,ECOC:379,SIVC:3696,ETIT:2468429,FTSC:1263,LNBB:921,SVOC:0,NEIC:2278,NTLC:1003,NSBC:661,ONTBF:5827,ORGT:7361,ORAC:2032,PALC:1863,SAFC:6889,SPHC:20549,ABJC:3953,STAC:3780,SGBC:4445,CABC:1008,SICC:863,SITAB:3550,SMBC:357,SIBC:19239,SDCC:313,SOGB:10291,SLBC:185,SNTS:3365,SCRC:13624,STLC:49250,TTLS:2279,PRSC:1208,UNLC:139,UNXC:12656,SHEC:4517},
-    cours:{SDSC:1700,BOAB:7850,BOABF:5395,BOAC:8700,BOAM:4760,BOAN:2535,BOAS:6900,BICB:5200,BNBC:1600,BICC:25555,CFAC:1795,CIEC:3300,CBIBF:13700,SEMC:1980,ECOC:16905,SIVC:2675,ETIT:32,FTSC:2320,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14150,ONTBF:3000,ORGT:3365,ORAC:14550,PALC:9350,SAFC:6195,SPHC:7725,ABJC:3490,STAC:2355,SGBC:35500,CABC:3280,SICC:3850,SITAB:21985,SMBC:13300,SIBC:7050,SDCC:7700,SOGB:8700,SLBC:39200,SNTS:28800,SCRC:1540,STLC:2950,TTLS:3265,PRSC:4700,UNLC:59000,UNXC:2000,SHEC:2200},
-    var:{SDSC:0.0,BOAB:0.0,BOABF:0.0,BOAC:0.0,BOAM:0.0,BOAN:0.0,BOAS:0.0,BICB:0.0,BNBC:0.0,BICC:0.0,CFAC:0.0,CIEC:0.0,CBIBF:0.0,SEMC:0.0,ECOC:0.0,SIVC:0.0,ETIT:0.0,FTSC:0.0,LNBB:0.0,SVOC:0.0,NEIC:0.0,NTLC:0.0,NSBC:0.0,ONTBF:0.0,ORGT:0.0,ORAC:0.0,PALC:0.0,SAFC:0.0,SPHC:0.0,ABJC:0.0,STAC:0.0,SGBC:0.0,CABC:0.0,SICC:0.0,SITAB:0.0,SMBC:0.0,SIBC:0.0,SDCC:0.0,SOGB:0.0,SLBC:0.0,SNTS:0.0,SCRC:0.0,STLC:0.0,TTLS:0.0,PRSC:0.0,UNLC:0.0,UNXC:0.0,SHEC:0.0}
-  },
-  {
-    date:"25/03/2026",
-    vol:{SDSC:4188,BOAB:1767,BOABF:4920,BOAC:3959,BOAM:14163,BOAN:14412,BOAS:6519,BICB:2382,BNBC:1125,BICC:1558,CFAC:3368,CIEC:35503,CBIBF:1055,SEMC:3598,ECOC:790,SIVC:1826,ETIT:978577,FTSC:1349,LNBB:639,SVOC:0,NEIC:6467,NTLC:508,NSBC:2010,ONTBF:5910,ORGT:36643,ORAC:8259,PALC:3629,SAFC:2871,SPHC:4620,ABJC:4655,STAC:4973,SGBC:2002,CABC:2365,SICC:114,SITAB:1277,SMBC:342,SIBC:3779,SDCC:425,SOGB:5921,SLBC:274,SNTS:16961,SCRC:7444,STLC:19837,TTLS:12064,PRSC:1263,UNLC:148,UNXC:9584,SHEC:2180},
-    cours:{SDSC:1825,BOAB:7815,BOABF:5400,BOAC:8790,BOAM:4790,BOAN:2460,BOAS:6890,BICB:5185,BNBC:1605,BICC:24745,CFAC:1750,CIEC:3340,CBIBF:13705,SEMC:1990,ECOC:16700,SIVC:2675,ETIT:32,FTSC:2290,LNBB:3825,SVOC:2395,NEIC:1380,NTLC:12890,NSBC:14000,ONTBF:3000,ORGT:3615,ORAC:14200,PALC:9400,SAFC:5805,SPHC:7240,ABJC:3730,STAC:2450,SGBC:35000,CABC:3275,SICC:3850,SITAB:21985,SMBC:13295,SIBC:6915,SDCC:7700,SOGB:8500,SLBC:38920,SNTS:28200,SCRC:1590,STLC:2995,TTLS:3025,PRSC:4800,UNLC:54580,UNXC:2095,SHEC:2150},
-    var:{SDSC:7.35,BOAB:-0.45,BOABF:0.09,BOAC:1.03,BOAM:0.63,BOAN:-2.96,BOAS:-0.14,BICB:-0.29,BNBC:0.31,BICC:-3.17,CFAC:-2.51,CIEC:1.21,CBIBF:0.04,SEMC:0.51,ECOC:-1.21,SIVC:0.00,ETIT:0.00,FTSC:-1.29,LNBB:-0.65,SVOC:0.00,NEIC:-2.13,NTLC:0.00,NSBC:-1.06,ONTBF:0.00,ORGT:7.43,ORAC:-2.41,PALC:0.53,SAFC:-6.30,SPHC:-6.28,ABJC:6.88,STAC:4.03,SGBC:-1.41,CABC:-0.15,SICC:0.00,SITAB:0.00,SMBC:-0.04,SIBC:-1.91,SDCC:0.00,SOGB:-2.30,SLBC:-0.71,SNTS:-2.08,SCRC:3.25,STLC:1.53,TTLS:-7.35,PRSC:2.13,UNLC:-7.49,UNXC:4.75,SHEC:-2.27}
-  },
-  {
-    date:"24/03/2026",
-    vol:{SDSC:14866,BOAB:3089,BOABF:3122,BOAC:7514,BOAM:8710,BOAN:5655,BOAS:7712,BICB:554,BNBC:2430,BICC:817,CFAC:2272,CIEC:10021,CBIBF:568,SEMC:6032,ECOC:790,SIVC:4633,ETIT:316858,FTSC:2936,LNBB:3592,SVOC:0,NEIC:1518,NTLC:50573,NSBC:911,ONTBF:1610,ORGT:10095,ORAC:1115,PALC:2140,SAFC:2610,SPHC:12319,ABJC:1941,STAC:752,SGBC:609,CABC:2938,SICC:9,SITAB:870,SMBC:1176,SIBC:2742,SDCC:192,SOGB:3480,SLBC:218,SNTS:4303,SCRC:3222,STLC:27668,TTLS:925,PRSC:1929,UNLC:82,UNXC:11296,SHEC:3513},
-    cours:{SDSC:1920,BOAB:7650,BOABF:5415,BOAC:8700,BOAM:4760,BOAN:2575,BOAS:6720,BICB:5100,BNBC:1580,BICC:24400,CFAC:1675,CIEC:3345,CBIBF:13715,SEMC:2050,ECOC:16300,SIVC:2775,ETIT:32,FTSC:2295,LNBB:3825,SVOC:2395,NEIC:1350,NTLC:13000,NSBC:14000,ONTBF:2995,ORGT:3780,ORAC:14600,PALC:8695,SAFC:5995,SPHC:7600,ABJC:3545,STAC:2360,SGBC:34995,CABC:3165,SICC:4135,SITAB:21990,SMBC:12740,SIBC:6860,SDCC:7500,SOGB:7990,SLBC:39000,SNTS:28205,SCRC:1540,STLC:2810,TTLS:3190,PRSC:4890,UNLC:58000,UNXC:2095,SHEC:2175},
-    var:{SDSC:5.21,BOAB:-2.11,BOABF:0.28,BOAC:-1.02,BOAM:-0.63,BOAN:4.67,BOAS:-2.47,BICB:-1.64,BNBC:-1.56,BICC:-1.39,CFAC:-4.29,CIEC:0.15,CBIBF:0.07,SEMC:3.02,ECOC:-2.40,SIVC:3.74,ETIT:0.00,FTSC:0.22,LNBB:0.00,SVOC:0.00,NEIC:-2.17,NTLC:0.85,NSBC:0.00,ONTBF:-0.17,ORGT:4.56,ORAC:2.82,PALC:-7.50,SAFC:3.27,SPHC:4.97,ABJC:-4.96,STAC:-3.67,SGBC:-0.01,CABC:-3.36,SICC:7.40,SITAB:0.02,SMBC:-4.17,SIBC:-0.80,SDCC:-2.60,SOGB:-6.00,SLBC:0.21,SNTS:0.02,SCRC:-3.14,STLC:-6.18,TTLS:5.45,PRSC:1.88,UNLC:6.27,UNXC:0.00,SHEC:1.16}
-  },
-  {
-    date:"25/03/2026",
-    vol:{SDSC:22727,BOAB:2352,BOABF:7832,BOAC:5525,BOAM:23706,BOAN:3950,BOAS:62000,BICB:1429,BNBC:671,BICC:2460,CFAC:2007,CIEC:4398,CBIBF:251,SEMC:1698,ECOC:3083,SIVC:3708,ETIT:477023,FTSC:758,LNBB:487,SVOC:0,NEIC:3697,NTLC:568,NSBC:3266,ONTBF:970,ORGT:14594,ORAC:1208,PALC:2512,SAFC:6077,SPHC:4064,ABJC:5803,STAC:1504,SGBC:808,CABC:1762,SICC:42,SITAB:2250,SMBC:513,SIBC:13846,SDCC:496,SOGB:2977,SLBC:86,SNTS:5456,SCRC:3070,STLC:33317,TTLS:844,PRSC:2103,UNLC:16,UNXC:10793,SHEC:4290},
-    cours:{SDSC:2060,BOAB:7300,BOABF:5445,BOAC:8750,BOAM:4760,BOAN:2610,BOAS:6400,BICB:5000,BNBC:1600,BICC:24900,CFAC:1630,CIEC:3200,CBIBF:13800,SEMC:2200,ECOC:16300,SIVC:2835,ETIT:32,FTSC:2345,LNBB:3765,SVOC:2395,NEIC:1400,NTLC:12945,NSBC:14000,ONTBF:2990,ORGT:3700,ORAC:14500,PALC:8045,SAFC:6350,SPHC:7055,ABJC:3465,STAC:2310,SGBC:34995,CABC:3165,SICC:4135,SITAB:21500,SMBC:12995,SIBC:6900,SDCC:7500,SOGB:7700,SLBC:38950,SNTS:28005,SCRC:1515,STLC:2815,TTLS:3015,PRSC:4900,UNLC:53650,UNXC:2075,SHEC:2200},
-    var:{SDSC:7.29,BOAB:-4.58,BOABF:0.55,BOAC:0.57,BOAM:0.00,BOAN:1.36,BOAS:-4.76,BICB:-1.96,BNBC:1.27,BICC:2.05,CFAC:-2.69,CIEC:-4.33,CBIBF:0.62,SEMC:7.32,ECOC:0.00,SIVC:2.16,ETIT:0.00,FTSC:2.18,LNBB:-1.57,SVOC:0.00,NEIC:3.70,NTLC:-0.42,NSBC:0.00,ONTBF:-0.17,ORGT:-2.12,ORAC:-0.68,PALC:-7.48,SAFC:5.92,SPHC:-7.17,ABJC:-2.26,STAC:-2.12,SGBC:0.00,CABC:0.00,SICC:0.00,SITAB:-2.23,SMBC:2.00,SIBC:0.58,SDCC:0.00,SOGB:-3.63,SLBC:-0.13,SNTS:-0.71,SCRC:-1.62,STLC:0.18,TTLS:-5.49,PRSC:0.20,UNLC:-7.50,UNXC:-0.95,SHEC:1.15}
-  }
+  {date:"19/03/2026", vol:{SDSC:12470,BOAB:4067,BOABF:3233,BOAC:3767,BOAM:4765,BOAN:20168,BOAS:17974,BICB:947,BNBC:1911,BICC:408,CFAC:3644,CIEC:2661,CBIBF:4943,SEMC:3165,ECOC:2940,SIVC:2260,ETIT:582860,FTSC:1769,LNBB:702,SVOC:0,NEIC:1689,NTLC:296,NSBC:741,ONTBF:897,ORGT:11074,ORAC:500,PALC:2709,SAFC:1049,SPHC:474,ABJC:1016,STAC:6264,SGBC:313,CABC:813,SICC:0,SITAB:0,SMBC:0,SIBC:0,SDCC:0,SOGB:0,SLBC:0,SNTS:0,SCRC:0,STLC:0,TTLS:0,PRSC:0,UNLC:0,UNXC:0,SHEC:0}, cours:{SDSC:1820,BOAB:7845,BOABF:5420,BOAC:8940,BOAM:4785,BOAN:2610,BOAS:6900,BICB:5200,BNBC:1575,BICC:26000,CFAC:1760,CIEC:3200,CBIBF:13510,SEMC:1975,ECOC:16795,SIVC:2690,ETIT:32,FTSC:2315,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14000,ONTBF:2835,ORGT:3500,ORAC:15050,PALC:9305,SAFC:5780,SPHC:8350,ABJC:3250,STAC:2285,SGBC:36000,CABC:3245,SICC:4095,SITAB:21985,SMBC:13250,SIBC:7200,SDCC:7400,SOGB:8350,SLBC:39510,SNTS:26695,SCRC:1550,STLC:2395,TTLS:3285,PRSC:4885,UNLC:16000,UNXC:1980,SHEC:2240}, var:{SDSC:-7.38,BOAB:2.08,BOABF:2.26,BOAC:0.45,BOAM:0.31,BOAN:-4.40,BOAS:1.17,BICB:-0.95,BNBC:-2.17,BICC:0.39,CFAC:0.86,CIEC:-3.03,CBIBF:0.04,SEMC:0.00,ECOC:3.16,SIVC:-0.19,ETIT:0.00,FTSC:1.09,LNBB:1.32,SVOC:0.00,NEIC:0.00,NTLC:-0.08,NSBC:-1.41,ONTBF:-4.87,ORGT:-5.41,ORAC:0.00,PALC:-1.43,SAFC:0.52,SPHC:-0.54,ABJC:0.00,STAC:-7.30,SGBC:3.15,CABC:-1.07,SICC:0.00,SITAB:0.00,SMBC:0.00,SIBC:0.00,SDCC:0.00,SOGB:0.00,SLBC:0.00,SNTS:0.00,SCRC:0.00,STLC:0.00,TTLS:0.00,PRSC:0.00,UNLC:0.00,UNXC:0.00,SHEC:0.00}},
+  {date:"21/03/2026", vol:{SDSC:11729,BOAB:4309,BOABF:3377,BOAC:6713,BOAM:7006,BOAN:11069,BOAS:4316,BICB:1413,BNBC:328,BICC:2038,CFAC:7594,CIEC:5328,CBIBF:57,SEMC:4905,ECOC:379,SIVC:3696,ETIT:2468429,FTSC:1263,LNBB:921,SVOC:0,NEIC:2278,NTLC:1003,NSBC:661,ONTBF:5827,ORGT:7361,ORAC:2032,PALC:1863,SAFC:6889,SPHC:20549,ABJC:3953,STAC:3780,SGBC:4445,CABC:1008,SICC:863,SITAB:3550,SMBC:357,SIBC:19239,SDCC:313,SOGB:10291,SLBC:185,SNTS:3365,SCRC:13624,STLC:49250,TTLS:2279,PRSC:1208,UNLC:139,UNXC:12656,SHEC:4517}, cours:{SDSC:1700,BOAB:7850,BOABF:5395,BOAC:8700,BOAM:4760,BOAN:2535,BOAS:6900,BICB:5200,BNBC:1600,BICC:25555,CFAC:1795,CIEC:3300,CBIBF:13700,SEMC:1980,ECOC:16905,SIVC:2675,ETIT:32,FTSC:2320,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14150,ONTBF:3000,ORGT:3365,ORAC:14550,PALC:9350,SAFC:6195,SPHC:7725,ABJC:3490,STAC:2355,SGBC:35500,CABC:3280,SICC:3850,SITAB:21985,SMBC:13300,SIBC:7050,SDCC:7700,SOGB:8700,SLBC:39200,SNTS:28800,SCRC:1540,STLC:2950,TTLS:3265,PRSC:4700,UNLC:59000,UNXC:2000,SHEC:2200}, var:{SDSC:0,BOAB:0,BOABF:0,BOAC:0,BOAM:0,BOAN:0,BOAS:0,BICB:0,BNBC:0,BICC:0,CFAC:0,CIEC:0,CBIBF:0,SEMC:0,ECOC:0,SIVC:0,ETIT:0,FTSC:0,LNBB:0,SVOC:0,NEIC:0,NTLC:0,NSBC:0,ONTBF:0,ORGT:0,ORAC:0,PALC:0,SAFC:0,SPHC:0,ABJC:0,STAC:0,SGBC:0,CABC:0,SICC:0,SITAB:0,SMBC:0,SIBC:0,SDCC:0,SOGB:0,SLBC:0,SNTS:0,SCRC:0,STLC:0,TTLS:0,PRSC:0,UNLC:0,UNXC:0,SHEC:0}},
+  {date:"23/03/2026", vol:{SDSC:4188,BOAB:1767,BOABF:4920,BOAC:3959,BOAM:14163,BOAN:14412,BOAS:6519,BICB:2382,BNBC:1125,BICC:1558,CFAC:3368,CIEC:35503,CBIBF:1055,SEMC:3598,ECOC:790,SIVC:1826,ETIT:978577,FTSC:1349,LNBB:639,SVOC:0,NEIC:6467,NTLC:508,NSBC:2010,ONTBF:5910,ORGT:36643,ORAC:8259,PALC:3629,SAFC:2871,SPHC:4620,ABJC:4655,STAC:4973,SGBC:2002,CABC:2365,SICC:114,SITAB:1277,SMBC:342,SIBC:3779,SDCC:425,SOGB:5921,SLBC:274,SNTS:16961,SCRC:7444,STLC:19837,TTLS:12064,PRSC:1263,UNLC:148,UNXC:9584,SHEC:2180}, cours:{SDSC:1825,BOAB:7815,BOABF:5400,BOAC:8790,BOAM:4790,BOAN:2460,BOAS:6890,BICB:5185,BNBC:1605,BICC:24745,CFAC:1750,CIEC:3340,CBIBF:13705,SEMC:1990,ECOC:16700,SIVC:2675,ETIT:32,FTSC:2290,LNBB:3825,SVOC:2395,NEIC:1380,NTLC:12890,NSBC:14000,ONTBF:3000,ORGT:3615,ORAC:14200,PALC:9400,SAFC:5805,SPHC:7240,ABJC:3730,STAC:2450,SGBC:35000,CABC:3275,SICC:3850,SITAB:21985,SMBC:13295,SIBC:6915,SDCC:7700,SOGB:8500,SLBC:38920,SNTS:28200,SCRC:1590,STLC:2995,TTLS:3025,PRSC:4800,UNLC:54580,UNXC:2095,SHEC:2150}, var:{SDSC:7.35,BOAB:-0.45,BOABF:0.09,BOAC:1.03,BOAM:0.63,BOAN:-2.96,BOAS:-0.14,BICB:-0.29,BNBC:0.31,BICC:-3.17,CFAC:-2.51,CIEC:1.21,CBIBF:0.04,SEMC:0.51,ECOC:-1.21,SIVC:0,ETIT:0,FTSC:-1.29,LNBB:-0.65,SVOC:0,NEIC:-2.13,NTLC:0,NSBC:-1.06,ONTBF:0,ORGT:7.43,ORAC:-2.41,PALC:0.53,SAFC:-6.30,SPHC:-6.28,ABJC:6.88,STAC:4.03,SGBC:-1.41,CABC:-0.15,SICC:0,SITAB:0,SMBC:-0.04,SIBC:-1.91,SDCC:0,SOGB:-2.30,SLBC:-0.71,SNTS:-2.08,SCRC:3.25,STLC:1.53,TTLS:-7.35,PRSC:2.13,UNLC:-7.49,UNXC:4.75,SHEC:-2.27}},
+  {date:"24/03/2026", vol:{SDSC:14866,BOAB:3089,BOABF:3122,BOAC:7514,BOAM:8710,BOAN:5655,BOAS:7712,BICB:554,BNBC:2430,BICC:817,CFAC:2272,CIEC:10021,CBIBF:568,SEMC:6032,ECOC:790,SIVC:4633,ETIT:316858,FTSC:2936,LNBB:3592,SVOC:0,NEIC:1518,NTLC:50573,NSBC:911,ONTBF:1610,ORGT:10095,ORAC:1115,PALC:2140,SAFC:2610,SPHC:12319,ABJC:1941,STAC:752,SGBC:609,CABC:2938,SICC:9,SITAB:870,SMBC:1176,SIBC:2742,SDCC:192,SOGB:3480,SLBC:218,SNTS:4303,SCRC:3222,STLC:27668,TTLS:925,PRSC:1929,UNLC:82,UNXC:11296,SHEC:3513}, cours:{SDSC:1920,BOAB:7650,BOABF:5415,BOAC:8700,BOAM:4760,BOAN:2575,BOAS:6720,BICB:5100,BNBC:1580,BICC:24400,CFAC:1675,CIEC:3345,CBIBF:13715,SEMC:2050,ECOC:16300,SIVC:2775,ETIT:32,FTSC:2295,LNBB:3825,SVOC:2395,NEIC:1350,NTLC:13000,NSBC:14000,ONTBF:2995,ORGT:3780,ORAC:14600,PALC:8695,SAFC:5995,SPHC:7600,ABJC:3545,STAC:2360,SGBC:34995,CABC:3165,SICC:4135,SITAB:21990,SMBC:12740,SIBC:6860,SDCC:7500,SOGB:7990,SLBC:39000,SNTS:28205,SCRC:1540,STLC:2810,TTLS:3190,PRSC:4890,UNLC:58000,UNXC:2095,SHEC:2175}, var:{SDSC:5.21,BOAB:-2.11,BOABF:0.28,BOAC:-1.02,BOAM:-0.63,BOAN:4.67,BOAS:-2.47,BICB:-1.64,BNBC:-1.56,BICC:-1.39,CFAC:-4.29,CIEC:0.15,CBIBF:0.07,SEMC:3.02,ECOC:-2.40,SIVC:3.74,ETIT:0,FTSC:0.22,LNBB:0,SVOC:0,NEIC:-2.17,NTLC:0.85,NSBC:0,ONTBF:-0.17,ORGT:4.56,ORAC:2.82,PALC:-7.50,SAFC:3.27,SPHC:4.97,ABJC:-4.96,STAC:-3.67,SGBC:-0.01,CABC:-3.36,SICC:7.40,SITAB:0.02,SMBC:-4.17,SIBC:-0.80,SDCC:-2.60,SOGB:-6.00,SLBC:0.21,SNTS:0.02,SCRC:-3.14,STLC:-6.18,TTLS:5.45,PRSC:1.88,UNLC:6.27,UNXC:0,SHEC:1.16}},
+  {date:"25/03/2026", vol:{SDSC:22727,BOAB:2352,BOABF:7832,BOAC:5525,BOAM:23706,BOAN:3950,BOAS:62000,BICB:1429,BNBC:671,BICC:2460,CFAC:2007,CIEC:4398,CBIBF:251,SEMC:1698,ECOC:3083,SIVC:3708,ETIT:477023,FTSC:758,LNBB:487,SVOC:0,NEIC:3697,NTLC:568,NSBC:3266,ONTBF:970,ORGT:14594,ORAC:1208,PALC:2512,SAFC:6077,SPHC:4064,ABJC:5803,STAC:1504,SGBC:808,CABC:1762,SICC:42,SITAB:2250,SMBC:513,SIBC:13846,SDCC:496,SOGB:2977,SLBC:86,SNTS:5456,SCRC:3070,STLC:33317,TTLS:844,PRSC:2103,UNLC:16,UNXC:10793,SHEC:4290}, cours:{SDSC:2060,BOAB:7300,BOABF:5445,BOAC:8750,BOAM:4760,BOAN:2610,BOAS:6400,BICB:5000,BNBC:1600,BICC:24900,CFAC:1630,CIEC:3200,CBIBF:13800,SEMC:2200,ECOC:16300,SIVC:2835,ETIT:32,FTSC:2345,LNBB:3765,SVOC:2395,NEIC:1400,NTLC:12945,NSBC:14000,ONTBF:2990,ORGT:3700,ORAC:14500,PALC:8045,SAFC:6350,SPHC:7055,ABJC:3465,STAC:2310,SGBC:34995,CABC:3165,SICC:4135,SITAB:21500,SMBC:12995,SIBC:6900,SDCC:7500,SOGB:7700,SLBC:38950,SNTS:28005,SCRC:1515,STLC:2815,TTLS:3015,PRSC:4900,UNLC:53650,UNXC:2075,SHEC:2200}, var:{SDSC:7.29,BOAB:-4.58,BOABF:0.55,BOAC:0.57,BOAM:0,BOAN:1.36,BOAS:-4.76,BICB:-1.96,BNBC:1.27,BICC:2.05,CFAC:-2.69,CIEC:-4.33,CBIBF:0.62,SEMC:7.32,ECOC:0,SIVC:2.16,ETIT:0,FTSC:2.18,LNBB:-1.57,SVOC:0,NEIC:3.70,NTLC:-0.42,NSBC:0,ONTBF:-0.17,ORGT:-2.12,ORAC:-0.68,PALC:-7.48,SAFC:5.92,SPHC:-7.17,ABJC:-2.26,STAC:-2.12,SGBC:0,CABC:0,SICC:0,SITAB:-2.23,SMBC:2.00,SIBC:0.58,SDCC:0,SOGB:-3.63,SLBC:-0.13,SNTS:-0.71,SCRC:-1.62,STLC:0.18,TTLS:-5.49,PRSC:0.20,UNLC:-7.50,UNXC:-0.95,SHEC:1.15}},
+  {date:"26/03/2026", vol:{SDSC:8824,BOAB:731,BOABF:2246,BOAC:22706,BOAM:4167,BOAN:6847,BOAS:14395,BICB:959,BNBC:677,BICC:1523,CFAC:1685,CIEC:2715,CBIBF:758,SEMC:3472,ECOC:2368,SIVC:3490,ETIT:284362,FTSC:1824,LNBB:1217,SVOC:0,NEIC:6226,NTLC:231,NSBC:626,ONTBF:1507,ORGT:3833,ORAC:441,PALC:6673,SAFC:1566,SPHC:1071,ABJC:1036,STAC:1308,SGBC:864,CABC:794,SICC:4,SITAB:1316,SMBC:249,SIBC:11240,SDCC:690,SOGB:2497,SLBC:52,SNTS:1233,SCRC:6471,STLC:18826,TTLS:670,PRSC:2023,UNLC:90,UNXC:4750,SHEC:1904}, cours:{SDSC:1970,BOAB:7295,BOABF:5445,BOAC:8500,BOAM:4695,BOAN:2690,BOAS:6550,BICB:5100,BNBC:1610,BICC:26000,CFAC:1640,CIEC:3290,CBIBF:13800,SEMC:2265,ECOC:16300,SIVC:2800,ETIT:32,FTSC:2355,LNBB:3800,SVOC:2395,NEIC:1430,NTLC:12900,NSBC:14095,ONTBF:2910,ORGT:3680,ORAC:14655,PALC:8000,SAFC:6295,SPHC:7200,ABJC:3425,STAC:2350,SGBC:35000,CABC:3200,SICC:4135,SITAB:21500,SMBC:12975,SIBC:7000,SDCC:7300,SOGB:7970,SLBC:39000,SNTS:28425,SCRC:1540,STLC:2870,TTLS:3100,PRSC:4980,UNLC:49630,UNXC:2065,SHEC:2235}, var:{SDSC:-4.37,BOAB:-0.07,BOABF:0,BOAC:-2.86,BOAM:-1.37,BOAN:3.07,BOAS:2.34,BICB:2.00,BNBC:0.63,BICC:4.42,CFAC:0.61,CIEC:2.81,CBIBF:0,SEMC:2.95,ECOC:0,SIVC:-1.23,ETIT:0,FTSC:0.43,LNBB:0.93,SVOC:0,NEIC:2.14,NTLC:-0.35,NSBC:0.68,ONTBF:-2.68,ORGT:-0.54,ORAC:1.07,PALC:-0.56,SAFC:-0.87,SPHC:2.06,ABJC:-1.15,STAC:1.73,SGBC:0.01,CABC:1.11,SICC:0,SITAB:0,SMBC:-0.15,SIBC:1.45,SDCC:-2.67,SOGB:3.51,SLBC:0.13,SNTS:1.50,SCRC:1.65,STLC:1.95,TTLS:2.82,PRSC:1.63,UNLC:-7.49,UNXC:-0.48,SHEC:1.59}}
 ];
 
-/* ══════════════════════════════════════════════════════════════
-   MÉTADONNÉES STABLES (dividende 2024, PER sectoriel, noms)
-   ══════════════════════════════════════════════════════════════ */
 const META = {
-  SDSC:{nom:"AFRICA GLOBAL LOGISTICS",pays:"CI",sec:"IN",div:6.5,per_s:10,jan:1515},
-  BOAB:{nom:"BOA BENIN",pays:"BJ",sec:"SF",div:8.5,per_s:9,jan:5850},
-  BOABF:{nom:"BOA BURKINA FASO",pays:"BF",sec:"SF",div:7.2,per_s:9,jan:3750},
-  BOAC:{nom:"BOA CI",pays:"CI",sec:"SF",div:7.0,per_s:9,jan:7180},
-  BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",div:7.2,per_s:9,jan:4000},
-  BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",div:6.0,per_s:9,jan:2610},
-  BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",div:8.1,per_s:9,jan:5240},
-  BICB:{nom:"BIC BENIN",pays:"BJ",sec:"SF",div:8.2,per_s:9,jan:4975},
-  BNBC:{nom:"BERNABE CI",pays:"CI",sec:"IN",div:7.0,per_s:10,jan:1410},
-  BICC:{nom:"BICICI CI",pays:"CI",sec:"SF",div:7.8,per_s:9,jan:19445},
-  CFAC:{nom:"CFAO MOTORS CI",pays:"CI",sec:"CD",div:5.2,per_s:11,jan:1430},
-  CIEC:{nom:"CIE CI",pays:"CI",sec:"EN",div:8.5,per_s:10,jan:2360},
-  CBIBF:{nom:"CORIS BANK BF",pays:"BF",sec:"SF",div:9.2,per_s:9,jan:10780},
-  SEMC:{nom:"CROWN SIEM CI",pays:"CI",sec:"IN",div:7.0,per_s:10,jan:700},
-  ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",div:5.0,per_s:9,jan:16000},
-  SIVC:{nom:"ERIUM CI",pays:"CI",sec:"EN",div:9.0,per_s:10,jan:1580},
-  ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",div:0.0,per_s:9,jan:23},
-  FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8,per_s:10,jan:2220},
-  LNBB:{nom:"LOTERIE NAT. BENIN",pays:"BJ",sec:"CD",div:6.5,per_s:11,jan:4295},
-  SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0,per_s:10,jan:2395},
-  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1,per_s:11,jan:1200},
-  NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5,per_s:8,jan:10650},
-  NSBC:{nom:"NSIA BANQUE CI",pays:"CI",sec:"SF",div:5.8,per_s:9,jan:11445},
-  ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TEL",div:10.5,per_s:9,jan:2485},
-  ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",div:7.5,per_s:9,jan:2400},
-  ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TEL",div:7.2,per_s:9,jan:14250},
-  PALC:{nom:"PALMCI",pays:"CI",sec:"CB",div:17.0,per_s:8,jan:8100},
-  SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",div:8.9,per_s:9,jan:3305},
-  SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",div:12.5,per_s:8,jan:7900},
-  ABJC:{nom:"SERVAIR CI",pays:"CI",sec:"IN",div:6.2,per_s:10,jan:2900},
-  STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",div:6.5,per_s:10,jan:1325},
-  SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",div:5.3,per_s:9,jan:29895},
-  CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",div:7.5,per_s:10,jan:2360},
-  SICC:{nom:"SICOR CI",pays:"CI",sec:"IN",div:8.8,per_s:10,jan:3300},
-  SITAB:{nom:"SITAB CI",pays:"CI",sec:"CB",div:8.0,per_s:8,jan:19780},
-  SMBC:{nom:"SMB CI",pays:"CI",sec:"SF",div:7.0,per_s:9,jan:9500},
-  SIBC:{nom:"SIB CI",pays:"CI",sec:"SF",div:7.1,per_s:9,jan:5750},
-  SDCC:{nom:"SODECI CI",pays:"CI",sec:"EN",div:8.5,per_s:10,jan:5800},
-  SOGB:{nom:"SOGB CI",pays:"CI",sec:"CB",div:13.5,per_s:8,jan:7900},
-  SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",div:6.0,per_s:8,jan:28900},
-  SNTS:{nom:"SONATEL",pays:"SN",sec:"TEL",div:8.9,per_s:9,jan:26120},
-  SCRC:{nom:"SUCRIVOIRE CI",pays:"CI",sec:"CB",div:12.1,per_s:8,jan:1060},
-  STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",div:9.8,per_s:10,jan:2335},
-  TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",div:9.1,per_s:10,jan:2500},
-  PRSC:{nom:"TRACTAFRIC CI",pays:"CI",sec:"CD",div:6.5,per_s:11,jan:3875},
-  UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",div:5.5,per_s:8,jan:34225},
-  UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"IN",div:8.2,per_s:10,jan:1400},
-  SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5,per_s:10,jan:1445},
+  SDSC:{nom:"AFRICA GLOBAL LOGISTICS",pays:"CI",sec:"IN",div:6.5, per_s:10,jan:1515},
+  BOAB:{nom:"BOA BENIN",pays:"BJ",sec:"SF",div:8.5, per_s:9, jan:5850},
+  BOABF:{nom:"BOA BURKINA FASO",pays:"BF",sec:"SF",div:7.2, per_s:9, jan:3750},
+  BOAC:{nom:"BOA CI",pays:"CI",sec:"SF",div:7.0, per_s:9, jan:7180},
+  BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",div:7.2, per_s:9, jan:4000},
+  BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",div:6.0, per_s:9, jan:2610,blacklist:true},
+  BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",div:8.1, per_s:9, jan:5240},
+  BICB:{nom:"BIC BENIN",pays:"BJ",sec:"SF",div:8.2, per_s:9, jan:4975},
+  BNBC:{nom:"BERNABE CI",pays:"CI",sec:"IN",div:7.0, per_s:10,jan:1410},
+  BICC:{nom:"BICICI CI",pays:"CI",sec:"SF",div:7.8, per_s:9, jan:19445},
+  CFAC:{nom:"CFAO MOTORS CI",pays:"CI",sec:"CD",div:5.2, per_s:11,jan:1430},
+  CIEC:{nom:"CIE CI",pays:"CI",sec:"EN",div:8.5, per_s:10,jan:2360},
+  CBIBF:{nom:"CORIS BANK BF",pays:"BF",sec:"SF",div:9.2, per_s:9, jan:10780},
+  SEMC:{nom:"CROWN SIEM CI",pays:"CI",sec:"IN",div:7.0, per_s:10,jan:700},
+  ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",div:5.0, per_s:9, jan:16000},
+  SIVC:{nom:"ERIUM CI",pays:"CI",sec:"EN",div:9.0, per_s:10,jan:1580},
+  ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",div:0.0, per_s:9, jan:23,blacklist:true},
+  FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8, per_s:10,jan:2220},
+  LNBB:{nom:"LOTERIE NAT. BENIN",pays:"BJ",sec:"CD",div:6.5, per_s:11,jan:4295},
+  SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0, per_s:10,jan:2395,blacklist:true},
+  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1, per_s:11,jan:1200},
+  NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5, per_s:8, jan:10650},
+  NSBC:{nom:"NSIA BANQUE CI",pays:"CI",sec:"SF",div:5.8, per_s:9, jan:11445},
+  ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TEL",div:10.5,per_s:9, jan:2485},
+  ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",div:7.5, per_s:9, jan:2400},
+  ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TEL",div:7.2, per_s:9, jan:14250},
+  PALC:{nom:"PALMCI",pays:"CI",sec:"CB",div:17.0,per_s:8, jan:8100},
+  SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",div:8.9, per_s:9, jan:3305},
+  SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",div:12.5,per_s:8, jan:7900},
+  ABJC:{nom:"SERVAIR CI",pays:"CI",sec:"IN",div:6.2, per_s:10,jan:2900},
+  STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",div:6.5, per_s:10,jan:1325},
+  SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",div:5.3, per_s:9, jan:29895},
+  CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",div:7.5, per_s:10,jan:2360},
+  SICC:{nom:"SICOR CI",pays:"CI",sec:"IN",div:8.8, per_s:10,jan:3300},
+  SITAB:{nom:"SITAB CI",pays:"CI",sec:"CB",div:8.0, per_s:8, jan:19780},
+  SMBC:{nom:"SMB CI",pays:"CI",sec:"SF",div:7.0, per_s:9, jan:9500},
+  SIBC:{nom:"SIB CI",pays:"CI",sec:"SF",div:7.1, per_s:9, jan:5750},
+  SDCC:{nom:"SODECI CI",pays:"CI",sec:"EN",div:8.5, per_s:10,jan:5800},
+  SOGB:{nom:"SOGB CI",pays:"CI",sec:"CB",div:13.5,per_s:8, jan:7900},
+  SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",div:6.0, per_s:8, jan:28900},
+  SNTS:{nom:"SONATEL",pays:"SN",sec:"TEL",div:8.9, per_s:9, jan:26120},
+  SCRC:{nom:"SUCRIVOIRE CI",pays:"CI",sec:"CB",div:12.1,per_s:8, jan:1060},
+  STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",div:9.8, per_s:10,jan:2335},
+  TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",div:9.1, per_s:10,jan:2500},
+  PRSC:{nom:"TRACTAFRIC CI",pays:"CI",sec:"CD",div:6.5, per_s:11,jan:3875},
+  UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",div:5.5, per_s:8, jan:34225},
+  UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"IN",div:8.2, per_s:10,jan:1400},
+  SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5, per_s:10,jan:1445},
 };
 
-const SEC_MAP={SF:'Services Financiers',CB:'Agro/Conso',IN:'Industriels',TEL:'Télécoms',EN:'Énergie',CD:'Distribution'};
-const CAP=20000000, MAX_POS=CAP*0.10;
-let pf={}, transactions=[];
-let filtSec='ALL', filtSig='ALL', sortK='conviction', sortD=-1;
+const SEC_MAP={SF:'Fin.',CB:'Agro',IN:'Ind.',TEL:'Tel.',EN:'Én.',CD:'Dist.'};
+const CAP=20000000, MAX_POS=2000000;
 
-/* ══ CALCULS ══ */
-function calcRSI(hist, period=14){
-  if(hist.length < period+1) return 50;
-  const ch=[];
-  for(let i=1;i<hist.length;i++) ch.push(hist[i]-hist[i-1]);
-  const rec=ch.slice(-period);
-  let g=0,l=0;
-  rec.forEach(c=>{ c>0?g+=c:l+=Math.abs(c); });
+// ========== TES POSITIONS RÉELLES ==========
+const POSITIONS_REAL = [
+  { ticker: "PALC", cours_achat: 9400, date_achat: "23/03/2026", quantite: 212 },
+  { ticker: "SCRC", cours_achat: 1590, date_achat: "23/03/2026", quantite: 1257 },
+  { ticker: "STLC", cours_achat: 2995, date_achat: "23/03/2026", quantite: 668 }
+];
+
+let DATA = [];
+let filtSec = 'ALL', filtSig = 'ALL', sortK = 'conviction', sortD = -1;
+let userProfile = 'equilibre';
+
+// ========== FONCTIONS DE CALCUL (version conviction technique + fondamentale) ==========
+function calcRSI(hist){
+  if(hist.length < 3) return 50;
+  const period = Math.min(14, hist.length - 1);
+  const ch = hist.slice(1).map((v,i)=>v-hist[i]);
+  const rec = ch.slice(-period);
+  let g=0, l=0;
+  rec.forEach(c=>{ c>0 ? g+=c : l+=Math.abs(c); });
   const ag=g/period, al=l/period;
-  if(al===0) return 99;
-  return Math.min(99,Math.max(1,Math.round(100-(100/(1+ag/al)))));
+  if(al===0) return Math.min(99, 50+rec.filter(c=>c>0).length*5);
+  return Math.min(99, Math.max(1, Math.round(100-(100/(1+ag/al)))));
 }
 
 function calcTend(hist){
-  if(hist.length<3) return 'flat';
-  const n=Math.min(10,hist.length);
-  const ma=hist.slice(-n).reduce((a,b)=>a+b,0)/n;
-  const last=hist[hist.length-1];
-  if(last>ma*1.005) return 'up';
-  if(last<ma*0.995) return 'down';
+  if(hist.length < 2) return 'flat';
+  const n = Math.min(hist.length, 5);
+  const ma = hist.slice(-n).reduce((a,b)=>a+b,0)/n;
+  const last = hist[hist.length-1];
+  if(last > ma*1.008) return 'up';
+  if(last < ma*0.992) return 'down';
   return 'flat';
 }
 
-function scoreTech(rsi,tend,varJ){
-  let s=0;
-  if(rsi>=30&&rsi<50) s+=25;
-  else if(rsi>=50&&rsi<60) s+=18;
-  else if(rsi>=20&&rsi<30) s+=14;
-  else if(rsi>=60&&rsi<70) s+=10;
-  else if(rsi>=70) s+=3;
-  else s+=5;
-  if(tend==='up') s+=15; else if(tend==='flat') s+=8;
-  if(varJ>0&&varJ<=5) s+=10;
-  else if(varJ>5&&varJ<=15) s+=7;
-  else if(varJ>15) s+=2;
-  else if(varJ>=-2) s+=5;
-  else s+=2;
-  return Math.min(s,50);
+function calcATR(hist){
+  if(hist.length < 2) return {atr:0, atr_pct:0};
+  const trs = hist.slice(1).map((v,i)=>Math.abs(v - hist[i]));
+  const atr = Math.round(trs.reduce((a,b)=>a+b,0)/trs.length);
+  const atr_pct = parseFloat((atr/hist[hist.length-1]*100).toFixed(2));
+  return {atr, atr_pct};
 }
 
-function scoreFond(div,per,per_s,vol){
-  let s=0;
-  if(div>=12) s+=20; else if(div>=9) s+=16; else if(div>=6) s+=10; else if(div>=3) s+=5;
-  const r=per/per_s;
-  if(r<=0.5) s+=20; else if(r<=0.75) s+=16; else if(r<=0.9) s+=12; else if(r<=1.1) s+=8; else s+=3;
-  if(vol===0) s=Math.max(s-10,0);
-  return Math.min(s,50);
-}
-
-function getSig(c){ return c>=70?'FORT ACHAT':c>=45?'ACHAT':c>=30?'NEUTRE':'ÉVITER'; }
-
-
-/* ══ ATR (Average True Range) — Volatilité ══ */
-function calcATR(hist, vols, period=10){
-  if(hist.length<3) return {atr:0,atr_pct:0,niveau:'faible'};
-  const trs=[];
-  for(let i=1;i<hist.length;i++){
-    const h=hist[i]*1.015, l=hist[i]*0.985, prev=hist[i-1];
-    trs.push(Math.max(h-l, Math.abs(h-prev), Math.abs(l-prev)));
-  }
-  const rec=trs.slice(-period);
-  const atr=Math.round(rec.reduce((a,b)=>a+b,0)/rec.length);
-  const atr_pct=parseFloat((atr/hist[hist.length-1]*100).toFixed(2));
-  return {atr, atr_pct, niveau: atr_pct>5?'TRÈS ÉLEVÉE':atr_pct>3?'ÉLEVÉE':atr_pct>1.5?'MODÉRÉE':'FAIBLE'};
-}
-
-/* ══ Volume Surge Detector ══ */
-function calcVolSurge(vols, period=5){
-  if(vols.length<period+1) return {surge:1,signal:'NORMAL'};
-  const recent=vols.slice(-period-1,-1).filter(v=>v>0);
-  if(!recent.length) return {surge:0,signal:'ILLIQUIDITÉ'};
-  const avg=recent.reduce((a,b)=>a+b,0)/recent.length;
-  if(avg===0) return {surge:0,signal:'ILLIQUIDITÉ'};
-  const surge=parseFloat((vols[vols.length-1]/avg).toFixed(2));
-  const signal=surge>=3?'SURGE FORT ⚡':surge>=1.5?'SURGE MODÉRÉ':surge<=0.3?'VOLUME FAIBLE':'NORMAL';
+function calcVolSurge(vols){
+  const nonZero = vols.slice(0,-1).filter(v=>v>0);
+  if(!nonZero.length || !vols[vols.length-1]) return {surge:1, signal:'NORMAL'};
+  const avg = nonZero.reduce((a,b)=>a+b,0)/nonZero.length;
+  const surge = parseFloat((vols[vols.length-1]/avg).toFixed(2));
+  const signal = surge>=3?'SURGE FORT ⚡':surge>=1.5?'SURGE MOD.':'NORMAL';
   return {surge, signal};
 }
 
-/* ══ Support & Résistance Dynamiques ══ */
-function calcSupportResistance(hist, period=10){
-  if(hist.length<3) return {support:hist[0]||0,resistance:hist[0]||0};
-  const recent=hist.slice(-Math.min(period,hist.length));
+function calcSR(hist){
+  if(hist.length < 2) return {support:hist[0]||0, resistance:hist[0]||0, pct_s:0, pct_r:0};
+  const support = Math.min(...hist);
+  const resistance = Math.max(...hist);
+  const last = hist[hist.length-1];
   return {
-    support:   Math.min(...recent),
-    resistance:Math.max(...recent),
-    pct_support:   parseFloat(((hist[hist.length-1]-Math.min(...recent))/Math.min(...recent)*100).toFixed(1)),
-    pct_resistance:parseFloat(((hist[hist.length-1]-Math.max(...recent))/Math.max(...recent)*100).toFixed(1))
+    support, resistance,
+    pct_s: parseFloat(((last-support)/support*100).toFixed(1)),
+    pct_r: parseFloat(((last-resistance)/resistance*100).toFixed(1))
   };
 }
 
-/* ══ Order Flow — Déséquilibre Acheteurs/Vendeurs ══ */
-function calcOrderFlow(hist, vols){
-  if(hist.length<2||vols.length<2) return {flow:0,signal:'NEUTRE'};
-  let buyPres=0, sellPres=0;
-  for(let i=1;i<hist.length;i++){
-    const vol=vols[i]||0;
-    if(hist[i]>hist[i-1]) buyPres+=vol;
-    else if(hist[i]<hist[i-1]) sellPres+=vol;
-  }
-  const total=buyPres+sellPres;
-  if(total===0) return {flow:50,signal:'NEUTRE'};
-  const flow=Math.round(buyPres/total*100);
-  const signal=flow>=65?'ACHETEURS DOMINENT 🟢':flow<=35?'VENDEURS DOMINENT 🔴':'ÉQUILIBRÉ';
-  return {flow, buyPres, sellPres, signal};
+function scoreTech(rsi, tend, varJ){
+  let s = 0;
+  if(rsi>=30&&rsi<50)       s+=25;
+  else if(rsi>=50&&rsi<60)  s+=18;
+  else if(rsi>=20&&rsi<30)  s+=14;
+  else if(rsi>=60&&rsi<70)  s+=10;
+  else if(rsi>=70)           s+=3;
+  else                       s+=5;
+  if(tend==='up')   s+=15;
+  else if(tend==='flat') s+=8;
+  if(varJ>0&&varJ<=5)    s+=10;
+  else if(varJ>5&&varJ<=15) s+=7;
+  else if(varJ>15)       s+=2;
+  else if(varJ>=-2)      s+=5;
+  else                   s+=2;
+  return Math.min(s, 50);
 }
 
-/* ══ Score de Risque (0=sûr, 100=très risqué) ══ */
-function calcRisque(rsi, atr_pct, surge, pct_resistance){
-  let r=0;
-  if(rsi>=75) r+=35; else if(rsi>=65) r+=20; else if(rsi<=25) r+=10;
-  if(atr_pct>=5) r+=25; else if(atr_pct>=3) r+=15; else if(atr_pct>=1.5) r+=5;
-  if(surge>=3) r+=20; else if(surge>=1.5) r+=10;
-  if(pct_resistance>=-2&&pct_resistance<=0) r+=20; // proche résistance
-  return Math.min(r,100);
+function scoreFond(div, per, per_s, vol){
+  let s = 0;
+  if(div>=12) s+=20; else if(div>=9) s+=16; else if(div>=6) s+=10; else if(div>=3) s+=5;
+  const r = per/per_s;
+  if(r<=0.5) s+=20; else if(r<=0.75) s+=16; else if(r<=0.9) s+=12; else if(r<=1.1) s+=8; else s+=3;
+  if(vol===0) s = Math.max(s-10, 0);
+  return Math.min(s, 50);
 }
 
-/* ══ CONSTRUIRE DATA ══ */
+function calcTiming(rsi, tend, varJ, sr, conv, blacklist){
+  if(blacklist) return 0;
+  let s = 25;
+  if(rsi>=30&&rsi<50)      s+=35;
+  else if(rsi>=20&&rsi<30) s+=20;
+  else if(rsi>=50&&rsi<60) s+=15;
+  else if(rsi>=60&&rsi<70) s+=5;
+  else if(rsi>=70)          s-=10;
+  if(tend==='up')   s+=20;
+  else if(tend==='flat') s+=10;
+  if(sr.pct_s>=0&&sr.pct_s<=5)   s+=20;
+  else if(sr.pct_s<=15)           s+=10;
+  if(sr.pct_r>=-3&&sr.pct_r<=0)  s-=20;
+  if(conv>=70) s+=5;
+  return Math.min(100, Math.max(0, s));
+}
+
+function calcRisque(rsi, atr_pct, surge, sr){
+  let r = 0;
+  if(rsi>=75)       r+=35; else if(rsi>=68) r+=20;
+  if(atr_pct>=5)    r+=25; else if(atr_pct>=3) r+=12;
+  if(surge>=3)      r+=20; else if(surge>=2) r+=10;
+  if(sr.pct_r>=-3&&sr.pct_r<=0) r+=20;
+  return Math.min(r, 100);
+}
+
+function calcConfiance(conv, timing, risque, vol, blacklist, div){
+  if(blacklist) return 0;
+  if(vol === 0) return Math.max(0, Math.round(conv * 0.3));
+  let c = (timing * 0.6) + (conv * 0.4);
+  if(div >= 12) c += 10;
+  else if(div >= 9) c += 5;
+  if(risque >= 60) c -= 20;
+  else if(risque >= 45) c -= 10;
+  if(vol >= 5000) c += 5;
+  else if(vol >= 1000) c += 2;
+  return Math.min(100, Math.max(0, Math.round(c)));
+}
+
+function getSignal(conv, timing, risque, confiance, blacklist){
+  if(blacklist) return 'ÉVITER';
+  if(risque >= 65) return 'ATTENTE';
+  if(timing >= 70 && confiance >= 65) return 'FORT ACHAT';
+  if(conv >= 70 && timing >= 45) return 'FORT ACHAT';
+  if(conv >= 45 && timing >= 35) return 'ACHAT';
+  if(timing < 35) return 'ATTENTE';
+  if(conv >= 30) return 'NEUTRE';
+  return 'ÉVITER';
+}
+
+// Badge intelligent
+function getBadge(rsi, per, per_s){
+  if(rsi < 30 && per < per_s) return {text: '📉 SOUS-ÉVALUÉE', class: 'badge-vert'};
+  if(rsi > 70) return {text: '⚠️ SURACHETÉE', class: 'badge-rouge'};
+  if(per < per_s * 0.7) return {text: '💎 BONNE AFFAIRE', class: 'badge-vert'};
+  if(rsi > 65) return {text: '📈 MOMENTUM FORT', class: 'badge-orange'};
+  return {text: '➖ NEUTRE', class: 'bgr'};
+}
+
 function buildData(){
   const derniere = SEANCES[SEANCES.length-1];
-  const nbSeances = SEANCES.length;
-  document.getElementById('rsi-nb').textContent = nbSeances;
-  document.getElementById('ctx-seances').textContent = nbSeances;
+  const nb = SEANCES.length;
+  document.getElementById('ctx-seances').textContent = nb;
+  document.getElementById('rsi-status').textContent = nb+'/14 séances';
+  document.getElementById('rsi-status2').textContent = nb;
 
-  return Object.keys(META).map(ticker=>{
-    const meta = META[ticker];
-    // Historique réel depuis les séances enregistrées
-    const hist = SEANCES.map(s=>s.cours[ticker]||0).filter(x=>x>0);
-    const cours = derniere.cours[ticker]||0;
-    const varJ  = derniere.var[ticker]||0;
-    // Volume de la dernière séance (approx)
-    const vol = derniere.vol?derniere.vol[ticker]||0:0;
-    const rsi  = calcRSI(hist);
-    const tend = calcTend(hist);
-    const per  = parseFloat((meta.per_s*0.9).toFixed(1));
-    const st   = scoreTech(rsi,tend,varJ);
-    const sf   = scoreFond(meta.div,per,meta.per_s,vol);
-    const conv = st+sf;
-    const varJan = meta.jan>0?parseFloat(((cours-meta.jan)/meta.jan*100).toFixed(1)):0;
-    // Volumes historiques
-    const histVols = SEANCES.map(s=>s.vol?s.vol[ticker]||0:0);
-    // Nouveaux indicateurs
-    const atrData  = calcATR(hist, histVols);
-    const surgeData= calcVolSurge(histVols);
-    const srData   = calcSupportResistance(hist);
-    const flowData = calcOrderFlow(hist, histVols);
-    const risque   = calcRisque(rsi, atrData.atr_pct, surgeData.surge, srData.pct_resistance);
+  const result = Object.keys(META).map(ticker=>{
+    const meta   = META[ticker];
+    const hist   = SEANCES.map(s=>s.cours[ticker]||0).filter(x=>x>0);
+    const histV  = SEANCES.map(s=>s.vol?s.vol[ticker]||0:0);
+    const cours  = derniere.cours[ticker]||0;
+    const varJ   = derniere.var[ticker]||0;
+    const vol    = derniere.vol?derniere.vol[ticker]||0:0;
+    const per    = parseFloat((meta.per_s*0.9).toFixed(1));
+    const varJan = meta.jan>0 ? parseFloat(((cours-meta.jan)/meta.jan*100).toFixed(1)) : 0;
+
+    const rsi    = calcRSI(hist);
+    const tend   = calcTend(hist);
+    const atrD   = calcATR(hist);
+    const surgeD = calcVolSurge(histV);
+    const srD    = calcSR(hist);
+
+    const st     = scoreTech(rsi, tend, varJ);
+    const sf     = scoreFond(meta.div, per, meta.per_s, vol);
+    const conv   = st + sf;
+    
+    const timing   = calcTiming(rsi, tend, varJ, srD, conv, !!meta.blacklist);
+    const risque   = calcRisque(rsi, atrD.atr_pct, surgeD.surge, srD);
+    const confiance= calcConfiance(conv, timing, risque, vol, !!meta.blacklist, meta.div);
+    const signal   = getSignal(conv, timing, risque, confiance, !!meta.blacklist);
+    const badge    = getBadge(rsi, per, meta.per_s);
+
     return {
-      t:ticker, ...meta, hist, histVols, cours, var:varJ, vol,
-      per, rsi, tend, st, sf, conviction:conv, signal:getSig(conv), varJan,
-      atr:atrData, surge:surgeData, sr:srData, flow:flowData, risque
+      t:ticker, nom:meta.nom, pays:meta.pays, sec:meta.sec,
+      cours, var:varJ, vol, div:meta.div, per, per_s:meta.per_s,
+      rsi, tend, atr_pct:atrD.atr_pct, surge:surgeD,
+      sr:srD, conviction:conv, timing, risque, confiance, signal,
+      varJan, blacklist:!!meta.blacklist, hist, histV, badge
     };
-  }).sort((a,b)=>b.conviction-a.conviction);
+  });
+  return result.sort((a,b)=>b.conviction-a.conviction);
 }
 
-let DATA=[];
+// ========== PROFIL ==========
+function setProfile(profile){
+  userProfile = profile;
+  document.querySelectorAll('.profile-btn').forEach(btn => btn.classList.remove('active'));
+  if(profile === 'prudent') document.querySelector('.profile-btn:first-child').classList.add('active');
+  else if(profile === 'equilibre') document.querySelector('.profile-btn:nth-child(2)').classList.add('active');
+  else document.querySelector('.profile-btn:last-child').classList.add('active');
+  build();
+  renderTable();
+  renderDecisions();
+  renderMesPositions();
+  renderTopReco();
+}
 
-/* ══ TABLEAU ══ */
+// ========== TOP RECOMMANDATIONS ==========
+function renderTopReco(){
+  const top6 = DATA.filter(d => !d.blacklist && (d.signal === 'FORT ACHAT' || d.signal === 'ACHAT')).slice(0,6);
+  document.getElementById('top-reco-table').innerHTML = top6.map(v => `
+    <tr class="tr" onclick="openFiche('${v.t}')">
+      <td style="font-weight:700">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/td>
+      <td style="color:${v.rsi>=70?'#dc2626':v.rsi<30?'#16a34a':'#888'}">${v.rsi}<\/td>
+      <td style="color:${v.div>=9?'#16a34a':'#888'}">${v.div}%<\/td>
+      <td style="font-weight:700;color:${v.conviction>=70?'#22c55e':v.conviction>=45?'#f59e0b':'#888'}">${v.conviction}<\/td>
+      <td><span class="b ${v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':'bgr'}">${v.signal}<\/span><\/td>
+      <td><span class="badge ${v.badge.class}">${v.badge.text}<\/span><\/td>
+    <\/tr>
+  `).join('');
+}
+
+// ========== RENDU TABLEAU ==========
 function fSec(s,b){ filtSec=s; document.querySelectorAll('.ctrl .ft').forEach(x=>{ if(['TOUS','FINANCE','AGRO','INDUSTRIE','TELECOM','ÉNERGIE','CONSO.'].includes(x.textContent)) x.classList.remove('active'); }); b.classList.add('active'); renderTable(); }
 function fSig(s,b){ filtSig=s; renderTable(); }
 function tri(k){ sortK===k?sortD*=-1:(sortK=k,sortD=-1); renderTable(); }
@@ -689,356 +664,334 @@ function renderTable(){
   let d=[...DATA];
   if(filtSec!=='ALL') d=d.filter(x=>x.sec===filtSec);
   if(filtSig!=='ALL') d=d.filter(x=>x.signal===filtSig);
-  if(q) d=d.filter(x=>x.nom.toLowerCase().includes(q)||x.t.toLowerCase().includes(q));
+  if(q) d=d.filter(x=>x.nom.toLowerCase().includes(q)||x.t.toLowerCase().includes(q)||x.pays.toLowerCase().includes(q));
+  const numKeys=['conviction','rsi','cours','div','timing','confiance','varJan'];
   d.sort((a,b)=>{
-    if(sortK==='conviction'||sortK==='rsi'||sortK==='div'||sortK==='cours'||sortK==='varJan') return sortD===-1?b[sortK]-a[sortK]:a[sortK]-b[sortK];
+    if(numKeys.includes(sortK)) return sortD===-1?b[sortK]-a[sortK]:a[sortK]-b[sortK];
     if(sortK==='var') return sortD===-1?b.var-a.var:a.var-b.var;
-    if(typeof a[sortK]==='string') return a[sortK].localeCompare(b[sortK])*sortD;
+    if(typeof a[sortK]==='string') return a[sortK].localeCompare(b[sortK])*(sortD===-1?1:-1);
     return 0;
   });
+
   document.getElementById('tbl').innerHTML=d.map(v=>{
-    const ip=!!pf[v.t];
-    const sc=v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':v.signal==='NEUTRE'?'bgr':'br';
-    const bc=v.conviction>=70?'#22c55e':v.conviction>=45?'#f59e0b':v.conviction>=30?'#94a3b8':'#ef4444';
-    const vc=v.var>0?'pos':v.var<0?'neg':'neu';
-    const jc=v.varJan>0?'pos':v.varJan<0?'neg':'neu';
-    const rc=v.rsi>=30&&v.rsi<50?'pos':v.rsi>=70?'neg':'neu';
-    const tc=v.tend==='up'?'pos':v.tend==='down'?'neg':'neu';
-    return`<tr class="tr${ip?' ip':''}" onclick="openFiche('${v.t}')">
-      <td style="font-weight:700;max-width:140px;overflow:hidden;text-overflow:ellipsis">${ip?'★ ':''}<span title="${v.nom}">${v.nom.length>16?v.nom.slice(0,15)+'…':v.nom}</span></td>
-      <td style="color:#888;font-size:9px">${v.pays}</td>
-      <td>${v.cours.toLocaleString('fr-FR')}</td>
-      <td class="${vc}" style="font-weight:700">${v.var>0?'+':''}${v.var}%</td>
-      <td class="${jc}" style="font-size:10px">${v.varJan>0?'+':''}${v.varJan}%</td>
-      <td style="color:#888;font-size:9px">${v.vol>0?v.vol.toLocaleString('fr-FR'):'—'}</td>
-      <td style="${v.div>=9?'color:#15803d;font-weight:700':'color:#888'}">${v.div>0?v.div+'%':'—'}</td>
-      <td>${v.per}x</td>
-      <td class="${rc}" style="font-weight:700">${v.rsi}${v.rsi>=30&&v.rsi<50?' ★':v.rsi>=70?' ⚠':''}</td>
-      <td class="${tc}">${v.tend==='up'?'▲':v.tend==='down'?'▼':'▬'}</td>
-      <td><div class="cw"><div class="cb"><div class="cf" style="width:${v.conviction}%;background:${bc}"></div></div><span style="font-size:10px;font-weight:700;color:${bc}">${v.conviction}</span></div></td>
-      <td><span class="b ${sc}">${v.signal}</span></td>
-      <td><span style="font-size:9px;font-weight:700;color:${v.risque>=60?'#dc2626':v.risque>=35?'#d97706':'#16a34a'}">${v.risque>=60?'⚠ ÉLEVÉ':v.risque>=35?'▲ MODÉRÉ':'✓ FAIBLE'}</span></td>
-    </tr>`;
+    const isOwned = POSITIONS_REAL.some(p => p.ticker === v.t);
+    const sc  = v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':v.signal==='ATTENTE'?'ba':v.signal==='NEUTRE'?'bgr':'br';
+    const bc  = v.conviction>=70?'#22c55e':v.conviction>=45?'#f59e0b':v.conviction>=30?'#94a3b8':'#ef4444';
+    const vc  = v.var>0?'pos':v.var<0?'neg':'neu';
+    const jc  = v.varJan>0?'pos':v.varJan<0?'neg':'neu';
+    const tc  = v.timing>=70?'#22c55e':v.timing>=40?'#f59e0b':'#ef4444';
+    const cc  = v.confiance>=65?'#22c55e':v.confiance>=40?'#f59e0b':'#94a3b8';
+    return`<tr class="tr" onclick="openFiche('${v.t}')">
+      <td style="font-weight:700;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${v.nom}">${isOwned?'★ ':''}${v.nom.length>17?v.nom.slice(0,16)+'…':v.nom}<\/td>
+      <td style="color:#888;font-size:9px">${v.pays}<\/td>
+      <td>${v.cours.toLocaleString('fr-FR')}<\/td>
+      <td class="${vc}" style="font-weight:700">${v.var>0?'+':''}${v.var}%<\/td>
+      <td class="${jc}" style="font-size:10px">${v.varJan>0?'+':''}${v.varJan}%<\/td>
+      <td style="${v.div>=9?'color:#15803d;font-weight:700':'color:#888'}">${v.div>0?v.div+'%':'—'}<\/td>
+      <td style="font-size:10px">${v.per}x<\/td>
+      <td style="font-weight:700;color:${v.rsi>=30&&v.rsi<50?'#16a34a':v.rsi>=70?'#dc2626':'#888'}">${v.rsi}<\/td>
+      <td><div class="cw"><div class="cb"><div class="cf" style="width:${v.conviction}%;background:${bc}"><\/div><\/div><span style="font-weight:700;color:${bc}">${v.conviction}<\/span><\/div><\/td>
+      <td style="font-weight:700;color:${tc}">${v.timing}<\/td>
+      <td style="font-weight:700;color:${cc}">${v.confiance}<\/td>
+      <td><span class="b ${sc}">${v.signal}<\/span><\/td>
+    <\/tr>`;
   }).join('');
 }
 
-/* ══ MÉTRIQUES ══ */
 function renderMets(){
   const fa=DATA.filter(d=>d.signal==='FORT ACHAT').length;
   const ac=DATA.filter(d=>d.signal==='ACHAT').length;
-  const ev=DATA.filter(d=>d.signal==='ÉVITER').length;
-  const bC=DATA[0];
+  const at=DATA.filter(d=>d.signal==='ATTENTE').length;
   const bD=[...DATA].filter(d=>d.div>0).sort((a,b)=>b.div-a.div)[0];
+  const bC=DATA[0];
   document.getElementById('ctx-fa').textContent=fa;
-  document.getElementById('ctx-div').textContent=bD?bD.nom.split(' ')[0]+' '+bD.div+'%':'—';
+  document.getElementById('ctx-ac').textContent=ac;
+  document.getElementById('ctx-at').textContent=at;
+  document.getElementById('ctx-div').textContent=bD?bD.div+'% — '+bD.nom.split(' ')[0]:'—';
   document.getElementById('mets').innerHTML=[
     {l:'FORT ACHAT',v:fa,d:'signaux forts',c:'pos'},
     {l:'ACHAT',v:ac,d:'signaux modérés',c:'pos'},
-    {l:'ÉVITER',v:ev,d:'signaux faibles',c:'neg'},
-    {l:'TOP CONV.',v:bC?bC.nom.split(' ')[0]:'—',d:bC?bC.conviction+'/100':'—',c:'pos'},
-    {l:'TOP DIV.',v:bD?bD.div+'%':'—',d:bD?bD.nom.split(' ')[0]:'—',c:'pos'},
-    {l:'SÉANCES',v:SEANCES.length,d:'données réelles',c:'neu'},
-  ].map(m=>`<div class="met"><div class="ml">${m.l}</div><div class="mv">${m.v}</div><div class="md ${m.c}">${m.d}</div></div>`).join('');
+    {l:'ATTENTE',v:at,d:'timing ou risque',c:'neu'},
+    {l:'TOP CONV.',v:bC?bC.conviction:0,d:bC?bC.nom.split(' ')[0]:'—',c:'pos'},
+  ].map(m=>`<div class="met"><div class="ml">${m.l}<\/div><div class="mv">${m.v}<\/div><div class="md ${m.c}">${m.d}<\/div><\/div>`).join('');
 
-  // Alertes
   const derniere=SEANCES[SEANCES.length-1];
-  const topH=Object.entries(derniere.var).filter(([t,v])=>v>3).sort((a,b)=>b[1]-a[1]).slice(0,3);
-  const topB=Object.entries(derniere.var).filter(([t,v])=>v<-3).sort((a,b)=>a[1]-b[1]).slice(0,2);
-  const surachat=DATA.filter(d=>d.rsi>=70);
-  const survente=DATA.filter(d=>d.rsi<=25);
+  const topH=Object.entries(derniere.var).filter(([t,v])=>v>4).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const topB=Object.entries(derniere.var).filter(([t,v])=>v<-4).sort((a,b)=>a[1]-b[1]).slice(0,3);
+  const sur=DATA.filter(d=>d.rsi>=70&&d.vol>0);
   let html='';
-  topH.forEach(([t,v])=>{ const m=META[t]; if(m) html+=`<div class="ap ag">▲ ${m.nom} +${v}%</div>`; });
-  topB.forEach(([t,v])=>{ const m=META[t]; if(m) html+=`<div class="ap ar">▼ ${m.nom} ${v}%</div>`; });
-  surachat.forEach(v=>html+=`<div class="ap ao">⚠ SURACHAT : ${v.nom} (RSI ${v.rsi})</div>`);
-  survente.forEach(v=>html+=`<div class="ap ab">↗ SURVENTE : ${v.nom} (RSI ${v.rsi})</div>`);
-  if(!html) html='<div class="ap" style="background:#f0efea;color:#888">Marché calme</div>';
+  topH.forEach(([t,v])=>{ const m=META[t]; if(m) html+=`<div class="ap ag">▲ ${m.nom.split(' ')[0]} +${v}%<\/div>`; });
+  topB.forEach(([t,v])=>{ const m=META[t]; if(m) html+=`<div class="ap ar">▼ ${m.nom.split(' ')[0]} ${v}%<\/div>`; });
+  sur.forEach(v=>html+=`<div class="ap ao">⚠ SURACHAT ${v.nom.split(' ')[0]} RSI${v.rsi}<\/div>`);
+  if(!html) html='<div class="ap" style="background:#f0efea;color:#888">Marché calme<\/div>';
   document.getElementById('alerts-live').innerHTML=html;
-
-  // Surachat portefeuille
-  const alertesPF=Object.keys(pf).filter(t=>{ const v=DATA.find(d=>d.t===t); return v&&v.rsi>=70; });
-  document.getElementById('surachat-zone').innerHTML=alertesPF.length
-    ?`<div class="surachat-alert">⚠ <strong>ALERTE SURACHAT PORTEFEUILLE</strong> — ${alertesPF.map(t=>{const v=DATA.find(d=>d.t===t);return v.nom+' (RSI '+v.rsi+')'}).join(', ')} — Envisagez de vendre.</div>`:'';
+  document.getElementById('surachat-zone').innerHTML='';
 }
 
-/* ══ GRAPHIQUES SCANNER ══ */
-let ch1=null,ch2=null;
+function renderMesPositions(){
+  if(!POSITIONS_REAL.length){
+    document.getElementById('mes-positions').innerHTML = '<div class="hist-empty">Aucune position renseignée. Modifiez la variable POSITIONS_REAL dans le code.</div>';
+    return;
+  }
+  document.getElementById('mes-positions').innerHTML = POSITIONS_REAL.map(pos => {
+    const v = DATA.find(d => d.t === pos.ticker);
+    if(!v) return `<div class="hist-item"><span>❌ ${pos.ticker} — Donnée non trouvée</span></div>`;
+    const pnl = ((v.cours - pos.cours_achat) / pos.cours_achat * 100).toFixed(1);
+    const pnlClass = parseFloat(pnl) >= 0 ? 'pos' : 'neg';
+    return `<div class="hist-item" onclick="openFiche('${pos.ticker}')" style="cursor:pointer">
+      <div><strong>${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}</strong><br><span style="font-size:9px;color:#888">Entrée: ${pos.cours_achat.toLocaleString('fr-FR')} F · ${pos.quantite} t</span></div>
+      <div class="${pnlClass}" style="font-weight:700">${parseFloat(pnl)>=0?'+':''}${pnl}%</div>
+      <div style="font-size:9px;color:#888">Actuel: ${v.cours.toLocaleString('fr-FR')} F</div>
+    </div>`;
+  }).join('');
+}
+
+function renderDecisions(){
+  const acheter = [...DATA].filter(d => 
+    (d.signal === 'FORT ACHAT' || d.signal === 'ACHAT') && 
+    d.confiance >= 50 && d.vol > 0 && !d.blacklist
+  ).sort((a,b) => b.confiance - a.confiance).slice(0,5);
+  
+  const attendre = [...DATA].filter(d => 
+    d.signal === 'ATTENTE' && d.conviction >= 45 && !d.blacklist
+  ).sort((a,b) => b.conviction - a.conviction).slice(0,5);
+  
+  const surveiller = [...DATA].filter(d => 
+    d.var <= -5 && d.conviction >= 45 && d.rsi < 50 && !d.blacklist
+  ).sort((a,b) => b.conviction - a.conviction).slice(0,4);
+  
+  const vendre = POSITIONS_REAL.map(pos => {
+    const v = DATA.find(d => d.t === pos.ticker);
+    if(!v) return null;
+    const pnl = ((v.cours - pos.cours_achat) / pos.cours_achat * 100);
+    let raison = '', action = '', priorite = 0;
+    if(pnl <= -10) { raison = `Perte de ${pnl.toFixed(1)}% — STOP-LOSS`; action = 'VENDRE'; priorite = 1; }
+    else if(pnl >= 15) { raison = `Gain de +${pnl.toFixed(1)}% — OBJECTIF ATTEINT`; action = 'VENDRE'; priorite = 2; }
+    else if(v.rsi >= 75) { raison = `RSI ${v.rsi} — SURACHAT EXTRÊME`; action = 'VENDRE'; priorite = 3; }
+    else if(v.rsi >= 68) { raison = `RSI ${v.rsi} — SURACHAT — ALLÉGER 50%`; action = 'ALLÉGER'; priorite = 4; }
+    else if(v.signal === 'ÉVITER') { raison = `Signal passé en ÉVITER — VENDRE`; action = 'VENDRE'; priorite = 5; }
+    else if(pnl >= 10) { raison = `Gain de +${pnl.toFixed(1)}% — ALLÉGER 30-50%`; action = 'ALLÉGER'; priorite = 6; }
+    return raison ? { ...v, pnl, raison, action, priorite } : null;
+  }).filter(Boolean).sort((a,b) => a.priorite - b.priorite);
+  
+  function makeCard(titre, couleur, items, emptyMsg, renderer){
+    return `<div class="dec-card" style="border-top:3px solid ${couleur}">
+      <div class="dec-header" style="color:${couleur}">${titre} (${items.length})<\/div>
+      ${items.length ? items.map(renderer).join('') : `<div style="font-size:10px;color:#aaa;padding:8px 0">${emptyMsg}<\/div>`}
+    <\/div>`;
+  }
+  
+  document.getElementById('dec-grid').innerHTML = 
+    makeCard('✓ ACHETER DEMAIN', '#22c55e', acheter, 'Aucune action avec confiance suffisante.', v => `
+      <div class="dec-item" onclick="openFiche('${v.t}')">
+        <div><div class="dec-nom">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/div>
+          <div class="dec-detail">Conv.${v.conviction} · Tim.${v.timing} · Conf.${v.confiance} · RSI ${v.rsi}<\/div><\/div>
+        <div class="dec-val" style="color:#22c55e">${v.cours.toLocaleString('fr-FR')} F<\/div>
+      <\/div>`) +
+    makeCard('⏳ ATTENDRE', '#b45309', attendre, 'Aucun signal d\'attente.', v => `
+      <div class="dec-item" onclick="openFiche('${v.t}')">
+        <div><div class="dec-nom">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/div>
+          <div class="dec-detail">${v.rsi>=70?'RSI '+v.rsi+' — surachat':(v.sr && v.sr.pct_r >= -3 ? 'Proche résistance' : 'Timing défavorable')}<\/div><\/div>
+        <div class="dec-val">${v.cours.toLocaleString('fr-FR')} F<\/div>
+      <\/div>`) +
+    makeCard('🔴 VENDRE DEMAIN', '#dc2626', vendre, 'Aucune position à vendre.', v => `
+      <div class="dec-item" onclick="openFiche('${v.t}')">
+        <div><div class="dec-nom">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/div>
+          <div class="dec-detail">${v.raison}<\/div><\/div>
+        <div class="dec-val" style="color:${v.action === 'VENDRE' ? '#dc2626' : '#f59e0b'}">${v.pnl>=0?'+':''}${v.pnl.toFixed(1)}%<\/div>
+      <\/div>`) +
+    makeCard('📊 SURVEILLER', '#1d4ed8', surveiller, 'Aucune correction notable.', v => `
+      <div class="dec-item" onclick="openFiche('${v.t}')">
+        <div><div class="dec-nom">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/div>
+          <div class="dec-detail">Div ${v.div}% · RSI ${v.rsi} · ${v.var}% auj.<\/div><\/div>
+        <div class="dec-val" style="color:#1d4ed8">${v.cours.toLocaleString('fr-FR')} F<\/div>
+      <\/div>`);
+}
+
+// ========== GRAPHIQUES ==========
+let ch1=null,ch2=null,chSec=null,chSig=null;
 function renderCharts(){
   const font={family:"'Courier Prime'",size:9};
-  const top12=[...DATA].slice(0,12);
-  if(ch1){ch1.destroy();}
+  const top12=DATA.slice(0,12);
+  if(ch1) ch1.destroy();
   ch1=new Chart(document.getElementById('ch1'),{
     type:'bar',
-    data:{
-      labels:top12.map(d=>d.nom.length>14?d.nom.slice(0,13)+'…':d.nom),
-      datasets:[{data:top12.map(d=>d.conviction),backgroundColor:top12.map(d=>d.conviction>=70?'#22c55e':d.conviction>=45?'#f59e0b':'#94a3b8'),borderRadius:3}]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{min:0,max:100,ticks:{color:'#555',font,callback:v=>v+'/100'},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#555',font},grid:{display:false}}}}
+    data:{labels:top12.map(d=>d.nom.length>14?d.nom.slice(0,12)+'…':d.nom),datasets:[{data:top12.map(d=>d.conviction),backgroundColor:top12.map(d=>d.conviction>=70?'#22c55e':d.conviction>=45?'#f59e0b':'#94a3b8'),borderRadius:3}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{color:'#555',font},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#555',font},grid:{display:false}}}}
   });
   const derniere=SEANCES[SEANCES.length-1];
   const varData=Object.entries(derniere.var).filter(([t,v])=>v!==0).sort((a,b)=>b[1]-a[1]).slice(0,12);
-  if(ch2){ch2.destroy();}
+  if(ch2) ch2.destroy();
   ch2=new Chart(document.getElementById('ch2'),{
     type:'bar',
-    data:{
-      labels:varData.map(([t])=>META[t]?META[t].nom.slice(0,12)+'…':t),
-      datasets:[{data:varData.map(([t,v])=>v),backgroundColor:varData.map(([t,v])=>v>0?'#22c55e':'#ef4444'),borderRadius:3}]
-    },
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{ticks:{color:'#555',font,maxRotation:45},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#555',font,callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.05)'}}}}
+    data:{labels:varData.map(([t])=>META[t]?META[t].nom.slice(0,10)+'…':t),datasets:[{data:varData.map(([t,v])=>v),backgroundColor:varData.map(([t,v])=>v>0?'#22c55e':'#ef4444'),borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#555',font,maxRotation:45},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{color:'#555',font,callback:v=>v+'%'},grid:{color:'rgba(0,0,0,0.05)'}}}}
   });
 }
 
-/* ══ GRAPHIQUES STRATÉGIE ══ */
-let chSec=null,chSig=null;
 function renderStratCharts(){
   const font={family:"'Courier Prime'",size:9};
   const secs=['SF','CB','IN','TEL','EN','CD'];
-  const secAvg=secs.map(s=>{
-    const items=DATA.filter(d=>d.sec===s);
-    return items.length?Math.round(items.reduce((a,b)=>a+b.conviction,0)/items.length):0;
-  });
-  if(chSec){chSec.destroy();}
+  const avg=secs.map(s=>{ const it=DATA.filter(d=>d.sec===s); return it.length?Math.round(it.reduce((a,b)=>a+b.conviction,0)/it.length):0; });
+  if(chSec) chSec.destroy();
   chSec=new Chart(document.getElementById('ch-secteur'),{
     type:'bar',
-    data:{labels:secs.map(s=>SEC_MAP[s]),datasets:[{data:secAvg,backgroundColor:secAvg.map(v=>v>=60?'#22c55e':v>=45?'#f59e0b':'#94a3b8'),borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{ticks:{color:'#555',font,maxRotation:30},grid:{display:false}},y:{min:0,max:100,ticks:{color:'#555',font},grid:{color:'rgba(0,0,0,0.05)'}}}}
+    data:{labels:secs.map(s=>({SF:'Finance',CB:'Agro',IN:'Industrie',TEL:'Telecom',EN:'Énergie',CD:'Distrib.'}[s])),datasets:[{data:avg,backgroundColor:avg.map(v=>v>=60?'#22c55e':v>=45?'#f59e0b':'#94a3b8'),borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#555',font},grid:{display:false}},y:{min:0,max:100,ticks:{color:'#555',font},grid:{color:'rgba(0,0,0,0.05)'}}}}
   });
-  const sigs=['FORT ACHAT','ACHAT','NEUTRE','ÉVITER'];
-  const sigCounts=sigs.map(s=>DATA.filter(d=>d.signal===s).length);
-  if(chSig){chSig.destroy();}
+  const sigs=['FORT ACHAT','ACHAT','ATTENTE','NEUTRE','ÉVITER'];
+  if(chSig) chSig.destroy();
   chSig=new Chart(document.getElementById('ch-signaux'),{
     type:'doughnut',
-    data:{labels:sigs,datasets:[{data:sigCounts,backgroundColor:['#22c55e','#f59e0b','#94a3b8','#ef4444'],borderWidth:0}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font,color:'#555',padding:10}}}}
+    data:{labels:sigs,datasets:[{data:sigs.map(s=>DATA.filter(d=>d.signal===s).length),backgroundColor:['#22c55e','#f59e0b','#b5922a','#94a3b8','#ef4444'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font,color:'#555',padding:8}}}}
   });
 }
 
-/* ══ JUSTIFICATIONS ══ */
 function renderWhy(){
-  const top6=[...DATA].filter(d=>d.conviction>=45&&d.vol>=0&&d.t!=='BOAN'&&d.t!=='ETIT'&&d.t!=='SVOC').slice(0,6);
+  const top6=DATA.filter(d=>!d.blacklist).slice(0,6);
   document.getElementById('why-grid').innerHTML=top6.map(v=>{
-    const sc=v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':'bgr';
-    let raison='';
-    if(v.div>=12) raison+=`Dividende <strong>${v.div}%</strong> exceptionnel — parmi les plus élevés de la BRVM. `;
-    else if(v.div>=9) raison+=`Dividende <strong>${v.div}%</strong> supérieur à la moyenne BRVM (9%). `;
-    if(v.per<v.per_s*0.7) raison+=`PER <strong>${v.per}x</strong> très attractif (secteur ~${v.per_s}x). `;
-    else if(v.per<v.per_s) raison+=`PER <strong>${v.per}x</strong> sous la moyenne sectorielle. `;
-    if(v.rsi>=30&&v.rsi<50) raison+=`RSI <strong>${v.rsi}</strong> en zone d'achat optimale. `;
-    else if(v.rsi>=50&&v.rsi<65) raison+=`RSI <strong>${v.rsi}</strong> — tendance haussière confirmée. `;
+    let r='';
+    if(v.div>=12) r+=`Dividende exceptionnel <strong>${v.div}%</strong>. `;
+    else if(v.div>=9) r+=`Dividende <strong>${v.div}%</strong> supérieur à la moyenne BRVM. `;
+    if(v.per<v.per_s*0.65) r+=`PER <strong>${v.per}x</strong> très attractif (secteur ~${v.per_s}x). `;
+    if(v.rsi>=30&&v.rsi<50) r+=`RSI <strong>${v.rsi}</strong> en zone achat optimale. `;
     const varJan=v.varJan>0?`+${v.varJan}%`:`${v.varJan}%`;
-    raison+=`Performance depuis janvier : <strong>${varJan}</strong>.`;
-    return`<div class="why-card">
-      <div class="why-t">OPPORTUNITÉ · ${v.t}</div>
-      <div class="why-n">${v.nom}</div>
-      <div class="why-r">${raison}</div>
-      <span class="why-sig b ${sc}">${v.signal} · ${v.conviction}/100</span>
-    </div>`;
+    r+=`Performance depuis janvier : <strong>${varJan}</strong>.`;
+    const sc=v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':'ba';
+    return`<div class="why-card"><div class="why-t">${v.t} · ${v.pays}<\/div><div class="why-n">${v.nom}<\/div><div class="why-r">${r}<\/div><span class="b ${sc}" style="margin-top:6px;display:inline-block">${v.signal} · Conv.${v.conviction}<\/span><\/div>`;
   }).join('');
 }
 
-/* ══ HISTORIQUE SÉANCES ══ */
 function renderHist(){
   const q=(document.getElementById('search-hist').value||'').toLowerCase();
   const tickers=Object.keys(META).filter(t=>!q||META[t].nom.toLowerCase().includes(q)||t.toLowerCase().includes(q));
-
-  // Header
-  document.getElementById('hist-thead').innerHTML=`<tr>
-    <th style="position:sticky;left:0;background:#fff;z-index:1">ACTION</th>
-    <th>JAN.</th>
-    ${SEANCES.map(s=>`<th>${s.date}</th>`).join('')}
-    <th>VAR. TOT.</th>
-  </tr>`;
-
-  document.getElementById('hist-tbody').innerHTML=tickers.slice(0,30).map(t=>{
-    const meta=META[t];
-    const derniers=SEANCES[SEANCES.length-1].cours[t]||0;
-    const varTot=meta.jan>0?((derniers-meta.jan)/meta.jan*100).toFixed(1):0;
-    const vtc=varTot>0?'pos':varTot<0?'neg':'neu';
+  document.getElementById('hist-thead').innerHTML=
+    ` 32<th style="position:sticky;left:0;background:#fff">ACTION</th><th>JAN.</th>${SEANCES.map(s=>`<th>${s.date}</th>`).join('')}<th>VAR.TOT</th>`;
+  document.getElementById('hist-tbody').innerHTML=tickers.map(t=>{
+    const m=META[t];
+    const last=SEANCES[SEANCES.length-1].cours[t]||0;
+    const vt=m.jan>0?((last-m.jan)/m.jan*100).toFixed(1):0;
+    const vtc=vt>0?'#16a34a':vt<0?'#dc2626':'#888';
+    const isOwned = POSITIONS_REAL.some(p => p.ticker === t);
     return`<tr>
-      <td style="font-weight:700;white-space:nowrap;position:sticky;left:0;background:${pf[t]?'#fdf9f0':'#fff'}">${pf[t]?'★ ':''}<span style="font-size:10px">${meta.nom.length>18?meta.nom.slice(0,17)+'…':meta.nom}</span></td>
-      <td style="color:#888;font-size:10px">${meta.jan.toLocaleString('fr-FR')}</td>
+      <td style="font-weight:700;white-space:nowrap;position:sticky;left:0;background:${isOwned?'#fdf9f0':'#fff'};font-size:10px">${isOwned?'★ ':''}${m.nom.length>18?m.nom.slice(0,17)+'…':m.nom}<\/td>
+      <td style="color:#888;font-size:10px">${m.jan.toLocaleString('fr-FR')}<\/td>
       ${SEANCES.map(s=>{
-        const c=s.cours[t]||0;
-        const v=s.var[t]||0;
+        const c=s.cours[t]||0, v=s.var[t]||0;
         const vc=v>0?'#22c55e':v<0?'#ef4444':'#888';
-        return`<td style="font-size:10px"><div>${c.toLocaleString('fr-FR')}</div><div style="font-size:9px;color:${vc}">${v>0?'+':''}${v}%</div></td>`;
+        return`<td style="font-size:10px"><div>${c?c.toLocaleString('fr-FR'):'—'}<\/div><div style="font-size:9px;color:${vc}">${v?((v>0?'+':'')+v+'%'):''}<\/div><\/td>`;
       }).join('')}
-      <td class="${vtc}" style="font-weight:700">${varTot>0?'+':''}${varTot}%</td>
-    </tr>`;
+      <td style="font-weight:700;color:${vtc}">${vt>0?'+':''}${vt}%<\/td>
+    <\/tr>`;
   }).join('');
 }
 
-/* ══ PORTEFEUILLE ══ */
-function ajouterPF(ticker){
-  const v=DATA.find(d=>d.t===ticker); if(!v) return;
-  const inv=Object.values(pf).reduce((a,p)=>a+p.montant,0);
-  if(inv>=CAP){alert('Capital entièrement investi !');return;}
-  if(pf[ticker]){alert(v.nom+' déjà en portefeuille !');return;}
-  const montant=Math.min(MAX_POS,CAP-inv);
-  const qte=Math.floor(montant/v.cours);
-  if(qte<1){alert('Cours trop élevé.');return;}
-  const mt=qte*v.cours;
-  pf[ticker]={nom:v.nom,cours_achat:v.cours,quantite:qte,montant:mt,ticker,rsi_achat:v.rsi,date:SEANCES[SEANCES.length-1].date};
-  transactions.unshift({type:'ACHAT',nom:v.nom,cours:v.cours,qte,montant:mt,date:SEANCES[SEANCES.length-1].date,signal:v.signal,conviction:v.conviction,rsi:v.rsi});
-  renderPF(); renderTable(); renderHistTrans(); renderMets(); closeMod();
-}
-
-function retirerPF(ticker){
-  const v=DATA.find(d=>d.t===ticker);
-  const p=pf[ticker]; if(!p||!v) return;
-  const val=v.cours*p.quantite;
-  const pnl=val-p.montant;
-  transactions.unshift({type:'VENTE',nom:v.nom,cours:v.cours,qte:p.quantite,montant:val,pnl,date:SEANCES[SEANCES.length-1].date,signal:v.signal,conviction:v.conviction});
-  delete pf[ticker]; renderPF(); renderTable(); renderHistTrans(); renderMets(); closeMod();
-}
-
-function renderPF(){
-  const pos=Object.values(pf);
-  const inv=pos.reduce((a,p)=>a+p.montant,0);
-  const valAct=pos.reduce((a,p)=>{const v=DATA.find(d=>d.t===p.ticker);return a+(v?v.cours*p.quantite:p.montant);},0);
-  const pnl=valAct-inv, pnlP=inv>0?((pnl/inv)*100).toFixed(2):0;
-  document.getElementById('pf-kpis').innerHTML=[
-    {l:'CAPITAL TOTAL',v:'20 000 000 FCFA',s:pos.length+' position(s)'},
-    {l:'INVESTI',v:Math.round(inv).toLocaleString('fr-FR')+' FCFA',s:((inv/CAP)*100).toFixed(0)+'%'},
-    {l:'DISPONIBLE',v:Math.round(CAP-inv).toLocaleString('fr-FR')+' FCFA',s:((1-inv/CAP)*100).toFixed(0)+'%'},
-    {l:'VALEUR ACT.',v:Math.round(valAct).toLocaleString('fr-FR')+' FCFA',s:'mark-to-market'},
-    {l:'P&L',v:(pnl>=0?'+':'')+Math.round(pnl).toLocaleString('fr-FR')+' FCFA',s:(pnlP>=0?'+':'')+pnlP+'%'},
-  ].map(k=>`<div class="pk"><div class="pkl">${k.l}</div><div class="pkv">${k.v}</div><div class="pks">${k.s}</div></div>`).join('');
-  if(!pos.length){document.getElementById('pf-lines').innerHTML='<div class="pfempty">Aucune position.</div>';return;}
-  document.getElementById('pf-lines').innerHTML=pos.map(p=>{
-    const v=DATA.find(d=>d.t===p.ticker);
-    const ca=v?v.cours:p.cours_achat,val=ca*p.quantite,pl=val-p.montant,plP=((pl/p.montant)*100).toFixed(1);
-    const rsiWarn=v&&v.rsi>=70?' ⚠':'';
-    return`<div class="pfl">
-      <div style="color:#ccc;font-weight:700;min-width:120px">★ ${p.nom}</div>
-      <div style="color:#444;font-size:9px;flex:1">${p.quantite}t · Entrée ${p.cours_achat.toLocaleString('fr-FR')} · Actuel ${ca.toLocaleString('fr-FR')} · RSI ${v?v.rsi:'?'}${rsiWarn}</div>
-      <div style="font-weight:700;font-size:10px;${pl>=0?'color:#4ade80':'color:#f87171'}">${pl>=0?'+':''}${Math.round(pl).toLocaleString('fr-FR')} FCFA (${plP}%)</div>
-    </div>`;
-  }).join('');
-}
-
-function renderHistTrans(){
-  const el=document.getElementById('hist-trans');
-  if(!transactions.length){el.innerHTML='<div class="hist-empty">Aucune transaction.</div>';return;}
-  el.innerHTML=transactions.slice(0,20).map(tx=>{
-    const isA=tx.type==='ACHAT';
-    const pnlTxt=tx.pnl!=null?(tx.pnl>=0?`<span style="color:#16a34a;font-weight:700">+${Math.round(tx.pnl).toLocaleString('fr-FR')} FCFA</span>`:`<span style="color:#dc2626;font-weight:700">${Math.round(tx.pnl).toLocaleString('fr-FR')} FCFA</span>`):'';
-    return`<div class="hist-item">
-      <div style="display:flex;align-items:center;gap:8px"><span class="b ${isA?'bg':'br'}">${tx.type}</span><span style="font-weight:700">${tx.nom}</span></div>
-      <div style="color:#888;font-size:10px">${tx.qte}t @ ${tx.cours.toLocaleString('fr-FR')} FCFA · ${tx.date} · RSI ${tx.rsi||'?'}</div>
-      <div>${Math.round(tx.montant).toLocaleString('fr-FR')} FCFA ${pnlTxt}</div>
-    </div>`;
-  }).join('');
-}
-
-/* ══ FICHE MODALE ══ */
+// ========== MODALE ==========
 let mChart=null;
 function openFiche(ticker){
   const v=DATA.find(d=>d.t===ticker); if(!v) return;
-  const ip=!!pf[ticker];
+  const isOwned = POSITIONS_REAL.some(p => p.ticker === ticker);
+  const ownedPos = POSITIONS_REAL.find(p => p.ticker === ticker);
+  
   document.getElementById('m-t').textContent=v.nom;
-  document.getElementById('m-m').textContent=v.t+' · '+(SEC_MAP[v.sec]||v.sec)+' · '+v.pays+' · '+SEANCES[SEANCES.length-1].date;
+  document.getElementById('m-m').textContent=v.t+' · '+(({SF:'Services Financiers',CB:'Agro/Conso',IN:'Industriels',TEL:'Télécoms',EN:'Énergie',CD:'Distribution'})[v.sec]||v.sec)+' · '+v.pays+' · '+SEANCES[SEANCES.length-1].date;
   document.getElementById('m-k').innerHTML=[
-    {l:'COURS',v:v.cours.toLocaleString('fr-FR')+' FCFA',s:'dernière séance'},
-    {l:'VAR. JOUR',v:(v.var>0?'+':'')+v.var+'%',s:'séance'},
-    {l:'VAR. JAN.',v:(v.varJan>0?'+':'')+v.varJan+'%',s:'depuis janvier'},
-    {l:'DIV. 2024',v:v.div>0?v.div+'%':'—',s:'rendement'},
-    {l:'PER',v:v.per+'x',s:'sect. ~'+v.per_s+'x'},
-    {l:'RSI ('+SEANCES.length+'j)',v:v.rsi,s:v.rsi>=30&&v.rsi<50?'Zone ACHAT ★':v.rsi>=70?'SURACHAT ⚠':v.rsi<30?'SURVENTE':'Neutre'},
-    {l:'TENDANCE',v:v.tend==='up'?'▲ HAUSSE':v.tend==='down'?'▼ BAISSE':'▬ STABLE',s:'vs moyenne'},
-    {l:'CONVICTION',v:v.conviction+'/100',s:v.signal},
-    {l:'ATR VOLATIL.',v:v.atr?v.atr.atr_pct+'%':'-',s:v.atr?v.atr.niveau:'-'},
-    {l:'VOL. SURGE',v:v.surge?v.surge.surge+'x':'-',s:v.surge?v.surge.signal:'-'},
-    {l:'SUPPORT',v:v.sr?v.sr.support.toLocaleString('fr-FR'):'-',s:v.sr?v.sr.pct_support+'% du cours':'-'},
-    {l:'RÉSISTANCE',v:v.sr?v.sr.resistance.toLocaleString('fr-FR'):'-',s:v.sr?v.sr.pct_resistance+'% du cours':'-'},
-    {l:'ORDER FLOW',v:v.flow?v.flow.flow+'%':'-',s:v.flow?v.flow.signal:'-'},
-    {l:'SCORE RISQUE',v:v.risque+'/100',s:v.risque>=60?'⚠ RISQUE ÉLEVÉ':v.risque>=35?'Risque modéré':'✓ Risque faible'},
-  ].map(k=>`<div class="mk"><div class="mkl">${k.l}</div><div class="mkv">${k.v}</div><div class="mks">${k.s}</div></div>`).join('');
+    {l:'COURS',      v:v.cours.toLocaleString('fr-FR')+' F',   s:'clôture '+SEANCES[SEANCES.length-1].date},
+    {l:'VAR. JOUR',  v:(v.var>0?'+':'')+v.var+'%',             s:'séance'},
+    {l:'VAR. JANV.', v:(v.varJan>0?'+':'')+v.varJan+'%',       s:'depuis jan. 2026'},
+    {l:'DIVIDENDE',  v:v.div>0?v.div+'%':'—',                  s:'rendement 2024'},
+    {l:'PER',        v:v.per+'x',                              s:'sect. ~'+v.per_s+'x'},
+    {l:'RSI',        v:v.rsi,                                  s:v.rsi>=30&&v.rsi<50?'Zone achat ★':v.rsi>=70?'SURACHAT ⚠':'Neutre'},
+    {l:'CONVICTION', v:v.conviction+'/100',                    s:v.signal},
+    {l:'TIMING',     v:v.timing+'/100',                        s:v.timing>=70?'Bon moment':v.timing>=40?'Moyen':'Attendre'},
+    {l:'CONFIANCE',  v:v.confiance+'/100',                     s:v.confiance>=65?'Élevée':v.confiance>=40?'Moyenne':'Faible'},
+    {l:'BADGE',      v:v.badge.text,                           s:''},
+  ].map(k=>`<div class="mk"><div class="mkl">${k.l}<\/div><div class="mkv">${k.v}<\/div><div class="mks">${k.s}<\/div><\/div>`).join('');
 
-  // Mini chart
-  if(mChart){mChart.destroy();}
-  const dates=SEANCES.map(s=>s.date);
-  const vals=SEANCES.map(s=>s.cours[ticker]||null);
+  if(mChart) mChart.destroy();
   mChart=new Chart(document.getElementById('m-chart'),{
     type:'line',
-    data:{labels:dates,datasets:[{data:vals,borderColor:'#b5922a',backgroundColor:'rgba(181,146,42,0.1)',fill:true,tension:0.3,pointRadius:4,pointBackgroundColor:'#b5922a'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:'#888'}},y:{ticks:{font:{size:9},color:'#888',callback:v=>v.toLocaleString('fr-FR')}}}}
+    data:{labels:SEANCES.map(s=>s.date),datasets:[{data:SEANCES.map(s=>s.cours[ticker]||null),borderColor:'#b5922a',backgroundColor:'rgba(181,146,42,0.08)',fill:true,tension:0.3,pointRadius:4,pointBackgroundColor:'#b5922a'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9},color:'#888'}},y:{ticks:{font:{size:9},color:'#888',callback:n=>n.toLocaleString('fr-FR')}}}}
   });
 
-  let tech='';
-  if(v.rsi>=30&&v.rsi<50) tech=`RSI <strong>${v.rsi}</strong> — zone d'achat. Momentum vendeur épuisé. `;
-  else if(v.rsi>=70) tech=`RSI <strong>${v.rsi}</strong> — <strong>surachat</strong>. Risque de correction. `;
-  else if(v.rsi<30) tech=`RSI <strong>${v.rsi}</strong> — <strong>survente</strong>. Rebond possible. `;
-  else tech=`RSI <strong>${v.rsi}</strong> — zone neutre. `;
-  tech+=v.tend==='up'?'Cours <strong>au-dessus</strong> de sa moyenne.':v.tend==='down'?'Cours <strong>sous</strong> sa moyenne.':'Cours <strong>stable</strong> autour de sa moyenne.';
+  let tech=`RSI <strong>${v.rsi}</strong>${v.rsi>=30&&v.rsi<50?' — zone d\'achat optimale':v.rsi>=70?' — <strong>surachat</strong>, risque de correction':v.rsi<30?' — survente, rebond possible':' — zone neutre'}. `;
+  tech+=v.tend==='up'?'Tendance <strong>haussière</strong>.':v.tend==='down'?'Tendance <strong>baissière</strong>.':'Tendance stable.';
 
   let fond=`PER <strong>${v.per}x</strong> ${v.per<v.per_s?'sous':'au-dessus de'} la moyenne sectorielle (${v.per_s}x). `;
-  fond+=v.div>=9?`Dividende <strong>${v.div}%</strong> — supérieur à la moyenne BRVM (9%). Très attractif.`:v.div>0?`Dividende <strong>${v.div}%</strong>.`:'Aucun dividende.';
+  fond+=v.div>=12?`Dividende <strong>${v.div}%</strong> — exceptionnel sur la BRVM.`:v.div>=9?`Dividende <strong>${v.div}%</strong> — supérieur à la moyenne BRVM (9%).`:v.div>0?`Dividende <strong>${v.div}%</strong>.`:'Aucun dividende.';
 
   let why='';
-  if(v.t==='BOAN') why='<strong>PROFIT WARNING</strong> — éviter absolument.';
-  else if(v.t==='ETIT') why='Zéro dividende malgré un BN record. Sans catalyseur.';
-  else if(v.t==='SVOC') why='Volume nul. Illiquidité totale. Impossible de trader.';
-  else{
-    if(v.div>=12) why+=`Le dividende <strong>${v.div}%</strong> est exceptionnel — presque garanti chaque année. `;
+  if(v.blacklist){
+    if(v.t==='BOAN') why='<strong style="color:#dc2626">PROFIT WARNING officiel</strong> — à éviter absolument.';
+    else if(v.t==='ETIT') why='Zéro dividende malgré un BN record. Sans catalyseur de hausse.';
+    else why='Volume nul. Illiquidité totale.';
+  } else {
+    if(v.div>=12) why+=`Dividende <strong>${v.div}%</strong> exceptionnel. `;
     else if(v.div>=9) why+=`Dividende <strong>${v.div}%</strong> supérieur au marché. `;
-    if(v.per<v.per_s*0.6) why+=`PER <strong>${v.per}x</strong> = l'action est sous-évaluée par rapport à ses pairs. `;
-    if(v.rsi>=30&&v.rsi<50) why+='Le RSI indique que les vendeurs sont épuisés — bon moment pour entrer. ';
+    if(v.per<v.per_s*0.6) why+=`PER <strong>${v.per}x</strong> = action sous-évaluée. `;
+    if(v.rsi>=30&&v.rsi<50) why+='RSI en zone achat — bon moment pour entrer. ';
     why+=`Performance depuis janvier : <strong>${v.varJan>0?'+':''}${v.varJan}%</strong>.`;
   }
+
+  let risq='';
+  if(v.rsi>=70) risq+='⚠ RSI en surachat — risque de correction imminent. ';
+  if(isOwned && ownedPos){
+    const pnl=((v.cours-ownedPos.cours_achat)/ownedPos.cours_achat*100);
+    risq+=`P&L : <strong style="color:${pnl>=0?'#16a34a':'#dc2626'}">${pnl>=0?'+':''}${pnl.toFixed(1)}%</strong>. `;
+    if(pnl<=-10) risq+='<strong style="color:#dc2626">STOP-LOSS DÉCLENCHÉ — vendre.</strong>';
+    else if(pnl>=15) risq+='<strong style="color:#16a34a">OBJECTIF ATTEINT — prendre bénéfices.</strong>';
+  }
+  if(!risq) risq='Risque modéré. Surveiller le RSI.';
 
   document.getElementById('m-tech').innerHTML=tech;
   document.getElementById('m-fond').innerHTML=fond;
   document.getElementById('m-why').innerHTML=why;
-  document.getElementById('m-risq').innerHTML=v.t==='BOAN'?'PROFIT WARNING officiel. Chute probable.':v.rsi>=70?'RSI en surachat — risque de correction imminent.':v.vol===0?'Illiquidité totale.':v.tend==='down'?'Tendance baissière confirmée.':'Surveiller la liquidité et le RSI.';
+  document.getElementById('m-risq').innerHTML=risq;
 
-  const dispo=CAP-Object.values(pf).reduce((a,p)=>a+p.montant,0);
-  const montant=Math.min(MAX_POS,dispo);
-  const qte=Math.floor(montant/v.cours);
   let reco='';
-  if(v.risque>=60) reco=`<strong>⚠ RISQUE ÉLEVÉ</strong> — Score risque ${v.risque}/100. ATR ${v.atr?v.atr.atr_pct+'%':'-'} (volatilité ${v.atr?v.atr.niveau:'-'}). ${v.sr&&v.sr.pct_resistance>=-3&&v.sr.pct_resistance<=0?'Cours proche de la résistance — zone de prise de bénéfices. ':''}<strong>Attendre un repli avant d'entrer.</strong>`;
-  else if(v.conviction>=70) reco=`<strong>Signal d'achat fort</strong> — ${qte.toLocaleString('fr-FR')} titres pour ~${(qte*v.cours).toLocaleString('fr-FR')} FCFA.`;
-  else if(v.conviction>=45) reco=`<strong>Signal d'achat modéré</strong> — Fondamentaux corrects. Utile pour diversifier.`;
-  else if(v.conviction>=30) reco=`<strong>Attendre.</strong> Pas de signal suffisant.`;
-  else reco=`<strong>Éviter.</strong> Signal faible ou risque trop élevé.`;
+  if(v.blacklist) reco='<strong style="color:#dc2626">ÉVITER absolument.</strong>';
+  else if(v.signal==='FORT ACHAT') reco=`<strong style="color:#22c55e">ACHETER — Conviction ${v.conviction}/100</strong><br>Timing ${v.timing}/100 · Confiance ${v.confiance}/100`;
+  else if(v.signal==='ACHAT') reco=`<strong style="color:#f59e0b">ACHAT MODÉRÉ — Conviction ${v.conviction}/100</strong><br>Fondamentaux corrects, timing moyen.`;
+  else if(v.signal==='ATTENTE') reco=`<strong style="color:#b45309">ATTENDRE — Timing ${v.timing}/100</strong><br>Risque élevé ou timing défavorable.`;
+  else reco=`<strong style="color:#dc2626">ÉVITER — Conviction ${v.conviction}/100</strong><br>Fondamentaux faibles.`;
 
   document.getElementById('m-reco').innerHTML=reco;
-  document.getElementById('m-act').innerHTML=ip
-    ?`<button class="bsell" onclick="retirerPF('${ticker}')">VENDRE — RETIRER DU PORTEFEUILLE</button>`
-    :v.conviction>=45&&qte>=1
-    ?`<button class="badd" onclick="ajouterPF('${ticker}')">+ ACHETER — ${qte.toLocaleString('fr-FR')} TITRES · ~${(qte*v.cours).toLocaleString('fr-FR')} FCFA</button>`
-    :`<div style="font-size:10px;color:#888;text-align:center;padding:8px">Signal insuffisant ou capital épuisé</div>`;
+  document.getElementById('m-act').innerHTML = `<div style="font-size:10px;color:#888;text-align:center;padding:8px">ℹ️ Les ordres sont passés sur Sika Finance. Cet outil vous aide à décider.</div>`;
+
   document.getElementById('ov').classList.add('open');
 }
 function closeMod(e){if(!e||e.target===document.getElementById('ov'))document.getElementById('ov').classList.remove('open');}
 
-/* ══ TABS ══ */
 function showTab(name,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
+  if(name==='decisions'){ renderMesPositions(); renderDecisions(); }
   if(name==='strategie'){ renderStratCharts(); renderWhy(); }
-  if(name==='historique'){ renderHist(); }
-  if(name==='portefeuille'){ renderPF(); renderHistTrans(); }
+  if(name==='historique') renderHist();
+  if(name==='scanner') renderTopReco();
 }
 
-/* ══ INIT ══ */
 function build(){
-  DATA=buildData();
-  renderMets();
-  renderTable();
-  renderCharts();
-  renderPF();
-  renderHistTrans();
-  // Mettre à jour date
-  const d=SEANCES[SEANCES.length-1].date;
-  document.getElementById('date-sub').textContent='DÉCISION BRVM · '+d;
-  document.getElementById('date-tag').textContent=d;
+  try {
+    DATA=buildData();
+    const d=SEANCES[SEANCES.length-1].date;
+    document.getElementById('date-sub').textContent='ASSISTANT DÉCISION BRVM · '+d;
+    document.getElementById('date-tag').textContent=d;
+    renderMets();
+    renderTable();
+    renderMesPositions();
+    renderDecisions();
+    renderTopReco();
+    if(typeof Chart !== 'undefined') renderCharts();
+  } catch(e) { console.error('Erreur build():', e); }
 }
-build();
+
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+else build();
 </script>
 </body>
 </html>
