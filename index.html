@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIKA INVEST — Assistant Décision BRVM</title>
+<title>SIKA INVEST — Décision BRVM</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -94,13 +94,6 @@ tr:last-child td{border-bottom:none}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 @media(max-width:700px){.row2{grid-template-columns:1fr}}
 .cw2{position:relative;width:100%;height:220px}
-.profile-selector{display:flex;gap:10px;margin-bottom:15px;justify-content:flex-end}
-.profile-btn{font-size:9px;padding:4px 12px;border-radius:20px;cursor:pointer;background:#f0efea;border:none;font-family:'Courier Prime',monospace}
-.profile-btn.active{background:#1a1a1a;color:#fff}
-.badge{display:inline-block;padding:2px 6px;border-radius:12px;font-size:8px;font-weight:700;margin-left:4px}
-.badge-vert{background:#dcfce7;color:#15803d}
-.badge-rouge{background:#fee2e2;color:#b91c1c}
-.badge-orange{background:#fef3c7;color:#b45309}
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;padding:1rem}
 #ov.open{display:flex}
 .mod{background:#fffef9;border:1px solid #d4b96a;border-left:4px solid #b5922a;border-radius:14px;padding:1.5rem 1.75rem;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
@@ -132,7 +125,7 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">ASSISTANT DÉCISION BRVM · 26 MARS 2026</div>
+    <div class="logo-sub" id="date-sub">DÉCISION BRVM · 26 MARS 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
@@ -159,33 +152,12 @@ tr:last-child td{border-bottom:none}
     <div><div class="ck-l">TOP DIVIDENDE</div><div class="ck-v cp" id="ctx-div">—</div><div class="ck-s">rendement 2024</div></div>
     <div><div class="ck-l">BRVM 2025</div><div class="ck-v cp">+25,26%</div><div class="ck-s">performance annuelle</div></div>
   </div>
-  
-  <!-- Profil investisseur -->
-  <div class="profile-selector">
-    <span style="font-size:9px;color:#888;margin-right:5px">PROFIL :</span>
-    <button class="profile-btn" onclick="setProfile('prudent')">🛡️ PRUDENT</button>
-    <button class="profile-btn active" onclick="setProfile('equilibre')">⚖️ ÉQUILIBRÉ</button>
-    <button class="profile-btn" onclick="setProfile('agressif')">⚡ AGRESSIF</button>
-  </div>
-  
   <div class="alerts" id="alerts-live"></div>
   <div id="surachat-zone"></div>
   <div class="mets" id="mets"></div>
   <div style="background:#fdf9f0;border:1px solid #e8d9a0;border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:10px;color:#92400e">
     ⚠ RSI en phase d'apprentissage : <strong id="rsi-status">6/14 séances</strong>. Le RSI sera fiable à partir de 14 séances (mi-avril).
   </div>
-  
-  <!-- Mini tableau TOP RECOMMANDATIONS -->
-  <div class="card">
-    <div class="sec-title">🏆 TOP RECOMMANDATIONS</div>
-    <div class="tw-wrap">
-      <table style="font-size:10px">
-        <thead><tr><th>ACTION</th><th>RSI</th><th>DIV.</th><th>CONV.</th><th>SIGNAL</th><th>BADGE</th></tr></thead>
-        <tbody id="top-reco-table"></tbody>
-       </table>
-    </div>
-  </div>
-  
   <div class="card">
     <div class="ctrl">
       <span class="cl">SECTEUR :</span>
@@ -223,6 +195,7 @@ tr:last-child td{border-bottom:none}
             <th onclick="tri('div')">DIV. ↕</th>
             <th onclick="tri('per')">PER ↕</th>
             <th onclick="tri('rsi')">RSI ↕</th>
+            <th onclick="tri('atr_pct')">ATR ↕</th>
             <th onclick="tri('conviction')">CONV. ↕</th>
             <th onclick="tri('timing')">TIMING ↕</th>
             <th onclick="tri('confiance')">CONF. ↕</th>
@@ -230,7 +203,7 @@ tr:last-child td{border-bottom:none}
           32
         </thead>
         <tbody id="tbl"></tbody>
-       </table>
+      8</table>
     </div>
   </div>
   <div class="row2">
@@ -248,9 +221,10 @@ tr:last-child td{border-bottom:none}
 <!-- ══ DÉCISIONS DU SOIR ══ -->
 <div id="tab-decisions" class="panel">
   <p style="font-size:11px;color:#888;margin-bottom:1rem;line-height:1.7">
-    Ce panneau vous aide à préparer vos ordres <strong>ce soir</strong> pour <strong>demain matin</strong>.
+    Ce panneau vous aide à préparer vos ordres <strong>ce soir</strong> pour <strong>demain matin</strong>. Basé sur les cours de clôture du jour.
   </p>
   
+  <!-- MES POSITIONS RÉELLES -->
   <div class="card" style="margin-bottom:10px">
     <div class="sec-title">📋 MES POSITIONS RÉELLES</div>
     <div id="mes-positions" style="font-size:10px;padding:6px 0">
@@ -269,7 +243,7 @@ tr:last-child td{border-bottom:none}
       <div><strong style="color:#22c55e">✓ ACHETER DEMAIN</strong><br>FORT ACHAT ou ACHAT avec confiance élevée et timing favorable.</div>
       <div><strong style="color:#b45309">⏳ ATTENDRE</strong><br>Bons fondamentaux mais RSI trop haut, proche résistance ou volatilité excessive.</div>
       <div><strong style="color:#dc2626">🔴 VENDRE DEMAIN</strong><br>Pour vos positions réelles : stop-loss, objectif atteint, surachat ou signal ÉVITER.</div>
-      <div><strong style="color:#1d4ed8">📊 SURVEILLER</strong><br>Actions en correction qui pourraient offrir un bon point d'entrée.</div>
+      <div><strong style="color:#1d4ed8">📊 SURVEILLER</strong><br>Actions en correction qui pourraient offrir un bon point d'entrée dans 1-2 séances.</div>
     </div>
   </div>
 </div>
@@ -280,7 +254,7 @@ tr:last-child td{border-bottom:none}
     <div class="strat-card">
       <div class="strat-icon">🎯</div>
       <div class="strat-title">PHILOSOPHIE BRVM</div>
-      <div class="strat-text">Sur la BRVM, <strong>le dividende est roi</strong>. Stratégie : acheter avec dividende >9% et PER sous la moyenne sectorielle, entrer quand RSI entre 30 et 55.</div>
+      <div class="strat-text">Sur la BRVM, <strong>le dividende est roi</strong>. La majorité du rendement vient du dividende. Stratégie : acheter avec dividende >9% et PER sous la moyenne sectorielle, entrer quand RSI entre 30 et 55.</div>
       <div class="rule-box">📌 Règle d'or : Div ≥9% + PER &lt; secteur + RSI 30–55 = opportunité.</div>
     </div>
     <div class="strat-card">
@@ -297,25 +271,25 @@ tr:last-child td{border-bottom:none}
     <div class="strat-card">
       <div class="strat-icon">📡</div>
       <div class="strat-title">INDICATEURS AVANCÉS</div>
-      <div class="strat-text"><strong>ATR</strong> — Volatilité moyenne. >3% = action peut bouger brutalement.<br><br><strong>Volume Surge</strong> — Volume anormal vs moyenne.<br><br><strong>Support/Résistance</strong> — Acheter près du support.</div>
+      <div class="strat-text"><strong>ATR</strong> — Volatilité moyenne. >3% = action peut bouger brutalement.<br><br><strong>Volume Surge</strong> — Volume anormal vs moyenne. Surge >2x sur baisse = panique de vente.<br><br><strong>Support/Résistance</strong> — Acheter près du support, ne pas acheter près de la résistance.</div>
     </div>
     <div class="strat-card">
       <div class="strat-icon">🚪</div>
       <div class="strat-title">RÈGLES DE SORTIE</div>
-      <div class="strat-text"><strong>VENDRE quand :</strong><br>· Perte ≥ -10% (stop-loss)<br>· Gain ≥ +15% atteint<br>· RSI ≥ 75 (surachat extrême)<br><br><strong>ALLÉGER quand :</strong><br>· Gain ≥ +10%<br>· RSI ≥ 68</div>
+      <div class="strat-text"><strong>VENDRE quand :</strong><br>· Perte ≥ -10% (stop-loss)<br>· Gain ≥ +15% atteint<br>· RSI ≥ 75 (surachat extrême)<br>· Profit Warning ou news négatif<br><br><strong>ALLÉGER quand :</strong><br>· Gain ≥ +10%<br>· RSI ≥ 68</div>
     </div>
     <div class="strat-card">
       <div class="strat-icon">⚠️</div>
-      <div class="strat-title">LISTE NOIRE</div>
-      <div class="strat-text"><strong>BOA NIGER</strong> — Profit Warning.<br><strong>ETI TG</strong> — Zéro dividende.<br><strong>MOVIS CI</strong> — Volume nul.</div>
+      <div class="strat-title">LISTE NOIRE PERMANENTE</div>
+      <div class="strat-text"><strong>BOA NIGER</strong> — Profit Warning officiel.<br><br><strong>ETI TG</strong> — Zéro dividende malgré BN record.<br><br><strong>MOVIS CI</strong> — Volume nul. Impossible de trader.</div>
       <div class="rule-box">🔴 BOA NIGER · ETI TG · MOVIS CI = jamais acheter.</div>
     </div>
   </div>
   <div class="card">
-    <div class="sec-title">MEILLEURES OPPORTUNITÉS</div>
+    <div class="sec-title">MEILLEURES OPPORTUNITÉS ACTUELLES</div>
     <div class="why-grid" id="why-grid"></div>
   </div>
-  <div class="row2">
+  <div class="row2" style="margin-top:10px">
     <div class="card">
       <div class="sec-title">SCORE MOYEN PAR SECTEUR</div>
       <div class="cw2"><canvas id="ch-secteur"></canvas></div>
@@ -336,7 +310,7 @@ tr:last-child td{border-bottom:none}
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
     <div class="tw-wrap">
-      <table id="hist-table"><thead id="hist-thead"></thead><tbody id="hist-tbody"></tbody></table>
+      <table id="hist-table"><thead id="hist-thead"></thead><tbody id="hist-tbody"></tbody> </table>
     </div>
   </div>
 </div>
@@ -368,7 +342,9 @@ tr:last-child td{border-bottom:none}
 </div>
 
 <script>
-// ==================== DONNÉES ====================
+/* ══════════════════════════════════════════════════════════════
+   DONNÉES HISTORIQUES — 6 séances réelles (19/03 au 26/03/2026)
+   ══════════════════════════════════════════════════════════════ */
 const SEANCES = [
   {date:"19/03/2026", vol:{SDSC:12470,BOAB:4067,BOABF:3233,BOAC:3767,BOAM:4765,BOAN:20168,BOAS:17974,BICB:947,BNBC:1911,BICC:408,CFAC:3644,CIEC:2661,CBIBF:4943,SEMC:3165,ECOC:2940,SIVC:2260,ETIT:582860,FTSC:1769,LNBB:702,SVOC:0,NEIC:1689,NTLC:296,NSBC:741,ONTBF:897,ORGT:11074,ORAC:500,PALC:2709,SAFC:1049,SPHC:474,ABJC:1016,STAC:6264,SGBC:313,CABC:813,SICC:0,SITAB:0,SMBC:0,SIBC:0,SDCC:0,SOGB:0,SLBC:0,SNTS:0,SCRC:0,STLC:0,TTLS:0,PRSC:0,UNLC:0,UNXC:0,SHEC:0}, cours:{SDSC:1820,BOAB:7845,BOABF:5420,BOAC:8940,BOAM:4785,BOAN:2610,BOAS:6900,BICB:5200,BNBC:1575,BICC:26000,CFAC:1760,CIEC:3200,CBIBF:13510,SEMC:1975,ECOC:16795,SIVC:2690,ETIT:32,FTSC:2315,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14000,ONTBF:2835,ORGT:3500,ORAC:15050,PALC:9305,SAFC:5780,SPHC:8350,ABJC:3250,STAC:2285,SGBC:36000,CABC:3245,SICC:4095,SITAB:21985,SMBC:13250,SIBC:7200,SDCC:7400,SOGB:8350,SLBC:39510,SNTS:26695,SCRC:1550,STLC:2395,TTLS:3285,PRSC:4885,UNLC:16000,UNXC:1980,SHEC:2240}, var:{SDSC:-7.38,BOAB:2.08,BOABF:2.26,BOAC:0.45,BOAM:0.31,BOAN:-4.40,BOAS:1.17,BICB:-0.95,BNBC:-2.17,BICC:0.39,CFAC:0.86,CIEC:-3.03,CBIBF:0.04,SEMC:0.00,ECOC:3.16,SIVC:-0.19,ETIT:0.00,FTSC:1.09,LNBB:1.32,SVOC:0.00,NEIC:0.00,NTLC:-0.08,NSBC:-1.41,ONTBF:-4.87,ORGT:-5.41,ORAC:0.00,PALC:-1.43,SAFC:0.52,SPHC:-0.54,ABJC:0.00,STAC:-7.30,SGBC:3.15,CABC:-1.07,SICC:0.00,SITAB:0.00,SMBC:0.00,SIBC:0.00,SDCC:0.00,SOGB:0.00,SLBC:0.00,SNTS:0.00,SCRC:0.00,STLC:0.00,TTLS:0.00,PRSC:0.00,UNLC:0.00,UNXC:0.00,SHEC:0.00}},
   {date:"21/03/2026", vol:{SDSC:11729,BOAB:4309,BOABF:3377,BOAC:6713,BOAM:7006,BOAN:11069,BOAS:4316,BICB:1413,BNBC:328,BICC:2038,CFAC:7594,CIEC:5328,CBIBF:57,SEMC:4905,ECOC:379,SIVC:3696,ETIT:2468429,FTSC:1263,LNBB:921,SVOC:0,NEIC:2278,NTLC:1003,NSBC:661,ONTBF:5827,ORGT:7361,ORAC:2032,PALC:1863,SAFC:6889,SPHC:20549,ABJC:3953,STAC:3780,SGBC:4445,CABC:1008,SICC:863,SITAB:3550,SMBC:357,SIBC:19239,SDCC:313,SOGB:10291,SLBC:185,SNTS:3365,SCRC:13624,STLC:49250,TTLS:2279,PRSC:1208,UNLC:139,UNXC:12656,SHEC:4517}, cours:{SDSC:1700,BOAB:7850,BOABF:5395,BOAC:8700,BOAM:4760,BOAN:2535,BOAS:6900,BICB:5200,BNBC:1600,BICC:25555,CFAC:1795,CIEC:3300,CBIBF:13700,SEMC:1980,ECOC:16905,SIVC:2675,ETIT:32,FTSC:2320,LNBB:3850,SVOC:2395,NEIC:1410,NTLC:12890,NSBC:14150,ONTBF:3000,ORGT:3365,ORAC:14550,PALC:9350,SAFC:6195,SPHC:7725,ABJC:3490,STAC:2355,SGBC:35500,CABC:3280,SICC:3850,SITAB:21985,SMBC:13300,SIBC:7050,SDCC:7700,SOGB:8700,SLBC:39200,SNTS:28800,SCRC:1540,STLC:2950,TTLS:3265,PRSC:4700,UNLC:59000,UNXC:2000,SHEC:2200}, var:{SDSC:0,BOAB:0,BOABF:0,BOAC:0,BOAM:0,BOAN:0,BOAS:0,BICB:0,BNBC:0,BICC:0,CFAC:0,CIEC:0,CBIBF:0,SEMC:0,ECOC:0,SIVC:0,ETIT:0,FTSC:0,LNBB:0,SVOC:0,NEIC:0,NTLC:0,NSBC:0,ONTBF:0,ORGT:0,ORAC:0,PALC:0,SAFC:0,SPHC:0,ABJC:0,STAC:0,SGBC:0,CABC:0,SICC:0,SITAB:0,SMBC:0,SIBC:0,SDCC:0,SOGB:0,SLBC:0,SNTS:0,SCRC:0,STLC:0,TTLS:0,PRSC:0,UNLC:0,UNXC:0,SHEC:0}},
@@ -380,70 +356,71 @@ const SEANCES = [
 
 const META = {
   SDSC:{nom:"AFRICA GLOBAL LOGISTICS",pays:"CI",sec:"IN",div:6.5, per_s:10,jan:1515},
-  BOAB:{nom:"BOA BENIN",pays:"BJ",sec:"SF",div:8.5, per_s:9, jan:5850},
-  BOABF:{nom:"BOA BURKINA FASO",pays:"BF",sec:"SF",div:7.2, per_s:9, jan:3750},
-  BOAC:{nom:"BOA CI",pays:"CI",sec:"SF",div:7.0, per_s:9, jan:7180},
-  BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",div:7.2, per_s:9, jan:4000},
-  BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",div:6.0, per_s:9, jan:2610,blacklist:true},
-  BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",div:8.1, per_s:9, jan:5240},
-  BICB:{nom:"BIC BENIN",pays:"BJ",sec:"SF",div:8.2, per_s:9, jan:4975},
-  BNBC:{nom:"BERNABE CI",pays:"CI",sec:"IN",div:7.0, per_s:10,jan:1410},
-  BICC:{nom:"BICICI CI",pays:"CI",sec:"SF",div:7.8, per_s:9, jan:19445},
-  CFAC:{nom:"CFAO MOTORS CI",pays:"CI",sec:"CD",div:5.2, per_s:11,jan:1430},
-  CIEC:{nom:"CIE CI",pays:"CI",sec:"EN",div:8.5, per_s:10,jan:2360},
-  CBIBF:{nom:"CORIS BANK BF",pays:"BF",sec:"SF",div:9.2, per_s:9, jan:10780},
-  SEMC:{nom:"CROWN SIEM CI",pays:"CI",sec:"IN",div:7.0, per_s:10,jan:700},
-  ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",div:5.0, per_s:9, jan:16000},
-  SIVC:{nom:"ERIUM CI",pays:"CI",sec:"EN",div:9.0, per_s:10,jan:1580},
-  ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",div:0.0, per_s:9, jan:23,blacklist:true},
-  FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8, per_s:10,jan:2220},
-  LNBB:{nom:"LOTERIE NAT. BENIN",pays:"BJ",sec:"CD",div:6.5, per_s:11,jan:4295},
-  SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0, per_s:10,jan:2395,blacklist:true},
-  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1, per_s:11,jan:1200},
-  NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5, per_s:8, jan:10650},
-  NSBC:{nom:"NSIA BANQUE CI",pays:"CI",sec:"SF",div:5.8, per_s:9, jan:11445},
-  ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TEL",div:10.5,per_s:9, jan:2485},
-  ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",div:7.5, per_s:9, jan:2400},
-  ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TEL",div:7.2, per_s:9, jan:14250},
-  PALC:{nom:"PALMCI",pays:"CI",sec:"CB",div:17.0,per_s:8, jan:8100},
-  SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",div:8.9, per_s:9, jan:3305},
-  SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",div:12.5,per_s:8, jan:7900},
-  ABJC:{nom:"SERVAIR CI",pays:"CI",sec:"IN",div:6.2, per_s:10,jan:2900},
-  STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",div:6.5, per_s:10,jan:1325},
-  SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",div:5.3, per_s:9, jan:29895},
-  CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",div:7.5, per_s:10,jan:2360},
-  SICC:{nom:"SICOR CI",pays:"CI",sec:"IN",div:8.8, per_s:10,jan:3300},
-  SITAB:{nom:"SITAB CI",pays:"CI",sec:"CB",div:8.0, per_s:8, jan:19780},
-  SMBC:{nom:"SMB CI",pays:"CI",sec:"SF",div:7.0, per_s:9, jan:9500},
-  SIBC:{nom:"SIB CI",pays:"CI",sec:"SF",div:7.1, per_s:9, jan:5750},
-  SDCC:{nom:"SODECI CI",pays:"CI",sec:"EN",div:8.5, per_s:10,jan:5800},
-  SOGB:{nom:"SOGB CI",pays:"CI",sec:"CB",div:13.5,per_s:8, jan:7900},
-  SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",div:6.0, per_s:8, jan:28900},
-  SNTS:{nom:"SONATEL",pays:"SN",sec:"TEL",div:8.9, per_s:9, jan:26120},
-  SCRC:{nom:"SUCRIVOIRE CI",pays:"CI",sec:"CB",div:12.1,per_s:8, jan:1060},
-  STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",div:9.8, per_s:10,jan:2335},
-  TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",div:9.1, per_s:10,jan:2500},
-  PRSC:{nom:"TRACTAFRIC CI",pays:"CI",sec:"CD",div:6.5, per_s:11,jan:3875},
-  UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",div:5.5, per_s:8, jan:34225},
-  UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"IN",div:8.2, per_s:10,jan:1400},
-  SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5, per_s:10,jan:1445},
+  BOAB:{nom:"BOA BENIN",              pays:"BJ",sec:"SF",div:8.5, per_s:9, jan:5850},
+  BOABF:{nom:"BOA BURKINA FASO",      pays:"BF",sec:"SF",div:7.2, per_s:9, jan:3750},
+  BOAC:{nom:"BOA CI",                 pays:"CI",sec:"SF",div:7.0, per_s:9, jan:7180},
+  BOAM:{nom:"BOA MALI",               pays:"ML",sec:"SF",div:7.2, per_s:9, jan:4000},
+  BOAN:{nom:"BOA NIGER",              pays:"NE",sec:"SF",div:6.0, per_s:9, jan:2610,blacklist:true},
+  BOAS:{nom:"BOA SENEGAL",            pays:"SN",sec:"SF",div:8.1, per_s:9, jan:5240},
+  BICB:{nom:"BIC BENIN",              pays:"BJ",sec:"SF",div:8.2, per_s:9, jan:4975},
+  BNBC:{nom:"BERNABE CI",             pays:"CI",sec:"IN",div:7.0, per_s:10,jan:1410},
+  BICC:{nom:"BICICI CI",              pays:"CI",sec:"SF",div:7.8, per_s:9, jan:19445},
+  CFAC:{nom:"CFAO MOTORS CI",         pays:"CI",sec:"CD",div:5.2, per_s:11,jan:1430},
+  CIEC:{nom:"CIE CI",                 pays:"CI",sec:"EN",div:8.5, per_s:10,jan:2360},
+  CBIBF:{nom:"CORIS BANK BF",         pays:"BF",sec:"SF",div:9.2, per_s:9, jan:10780},
+  SEMC:{nom:"CROWN SIEM CI",          pays:"CI",sec:"IN",div:7.0, per_s:10,jan:700},
+  ECOC:{nom:"ECOBANK CI",             pays:"CI",sec:"SF",div:5.0, per_s:9, jan:16000},
+  SIVC:{nom:"ERIUM CI",               pays:"CI",sec:"EN",div:9.0, per_s:10,jan:1580},
+  ETIT:{nom:"ETI TG",                 pays:"TG",sec:"SF",div:0.0, per_s:9, jan:23,   blacklist:true},
+  FTSC:{nom:"FILTISAC CI",            pays:"CI",sec:"IN",div:8.8, per_s:10,jan:2220},
+  LNBB:{nom:"LOTERIE NAT. BENIN",     pays:"BJ",sec:"CD",div:6.5, per_s:11,jan:4295},
+  SVOC:{nom:"MOVIS CI",               pays:"CI",sec:"IN",div:5.0, per_s:10,jan:2395, blacklist:true},
+  NEIC:{nom:"NEI CEDA CI",            pays:"CI",sec:"CD",div:7.1, per_s:11,jan:1200},
+  NTLC:{nom:"NESTLE CI",              pays:"CI",sec:"CB",div:5.5, per_s:8, jan:10650},
+  NSBC:{nom:"NSIA BANQUE CI",         pays:"CI",sec:"SF",div:5.8, per_s:9, jan:11445},
+  ONTBF:{nom:"ONATEL BF",             pays:"BF",sec:"TEL",div:10.5,per_s:9, jan:2485},
+  ORGT:{nom:"ORAGROUP TOGO",          pays:"TG",sec:"SF",div:7.5, per_s:9, jan:2400},
+  ORAC:{nom:"ORANGE CI",              pays:"CI",sec:"TEL",div:7.2, per_s:9, jan:14250},
+  PALC:{nom:"PALMCI",                 pays:"CI",sec:"CB",div:17.0,per_s:8, jan:8100},
+  SAFC:{nom:"SAFCA CI",               pays:"CI",sec:"SF",div:8.9, per_s:9, jan:3305},
+  SPHC:{nom:"SAPH CI",                pays:"CI",sec:"CB",div:12.5,per_s:8, jan:7900},
+  ABJC:{nom:"SERVAIR CI",             pays:"CI",sec:"IN",div:6.2, per_s:10,jan:2900},
+  STAC:{nom:"SETAO CI",               pays:"CI",sec:"IN",div:6.5, per_s:10,jan:1325},
+  SGBC:{nom:"SGBCI",                  pays:"CI",sec:"SF",div:5.3, per_s:9, jan:29895},
+  CABC:{nom:"SICABLE CI",             pays:"CI",sec:"IN",div:7.5, per_s:10,jan:2360},
+  SICC:{nom:"SICOR CI",               pays:"CI",sec:"IN",div:8.8, per_s:10,jan:3300},
+  SITAB:{nom:"SITAB CI",              pays:"CI",sec:"CB",div:8.0, per_s:8, jan:19780},
+  SMBC:{nom:"SMB CI",                 pays:"CI",sec:"SF",div:7.0, per_s:9, jan:9500},
+  SIBC:{nom:"SIB CI",                 pays:"CI",sec:"SF",div:7.1, per_s:9, jan:5750},
+  SDCC:{nom:"SODECI CI",              pays:"CI",sec:"EN",div:8.5, per_s:10,jan:5800},
+  SOGB:{nom:"SOGB CI",                pays:"CI",sec:"CB",div:13.5,per_s:8, jan:7900},
+  SLBC:{nom:"SOLIBRA CI",             pays:"CI",sec:"CB",div:6.0, per_s:8, jan:28900},
+  SNTS:{nom:"SONATEL",                pays:"SN",sec:"TEL",div:8.9, per_s:9, jan:26120},
+  SCRC:{nom:"SUCRIVOIRE CI",          pays:"CI",sec:"CB",div:12.1,per_s:8, jan:1060},
+  STLC:{nom:"TOTAL CI",               pays:"CI",sec:"EN",div:9.8, per_s:10,jan:2335},
+  TTLS:{nom:"TOTAL SENEGAL",          pays:"SN",sec:"EN",div:9.1, per_s:10,jan:2500},
+  PRSC:{nom:"TRACTAFRIC CI",          pays:"CI",sec:"CD",div:6.5, per_s:11,jan:3875},
+  UNLC:{nom:"UNILEVER CI",            pays:"CI",sec:"CB",div:5.5, per_s:8, jan:34225},
+  UNXC:{nom:"UNIWAX CI",              pays:"CI",sec:"IN",div:8.2, per_s:10,jan:1400},
+  SHEC:{nom:"VIVO ENERGY CI",         pays:"CI",sec:"EN",div:9.5, per_s:10,jan:1445},
 };
 
 const SEC_MAP={SF:'Fin.',CB:'Agro',IN:'Ind.',TEL:'Tel.',EN:'Én.',CD:'Dist.'};
 const CAP=20000000, MAX_POS=2000000;
 
-// ========== TES POSITIONS RÉELLES ==========
+// ========== TES POSITIONS RÉELLES (À MODIFIER ICI APRÈS CHAQUE ACHAT) ==========
 const POSITIONS_REAL = [
   { ticker: "PALC", cours_achat: 9400, date_achat: "23/03/2026", quantite: 212 },
   { ticker: "SCRC", cours_achat: 1590, date_achat: "23/03/2026", quantite: 1257 },
   { ticker: "STLC", cours_achat: 2995, date_achat: "23/03/2026", quantite: 668 }
+  // Ajoute ici tes nouveaux achats après chaque ordre passé sur Sika Finance
+  // Exemple: { ticker: "SOGB", cours_achat: 7700, date_achat: "26/03/2026", quantite: 259 }
 ];
 
 let DATA = [];
 let filtSec = 'ALL', filtSig = 'ALL', sortK = 'conviction', sortD = -1;
-let userProfile = 'equilibre';
 
-// ========== FONCTIONS DE CALCUL (version conviction technique + fondamentale) ==========
+// ========== FONCTIONS DE CALCUL ==========
 function calcRSI(hist){
   if(hist.length < 3) return 50;
   const period = Math.min(14, hist.length - 1);
@@ -548,16 +525,26 @@ function calcRisque(rsi, atr_pct, surge, sr){
   return Math.min(r, 100);
 }
 
+// NOUVELLE FORMULE DE CONFIANCE — COHÉRENTE AVEC LE TIMING
 function calcConfiance(conv, timing, risque, vol, blacklist, div){
   if(blacklist) return 0;
   if(vol === 0) return Math.max(0, Math.round(conv * 0.3));
+  
+  // Base : timing 60%, conviction 40%
   let c = (timing * 0.6) + (conv * 0.4);
+  
+  // Bonus dividende attractif
   if(div >= 12) c += 10;
   else if(div >= 9) c += 5;
+  
+  // Malus risque élevé
   if(risque >= 60) c -= 20;
   else if(risque >= 45) c -= 10;
+  
+  // Bonus liquidité
   if(vol >= 5000) c += 5;
   else if(vol >= 1000) c += 2;
+  
   return Math.min(100, Math.max(0, Math.round(c)));
 }
 
@@ -570,15 +557,6 @@ function getSignal(conv, timing, risque, confiance, blacklist){
   if(timing < 35) return 'ATTENTE';
   if(conv >= 30) return 'NEUTRE';
   return 'ÉVITER';
-}
-
-// Badge intelligent
-function getBadge(rsi, per, per_s){
-  if(rsi < 30 && per < per_s) return {text: '📉 SOUS-ÉVALUÉE', class: 'badge-vert'};
-  if(rsi > 70) return {text: '⚠️ SURACHETÉE', class: 'badge-rouge'};
-  if(per < per_s * 0.7) return {text: '💎 BONNE AFFAIRE', class: 'badge-vert'};
-  if(rsi > 65) return {text: '📈 MOMENTUM FORT', class: 'badge-orange'};
-  return {text: '➖ NEUTRE', class: 'bgr'};
 }
 
 function buildData(){
@@ -607,54 +585,25 @@ function buildData(){
     const st     = scoreTech(rsi, tend, varJ);
     const sf     = scoreFond(meta.div, per, meta.per_s, vol);
     const conv   = st + sf;
-    
+
     const timing   = calcTiming(rsi, tend, varJ, srD, conv, !!meta.blacklist);
     const risque   = calcRisque(rsi, atrD.atr_pct, surgeD.surge, srD);
     const confiance= calcConfiance(conv, timing, risque, vol, !!meta.blacklist, meta.div);
     const signal   = getSignal(conv, timing, risque, confiance, !!meta.blacklist);
-    const badge    = getBadge(rsi, per, meta.per_s);
 
     return {
       t:ticker, nom:meta.nom, pays:meta.pays, sec:meta.sec,
       cours, var:varJ, vol, div:meta.div, per, per_s:meta.per_s,
       rsi, tend, atr_pct:atrD.atr_pct, surge:surgeD,
       sr:srD, conviction:conv, timing, risque, confiance, signal,
-      varJan, blacklist:!!meta.blacklist, hist, histV, badge
+      varJan, blacklist:!!meta.blacklist, hist, histV
     };
   });
+
   return result.sort((a,b)=>b.conviction-a.conviction);
 }
 
-// ========== PROFIL ==========
-function setProfile(profile){
-  userProfile = profile;
-  document.querySelectorAll('.profile-btn').forEach(btn => btn.classList.remove('active'));
-  if(profile === 'prudent') document.querySelector('.profile-btn:first-child').classList.add('active');
-  else if(profile === 'equilibre') document.querySelector('.profile-btn:nth-child(2)').classList.add('active');
-  else document.querySelector('.profile-btn:last-child').classList.add('active');
-  build();
-  renderTable();
-  renderDecisions();
-  renderMesPositions();
-  renderTopReco();
-}
-
-// ========== TOP RECOMMANDATIONS ==========
-function renderTopReco(){
-  const top6 = DATA.filter(d => !d.blacklist && (d.signal === 'FORT ACHAT' || d.signal === 'ACHAT')).slice(0,6);
-  document.getElementById('top-reco-table').innerHTML = top6.map(v => `
-    <tr class="tr" onclick="openFiche('${v.t}')">
-      <td style="font-weight:700">${v.nom.length>20?v.nom.slice(0,18)+'…':v.nom}<\/td>
-      <td style="color:${v.rsi>=70?'#dc2626':v.rsi<30?'#16a34a':'#888'}">${v.rsi}<\/td>
-      <td style="color:${v.div>=9?'#16a34a':'#888'}">${v.div}%<\/td>
-      <td style="font-weight:700;color:${v.conviction>=70?'#22c55e':v.conviction>=45?'#f59e0b':'#888'}">${v.conviction}<\/td>
-      <td><span class="b ${v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':'bgr'}">${v.signal}<\/span><\/td>
-      <td><span class="badge ${v.badge.class}">${v.badge.text}<\/span><\/td>
-    <\/tr>
-  `).join('');
-}
-
-// ========== RENDU TABLEAU ==========
+// ========== RENDU ==========
 function fSec(s,b){ filtSec=s; document.querySelectorAll('.ctrl .ft').forEach(x=>{ if(['TOUS','FINANCE','AGRO','INDUSTRIE','TELECOM','ÉNERGIE','CONSO.'].includes(x.textContent)) x.classList.remove('active'); }); b.classList.add('active'); renderTable(); }
 function fSig(s,b){ filtSig=s; renderTable(); }
 function tri(k){ sortK===k?sortD*=-1:(sortK=k,sortD=-1); renderTable(); }
@@ -665,7 +614,7 @@ function renderTable(){
   if(filtSec!=='ALL') d=d.filter(x=>x.sec===filtSec);
   if(filtSig!=='ALL') d=d.filter(x=>x.signal===filtSig);
   if(q) d=d.filter(x=>x.nom.toLowerCase().includes(q)||x.t.toLowerCase().includes(q)||x.pays.toLowerCase().includes(q));
-  const numKeys=['conviction','rsi','cours','div','timing','confiance','varJan'];
+  const numKeys=['conviction','rsi','cours','div','timing','confiance','varJan','atr_pct'];
   d.sort((a,b)=>{
     if(numKeys.includes(sortK)) return sortD===-1?b[sortK]-a[sortK]:a[sortK]-b[sortK];
     if(sortK==='var') return sortD===-1?b.var-a.var:a.var-b.var;
@@ -681,6 +630,7 @@ function renderTable(){
     const jc  = v.varJan>0?'pos':v.varJan<0?'neg':'neu';
     const tc  = v.timing>=70?'#22c55e':v.timing>=40?'#f59e0b':'#ef4444';
     const cc  = v.confiance>=65?'#22c55e':v.confiance>=40?'#f59e0b':'#94a3b8';
+    const atrC= v.atr_pct>=5?'neg':v.atr_pct>=3?'neu':'pos';
     return`<tr class="tr" onclick="openFiche('${v.t}')">
       <td style="font-weight:700;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${v.nom}">${isOwned?'★ ':''}${v.nom.length>17?v.nom.slice(0,16)+'…':v.nom}<\/td>
       <td style="color:#888;font-size:9px">${v.pays}<\/td>
@@ -689,7 +639,8 @@ function renderTable(){
       <td class="${jc}" style="font-size:10px">${v.varJan>0?'+':''}${v.varJan}%<\/td>
       <td style="${v.div>=9?'color:#15803d;font-weight:700':'color:#888'}">${v.div>0?v.div+'%':'—'}<\/td>
       <td style="font-size:10px">${v.per}x<\/td>
-      <td style="font-weight:700;color:${v.rsi>=30&&v.rsi<50?'#16a34a':v.rsi>=70?'#dc2626':'#888'}">${v.rsi}<\/td>
+      <td style="font-weight:700;color:${v.rsi>=30&&v.rsi<50?'#16a34a':v.rsi>=70?'#dc2626':'#888'}">${v.rsi}${v.rsi>=30&&v.rsi<50?' ★':v.rsi>=70?' ⚠':''}<\/td>
+      <td class="${atrC}" style="font-size:10px">${v.atr_pct}%<\/td>
       <td><div class="cw"><div class="cb"><div class="cf" style="width:${v.conviction}%;background:${bc}"><\/div><\/div><span style="font-weight:700;color:${bc}">${v.conviction}<\/span><\/div><\/td>
       <td style="font-weight:700;color:${tc}">${v.timing}<\/td>
       <td style="font-weight:700;color:${cc}">${v.confiance}<\/td>
@@ -849,7 +800,7 @@ function renderStratCharts(){
 }
 
 function renderWhy(){
-  const top6=DATA.filter(d=>!d.blacklist).slice(0,6);
+  const top6=DATA.filter(d=>!d.blacklist&&d.conviction>=45).slice(0,6);
   document.getElementById('why-grid').innerHTML=top6.map(v=>{
     let r='';
     if(v.div>=12) r+=`Dividende exceptionnel <strong>${v.div}%</strong>. `;
@@ -859,7 +810,7 @@ function renderWhy(){
     const varJan=v.varJan>0?`+${v.varJan}%`:`${v.varJan}%`;
     r+=`Performance depuis janvier : <strong>${varJan}</strong>.`;
     const sc=v.signal==='FORT ACHAT'?'bg':v.signal==='ACHAT'?'bo':'ba';
-    return`<div class="why-card"><div class="why-t">${v.t} · ${v.pays}<\/div><div class="why-n">${v.nom}<\/div><div class="why-r">${r}<\/div><span class="b ${sc}" style="margin-top:6px;display:inline-block">${v.signal} · Conv.${v.conviction}<\/span><\/div>`;
+    return`<div class="why-card"><div class="why-t">${v.t} · ${v.pays}<\/div><div class="why-n">${v.nom}<\/div><div class="why-r">${r}<\/div><span class="b ${sc}" style="margin-top:6px;display:inline-block">${v.signal} · Conv.${v.conviction} · Conf.${v.confiance}<\/span><\/div>`;
   }).join('');
 }
 
@@ -867,7 +818,7 @@ function renderHist(){
   const q=(document.getElementById('search-hist').value||'').toLowerCase();
   const tickers=Object.keys(META).filter(t=>!q||META[t].nom.toLowerCase().includes(q)||t.toLowerCase().includes(q));
   document.getElementById('hist-thead').innerHTML=
-    ` 32<th style="position:sticky;left:0;background:#fff">ACTION</th><th>JAN.</th>${SEANCES.map(s=>`<th>${s.date}</th>`).join('')}<th>VAR.TOT</th>`;
+    `<tr><th style="position:sticky;left:0;background:#fff">ACTION</th><th>JAN.</th>${SEANCES.map(s=>`<th>${s.date}</th>`).join('')}<th>VAR.TOT</th></tr>`;
   document.getElementById('hist-tbody').innerHTML=tickers.map(t=>{
     const m=META[t];
     const last=SEANCES[SEANCES.length-1].cours[t]||0;
@@ -902,11 +853,13 @@ function openFiche(ticker){
     {l:'VAR. JANV.', v:(v.varJan>0?'+':'')+v.varJan+'%',       s:'depuis jan. 2026'},
     {l:'DIVIDENDE',  v:v.div>0?v.div+'%':'—',                  s:'rendement 2024'},
     {l:'PER',        v:v.per+'x',                              s:'sect. ~'+v.per_s+'x'},
-    {l:'RSI',        v:v.rsi,                                  s:v.rsi>=30&&v.rsi<50?'Zone achat ★':v.rsi>=70?'SURACHAT ⚠':'Neutre'},
-    {l:'CONVICTION', v:v.conviction+'/100',                    s:v.signal},
+    {l:'RSI ('+SEANCES.length+'j)',v:v.rsi,                    s:v.rsi>=30&&v.rsi<50?'Zone achat ★':v.rsi>=70?'SURACHAT ⚠':v.rsi<30?'Survente':'Neutre'},
+    {l:'ATR',        v:v.atr_pct+'%',                          s:v.atr_pct>=5?'Très volatile':v.atr_pct>=3?'Volatile':'Stable'},
+    {l:'SUPPORT',    v:v.sr.support.toLocaleString('fr-FR'),   s:'+'+v.sr.pct_s+'% du cours'},
+    {l:'RÉSISTANCE', v:v.sr.resistance.toLocaleString('fr-FR'),s:v.sr.pct_r+'% du cours'},
     {l:'TIMING',     v:v.timing+'/100',                        s:v.timing>=70?'Bon moment':v.timing>=40?'Moyen':'Attendre'},
-    {l:'CONFIANCE',  v:v.confiance+'/100',                     s:v.confiance>=65?'Élevée':v.confiance>=40?'Moyenne':'Faible'},
-    {l:'BADGE',      v:v.badge.text,                           s:''},
+    {l:'CONVICTION', v:v.conviction+'/100',                    s:v.signal},
+    {l:'CONFIANCE',  v:v.confiance+'/100',                     s:v.confiance>=65?'Agir ce soir':v.confiance>=40?'Surveiller':'Passer'},
   ].map(k=>`<div class="mk"><div class="mkl">${k.l}<\/div><div class="mkv">${k.v}<\/div><div class="mks">${k.s}<\/div><\/div>`).join('');
 
   if(mChart) mChart.destroy();
@@ -917,33 +870,37 @@ function openFiche(ticker){
   });
 
   let tech=`RSI <strong>${v.rsi}</strong>${v.rsi>=30&&v.rsi<50?' — zone d\'achat optimale':v.rsi>=70?' — <strong>surachat</strong>, risque de correction':v.rsi<30?' — survente, rebond possible':' — zone neutre'}. `;
-  tech+=v.tend==='up'?'Tendance <strong>haussière</strong>.':v.tend==='down'?'Tendance <strong>baissière</strong>.':'Tendance stable.';
+  tech+=v.tend==='up'?'Tendance <strong>haussière</strong> sur les dernières séances.':v.tend==='down'?'Tendance <strong>baissière</strong> sur les dernières séances.':'Cours stable sur les dernières séances.';
+  tech+=` ATR <strong>${v.atr_pct}%</strong> — ${v.atr_pct>=5?'très volatile, mouvements brusques possibles':v.atr_pct>=3?'volatilité élevée':'volatilité modérée'}.`;
 
   let fond=`PER <strong>${v.per}x</strong> ${v.per<v.per_s?'sous':'au-dessus de'} la moyenne sectorielle (${v.per_s}x). `;
   fond+=v.div>=12?`Dividende <strong>${v.div}%</strong> — exceptionnel sur la BRVM.`:v.div>=9?`Dividende <strong>${v.div}%</strong> — supérieur à la moyenne BRVM (9%).`:v.div>0?`Dividende <strong>${v.div}%</strong>.`:'Aucun dividende.';
 
   let why='';
   if(v.blacklist){
-    if(v.t==='BOAN') why='<strong style="color:#dc2626">PROFIT WARNING officiel</strong> — à éviter absolument.';
-    else if(v.t==='ETIT') why='Zéro dividende malgré un BN record. Sans catalyseur de hausse.';
-    else why='Volume nul. Illiquidité totale.';
+    if(v.t==='BOAN') why='<strong style="color:#dc2626">PROFIT WARNING officiel</strong> — la direction a annoncé des résultats en forte baisse. À éviter absolument.';
+    else if(v.t==='ETIT') why='Zéro dividende malgré un BN record. Sans dividende sur la BRVM = sans catalyseur de hausse.';
+    else why='Volume nul. Illiquidité totale. Impossible de passer des ordres.';
   } else {
-    if(v.div>=12) why+=`Dividende <strong>${v.div}%</strong> exceptionnel. `;
+    if(v.div>=12) why+=`Le dividende <strong>${v.div}%</strong> est exceptionnel — quasi-garanti chaque année. `;
     else if(v.div>=9) why+=`Dividende <strong>${v.div}%</strong> supérieur au marché. `;
-    if(v.per<v.per_s*0.6) why+=`PER <strong>${v.per}x</strong> = action sous-évaluée. `;
-    if(v.rsi>=30&&v.rsi<50) why+='RSI en zone achat — bon moment pour entrer. ';
+    if(v.per<v.per_s*0.6) why+=`PER <strong>${v.per}x</strong> = action sous-évaluée par rapport à ses pairs. `;
+    if(v.rsi>=30&&v.rsi<50) why+='RSI en zone achat — les vendeurs sont épuisés, bon moment pour entrer. ';
+    if(v.sr.pct_s>=0&&v.sr.pct_s<=5) why+='Cours proche du support — risque de baisse limité. ';
     why+=`Performance depuis janvier : <strong>${v.varJan>0?'+':''}${v.varJan}%</strong>.`;
   }
 
   let risq='';
   if(v.rsi>=70) risq+='⚠ RSI en surachat — risque de correction imminent. ';
+  if(v.atr_pct>=4) risq+=`ATR ${v.atr_pct}% — action très volatile, peut chuter brutalement. `;
+  if(v.sr.pct_r>=-3&&v.sr.pct_r<=0) risq+='Cours proche de la résistance — zone de prise de bénéfices. ';
   if(isOwned && ownedPos){
     const pnl=((v.cours-ownedPos.cours_achat)/ownedPos.cours_achat*100);
-    risq+=`P&L : <strong style="color:${pnl>=0?'#16a34a':'#dc2626'}">${pnl>=0?'+':''}${pnl.toFixed(1)}%</strong>. `;
-    if(pnl<=-10) risq+='<strong style="color:#dc2626">STOP-LOSS DÉCLENCHÉ — vendre.</strong>';
-    else if(pnl>=15) risq+='<strong style="color:#16a34a">OBJECTIF ATTEINT — prendre bénéfices.</strong>';
+    risq+=`P&L actuel : <strong style="color:${pnl>=0?'#16a34a':'#dc2626'}">${pnl>=0?'+':''}${pnl.toFixed(1)}%</strong>. `;
+    if(pnl<=-10) risq+='<strong style="color:#dc2626">STOP-LOSS DÉCLENCHÉ — vendre maintenant.</strong>';
+    else if(pnl>=15) risq+='<strong style="color:#16a34a">OBJECTIF +15% ATTEINT — envisager de prendre les bénéfices.</strong>';
   }
-  if(!risq) risq='Risque modéré. Surveiller le RSI.';
+  if(!risq) risq='Risque modéré. Surveiller le RSI et la liquidité.';
 
   document.getElementById('m-tech').innerHTML=tech;
   document.getElementById('m-fond').innerHTML=fond;
@@ -951,14 +908,14 @@ function openFiche(ticker){
   document.getElementById('m-risq').innerHTML=risq;
 
   let reco='';
-  if(v.blacklist) reco='<strong style="color:#dc2626">ÉVITER absolument.</strong>';
-  else if(v.signal==='FORT ACHAT') reco=`<strong style="color:#22c55e">ACHETER — Conviction ${v.conviction}/100</strong><br>Timing ${v.timing}/100 · Confiance ${v.confiance}/100`;
-  else if(v.signal==='ACHAT') reco=`<strong style="color:#f59e0b">ACHAT MODÉRÉ — Conviction ${v.conviction}/100</strong><br>Fondamentaux corrects, timing moyen.`;
-  else if(v.signal==='ATTENTE') reco=`<strong style="color:#b45309">ATTENDRE — Timing ${v.timing}/100</strong><br>Risque élevé ou timing défavorable.`;
-  else reco=`<strong style="color:#dc2626">ÉVITER — Conviction ${v.conviction}/100</strong><br>Fondamentaux faibles.`;
+  if(v.blacklist) reco='<strong style="color:#dc2626">ÉVITER absolument.</strong> '+why;
+  else if(v.signal==='FORT ACHAT') reco=`<strong>Signal d'achat fort</strong> — Confiance ${v.confiance}/100.`;
+  else if(v.signal==='ACHAT') reco=`<strong>Signal d'achat modéré</strong> — Confiance ${v.confiance}/100.`;
+  else if(v.signal==='ATTENTE') reco=`<strong>⏳ Attendre.</strong> Timing défavorable (${v.timing}/100) ou risque élevé (${v.risque}/100).`;
+  else reco=`<strong>Passer.</strong> Signal insuffisant (Conviction ${v.conviction}/100).`;
 
   document.getElementById('m-reco').innerHTML=reco;
-  document.getElementById('m-act').innerHTML = `<div style="font-size:10px;color:#888;text-align:center;padding:8px">ℹ️ Les ordres sont passés sur Sika Finance. Cet outil vous aide à décider.</div>`;
+  document.getElementById('m-act').innerHTML = `<div style="font-size:10px;color:#888;text-align:center;padding:8px">ℹ️ Les ordres sont passés sur Sika Finance. Ce site est votre assistant d'analyse.</div>`;
 
   document.getElementById('ov').classList.add('open');
 }
@@ -972,20 +929,18 @@ function showTab(name,btn){
   if(name==='decisions'){ renderMesPositions(); renderDecisions(); }
   if(name==='strategie'){ renderStratCharts(); renderWhy(); }
   if(name==='historique') renderHist();
-  if(name==='scanner') renderTopReco();
 }
 
 function build(){
   try {
     DATA=buildData();
     const d=SEANCES[SEANCES.length-1].date;
-    document.getElementById('date-sub').textContent='ASSISTANT DÉCISION BRVM · '+d;
+    document.getElementById('date-sub').textContent='DÉCISION BRVM · '+d;
     document.getElementById('date-tag').textContent=d;
     renderMets();
     renderTable();
     renderMesPositions();
     renderDecisions();
-    renderTopReco();
     if(typeof Chart !== 'undefined') renderCharts();
   } catch(e) { console.error('Erreur build():', e); }
 }
