@@ -399,7 +399,7 @@ tr:last-child td{border-bottom:none}
       <span id="rsi-status2">—</span> séances enregistrées du 19/03 au 31/03/2026.
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
-    <div class="tw-wrap"><table><thead id="hist-thead"></thead><tbody id="hist-tbody"></tbody></table></div>
+    <div class="tw-wrap"> <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
   </div>
 </div>
 
@@ -437,7 +437,9 @@ tr:last-child td{border-bottom:none}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   DONNÉES — 8 SÉANCES RÉELLES 19/03 → 31/03/2026
+   DONNÉES — 9 SÉANCES RÉELLES 19/03 → 31/03/2026
+   Séance 30/03 renommée depuis l'ancienne 31/03
+   Séance 31/03 ajoutée avec les nouvelles données
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"19/03/2026",
@@ -468,10 +470,14 @@ const SEANCES = [
     cours:{SDSC:1995,BOAB:7350,BOABF:5510,BOAC:8700,BOAM:4695,BOAN:2650,BOAS:6590,BICB:5090,BNBC:1610,BICC:25600,CFAC:1630,CIEC:3290,CBIBF:13790,SEMC:2110,ECOC:16500,SIVC:2995,ETIT:32,FTSC:2410,LNBB:3850,SVOC:2395,NEIC:1430,NTLC:12950,NSBC:14145,ONTBF:2950,ORGT:3650,ORAC:15300,PALC:8200,SAFC:6105,SPHC:7280,ABJC:3500,STAC:2525,SGBC:35000,CABC:3280,SICC:4135,SITAB:21700,SMBC:12250,SIBC:7050,SDCC:7350,SOGB:8200,SLBC:38800,SNTS:28400,SCRC:1580,STLC:2975,TTLS:3250,PRSC:4890,UNLC:53105,UNXC:2095,SHEC:2170},
     var:{SDSC:1.27,BOAB:0.75,BOABF:1.19,BOAC:2.35,BOAM:0,BOAN:-1.49,BOAS:0.61,BICB:-0.20,BNBC:0,BICC:-1.54,CFAC:-0.61,CIEC:0,CBIBF:-0.07,SEMC:-6.84,ECOC:1.23,SIVC:6.96,ETIT:0,FTSC:2.34,LNBB:1.32,SVOC:0,NEIC:0,NTLC:0.39,NSBC:0.35,ONTBF:1.37,ORGT:-0.82,ORAC:4.40,PALC:2.50,SAFC:-3.02,SPHC:1.11,ABJC:2.19,STAC:7.45,SGBC:0,CABC:2.50,SICC:0,SITAB:0.93,SMBC:-5.59,SIBC:0.71,SDCC:0.68,SOGB:2.89,SLBC:-0.51,SNTS:-0.09,SCRC:2.60,STLC:3.66,TTLS:4.84,PRSC:-1.81,UNLC:7.00,UNXC:1.45,SHEC:-2.91},
     vol:{SDSC:9373,BOAB:4466,BOABF:11273,BOAC:12345,BOAM:10090,BOAN:7920,BOAS:6647,BICB:5382,BNBC:2102,BICC:3544,CFAC:2239,CIEC:816,CBIBF:594,SEMC:5644,ECOC:2610,SIVC:20624,ETIT:1903336,FTSC:6664,LNBB:1422,SVOC:0,NEIC:3833,NTLC:368,NSBC:976,ONTBF:1904,ORGT:13430,ORAC:2926,PALC:1693,SAFC:12746,SPHC:2079,ABJC:1428,STAC:7547,SGBC:1389,CABC:907,SICC:40,SITAB:4954,SMBC:1036,SIBC:4473,SDCC:228,SOGB:1869,SLBC:138,SNTS:7988,SCRC:2487,STLC:3260,TTLS:2407,PRSC:663,UNLC:21,UNXC:6011,SHEC:4966}},
-  { date:"31/03/2026",
+  { date:"30/03/2026",
     cours:{SDSC:1945,BOAB:7400,BOABF:5550,BOAC:8100,BOAM:4595,BOAN:2635,BOAS:6590,BICB:5090,BNBC:1585,BICC:25475,CFAC:1610,CIEC:3300,CBIBF:13850,SEMC:2050,ECOC:16500,SIVC:2975,ETIT:32,FTSC:2305,LNBB:3900,SVOC:2395,NEIC:1430,NTLC:12900,NSBC:14095,ONTBF:2940,ORGT:3655,ORAC:14650,PALC:8050,SAFC:6540,SPHC:7100,ABJC:3690,STAC:2670,SGBC:34800,CABC:3250,SICC:4050,SITAB:21900,SMBC:12500,SIBC:7000,SDCC:7400,SOGB:7900,SLBC:38700,SNTS:28425,SCRC:1550,STLC:2895,TTLS:3350,PRSC:4875,UNLC:57085,UNXC:2000,SHEC:2200},
     var:{SDSC:-2.51,BOAB:0.68,BOABF:0.73,BOAC:-6.90,BOAM:-2.13,BOAN:-0.57,BOAS:0,BICB:0,BNBC:-1.55,BICC:-0.49,CFAC:-1.23,CIEC:0.30,CBIBF:0.44,SEMC:-2.84,ECOC:0,SIVC:-0.67,ETIT:0,FTSC:-4.36,LNBB:1.30,SVOC:0,NEIC:0,NTLC:-0.39,NSBC:-0.35,ONTBF:-0.34,ORGT:0.14,ORAC:-4.25,PALC:-1.83,SAFC:7.13,SPHC:-2.47,ABJC:5.43,STAC:5.74,SGBC:-0.57,CABC:-0.91,SICC:-2.06,SITAB:0.92,SMBC:2.04,SIBC:-0.71,SDCC:0.68,SOGB:-3.66,SLBC:-0.26,SNTS:0.09,SCRC:-1.90,STLC:-2.69,TTLS:3.08,PRSC:-0.31,UNLC:7.49,UNXC:-4.53,SHEC:1.38},
-    vol:{SDSC:2649,BOAB:1594,BOABF:3199,BOAC:90930,BOAM:6634,BOAN:5456,BOAS:11551,BICB:888,BNBC:474,BICC:2125,CFAC:5855,CIEC:5865,CBIBF:496,SEMC:2982,ECOC:888,SIVC:4432,ETIT:616672,FTSC:2407,LNBB:391,SVOC:0,NEIC:553,NTLC:1065,NSBC:2982,ONTBF:531,ORGT:13614,ORAC:666,PALC:5130,SAFC:2295,SPHC:6315,ABJC:3724,STAC:5434,SGBC:1225,CABC:1503,SICC:124,SITAB:1748,SMBC:748,SIBC:9268,SDCC:863,SOGB:4999,SLBC:977,SNTS:4872,SCRC:2944,STLC:8947,TTLS:1793,PRSC:352,UNLC:58,UNXC:8542,SHEC:6790}}
+    vol:{SDSC:2649,BOAB:1594,BOABF:3199,BOAC:90930,BOAM:6634,BOAN:5456,BOAS:11551,BICB:888,BNBC:474,BICC:2125,CFAC:5855,CIEC:5865,CBIBF:496,SEMC:2982,ECOC:888,SIVC:4432,ETIT:616672,FTSC:2407,LNBB:391,SVOC:0,NEIC:553,NTLC:1065,NSBC:2982,ONTBF:531,ORGT:13614,ORAC:666,PALC:5130,SAFC:2295,SPHC:6315,ABJC:3724,STAC:5434,SGBC:1225,CABC:1503,SICC:124,SITAB:1748,SMBC:748,SIBC:9268,SDCC:863,SOGB:4999,SLBC:977,SNTS:4872,SCRC:2944,STLC:8947,TTLS:1793,PRSC:352,UNLC:58,UNXC:8542,SHEC:6790}},
+  { date:"31/03/2026",
+    cours:{SDSC:1920,BOAB:7450,BOABF:5545,BOAC:8395,BOAM:4680,BOAN:2620,BOAS:6600,BICB:5100,BNBC:1590,BICC:25400,CFAC:1620,CIEC:3400,CBIBF:13800,SEMC:2000,ECOC:16500,SIVC:2950,ETIT:33,FTSC:2345,LNBB:3900,SVOC:2395,NEIC:1405,NTLC:12800,NSBC:14100,ONTBF:2950,ORGT:3655,ORAC:15200,PALC:8100,SAFC:7030,SPHC:7095,ABJC:3700,STAC:2725,SGBC:34500,CABC:3400,SICC:4045,SITAB:21500,SMBC:12500,SIBC:6900,SDCC:7500,SOGB:8010,SLBC:39000,SNTS:29000,SCRC:1610,STLC:2880,TTLS:3250,PRSC:4875,UNLC:60000,UNXC:2000,SHEC:2190},
+    var:{SDSC:-1.29,BOAB:1.35,BOABF:-0.18,BOAC:3.64,BOAM:1.85,BOAN:-0.57,BOAS:0.15,BICB:0.20,BNBC:0.32,BICC:-0.29,CFAC:0.62,CIEC:3.03,CBIBF:-0.36,SEMC:-2.44,ECOC:0,SIVC:-0.84,ETIT:3.13,FTSC:1.74,LNBB:0,SVOC:0,NEIC:-1.75,NTLC:-0.78,NSBC:0.04,ONTBF:0.34,ORGT:0,ORAC:3.75,PALC:0.62,SAFC:7.49,SPHC:-0.07,ABJC:0.27,STAC:2.06,SGBC:-0.86,CABC:4.62,SICC:-0.12,SITAB:-1.83,SMBC:0,SIBC:-1.43,SDCC:1.35,SOGB:1.39,SLBC:0.78,SNTS:2.02,SCRC:3.87,STLC:-0.52,TTLS:-2.99,PRSC:0,UNLC:5.11,UNXC:0,SHEC:-0.45},
+    vol:{SDSC:4642,BOAB:5301,BOABF:5524,BOAC:91494,BOAM:9490,BOAN:3969,BOAS:10438,BICB:785,BNBC:394,BICC:363,CFAC:1727,CIEC:4494,CBIBF:258,SEMC:5474,ECOC:2932,SIVC:4727,ETIT:2372810,FTSC:206,LNBB:685,SVOC:0,NEIC:986,NTLC:155,NSBC:4403,ONTBF:3626,ORGT:2219,ORAC:499,PALC:2031,SAFC:5761,SPHC:5575,ABJC:7431,STAC:6336,SGBC:2134,CABC:10273,SICC:106,SITAB:1378,SMBC:683,SIBC:2264,SDCC:5328,SOGB:5008,SLBC:2047,SNTS:3397,SCRC:14205,STLC:11807,TTLS:4167,PRSC:1321,UNLC:352,UNXC:16780,SHEC:2734}}
 ];
 
 const META = {
@@ -545,7 +551,7 @@ const PROFIL_DESC = {
 };
 
 /* ══════════════════════════════════════════════════
-   CALCULS TECHNIQUES (corrigés v3)
+   CALCULS TECHNIQUES (identique à l'original)
    ══════════════════════════════════════════════════ */
 function calcRSI(h){
   if(h.length<3)return 50;
@@ -592,8 +598,7 @@ function calcSR(h){
 }
 
 /* ══════════════════════════════════════════════════
-   🆕 SCORE GLOBAL /10 + RECOMMANDATION
-   Fonction centrale de l'assistant de décision
+   SCORE GLOBAL /10 + RECOMMANDATION (identique)
    ══════════════════════════════════════════════════ */
 function getRecommendation(stock, profilKey) {
   if (stock.blacklist) return {score:0, rec:'ÉVITER', emoji:'⛔', detail:'Liste noire — ne pas investir.'};
@@ -602,23 +607,19 @@ function getRecommendation(stock, profilKey) {
   let score = 0;
   const details = [];
 
-  /* ── Critère 1 : RSI ── */
   if (stock.rsi < 30)         { score += 2; details.push('RSI<30 survente (+2)'); }
   else if (stock.rsi <= 55)   { score += 1; details.push('RSI zone neutre (+1)'); }
   else if (stock.rsi >= 70)   { score -= 2; details.push('RSI≥70 surachat (−2)'); }
 
-  /* ── Critère 2 : PER vs secteur ── */
   const ratio = stock.per_s > 0 ? stock.per / stock.per_s : 1;
   if      (ratio <= 0.70) { score += 2; details.push('PER très décoté (+2)'); }
   else if (ratio <= 0.90) { score += 1; details.push('PER décoté (+1)'); }
   else if (ratio >= 1.20) { score -= 1; details.push('PER premium (−1)'); }
 
-  /* ── Critère 3 : Dividende ── */
   if      (stock.div >= 9)  { score += 2; details.push(`Div ${stock.div}% exceptionnel (+2)`); }
   else if (stock.div >= 5)  { score += 1; details.push(`Div ${stock.div}% correct (+1)`); }
   else if (stock.div === 0) { score -= 1; details.push('Pas de dividende (−1)'); }
 
-  /* ── Critère 4 : Tendance (pondéré selon profil) ── */
   if (stock.tend === 'up') {
     const bonus = profilKey === 'agressif' ? 2 : 1;
     score += bonus;
@@ -628,7 +629,6 @@ function getRecommendation(stock, profilKey) {
     details.push('Tendance baissière (−1)');
   }
 
-  /* ── Ajustements profil ── */
   if (profilKey === 'prudent') {
     if (stock.atr_pct >= 4) { score -= 1; details.push('Volatilité élevée prudent (−1)'); }
     if (stock.div >= 9)     { score += 1; details.push('Bonus dividende profil prudent (+1)'); }
@@ -651,26 +651,18 @@ function getRecommendation(stock, profilKey) {
   return { score, rec, emoji, details };
 }
 
-/* ── Badges intelligents ── */
 function getBadges(stock) {
   const badges = [];
   const ratio = stock.per_s > 0 ? stock.per / stock.per_s : 1;
-  if (!stock.blacklist && ratio <= 0.75 && stock.div >= 8)
-    badges.push({cls:'badge-sous',txt:'Sous-évaluée'});
-  if (stock.rsi >= 70 && stock.vol > 0)
-    badges.push({cls:'badge-sur',txt:'Surachetée'});
-  if (stock.div >= 10)
-    badges.push({cls:'badge-div',txt:`Div ${stock.div}%`});
-  if (stock.tend === 'up' && stock.var > 3)
-    badges.push({cls:'badge-momentum',txt:'Momentum'});
-  if (stock.atr_pct >= 4)
-    badges.push({cls:'badge-volatile',txt:'Volatile'});
-  if (!stock.blacklist && stock.sr && stock.sr.pct_s >= 0 && stock.sr.pct_s <= 3)
-    badges.push({cls:'badge-support',txt:'Au support'});
+  if (!stock.blacklist && ratio <= 0.75 && stock.div >= 8) badges.push({cls:'badge-sous',txt:'Sous-évaluée'});
+  if (stock.rsi >= 70 && stock.vol > 0) badges.push({cls:'badge-sur',txt:'Surachetée'});
+  if (stock.div >= 10) badges.push({cls:'badge-div',txt:`Div ${stock.div}%`});
+  if (stock.tend === 'up' && stock.var > 3) badges.push({cls:'badge-momentum',txt:'Momentum'});
+  if (stock.atr_pct >= 4) badges.push({cls:'badge-volatile',txt:'Volatile'});
+  if (!stock.blacklist && stock.sr && stock.sr.pct_s >= 0 && stock.sr.pct_s <= 3) badges.push({cls:'badge-support',txt:'Au support'});
   return badges;
 }
 
-/* ── Compatibilité profil ── */
 function getProfilMatch(stock) {
   const r = stock.reco;
   if (!r || r.rec === 'ÉVITER') return null;
@@ -681,7 +673,7 @@ function getProfilMatch(stock) {
 }
 
 /* ══════════════════════════════════════════════════
-   BUILD DATA
+   BUILD DATA (le reste des fonctions identiques)
    ══════════════════════════════════════════════════ */
 function buildData() {
   const derniere = SEANCES[SEANCES.length-1];
@@ -722,9 +714,9 @@ function buildData() {
   }).sort((a,b) => b.scoreGlobal - a.scoreGlobal);
 }
 
-/* ══════════════════════════════════════════════════
-   RENDU TABLE
-   ══════════════════════════════════════════════════ */
+// Les fonctions renderTable, renderMets, renderMesPositions, renderDecisions, renderCharts, renderStratCharts, renderWhy, renderHist, openFiche, closeMod, setProfil, fSec, fRec, tri, showTab, build sont identiques à l'original
+// Je les garde identiques pour ne pas alourdir le message
+
 function renderTable() {
   const q = (document.getElementById('search').value||'').toLowerCase();
   let d = [...DATA];
@@ -775,9 +767,6 @@ function renderTable() {
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   RENDU MÉTRIQUES & ALERTES
-   ══════════════════════════════════════════════════ */
 function renderMets() {
   const ach = DATA.filter(d=>d.recommendation==='ACHETER'&&!d.blacklist).length;
   const con = DATA.filter(d=>d.recommendation==='CONSERVER').length;
@@ -815,9 +804,6 @@ function renderMets() {
   document.getElementById('alerts-live').innerHTML = html;
 }
 
-/* ══════════════════════════════════════════════════
-   POSITIONS
-   ══════════════════════════════════════════════════ */
 function renderMesPositions() {
   if(!POSITIONS_REAL.length){
     document.getElementById('mes-positions').innerHTML='<div class="hist-empty">Aucune position renseignée.</div>';
@@ -841,9 +827,6 @@ function renderMesPositions() {
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   DÉCISIONS DU SOIR
-   ══════════════════════════════════════════════════ */
 function renderDecisions() {
   document.getElementById('dec-profil-label').textContent = profil.toUpperCase();
   const acheter   = DATA.filter(d=>d.recommendation==='ACHETER'&&d.vol>0&&!d.blacklist).sort((a,b)=>b.scoreGlobal-a.scoreGlobal).slice(0,5);
@@ -897,16 +880,12 @@ function renderDecisions() {
         <div class="dec-val" style="color:#1d4ed8">${v.cours.toLocaleString('fr-FR')} F</div></div>`);
 }
 
-/* ══════════════════════════════════════════════════
-   GRAPHIQUES
-   ══════════════════════════════════════════════════ */
 let charts = {};
 function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
 
 function renderCharts() {
   if(typeof Chart==='undefined')return;
 
-  /* Top 10 scores */
   const top10 = DATA.filter(d=>!d.blacklist&&d.vol>0).slice(0,10);
   destroyChart('ch1');
   charts.ch1 = new Chart(document.getElementById('ch1'),{
@@ -921,18 +900,16 @@ function renderCharts() {
       scales:{x:{max:10,grid:{color:'#f0efea'},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}
   });
 
-  /* Répartition décisions */
   const recs=['ACHETER','CONSERVER','VENDRE'];
   const recsCount=recs.map(r=>DATA.filter(d=>d.recommendation===r).length);
   destroyChart('ch-signaux');
   charts['ch-signaux'] = new Chart(document.getElementById('ch-signaux'),{
     type:'doughnut',
-    data:{labels:recs.map((r,i)=>['🟢 Acheter','🟡 Conserver','🔴 Vendre'][i]),
+    data:{labels:['🟢 Acheter','🟡 Conserver','🔴 Vendre'],
       datasets:[{data:recsCount,backgroundColor:['#22c55e','#f59e0b','#ef4444'],borderWidth:2,borderColor:'#fff'}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}}}
   });
 
-  /* Score par secteur */
   const secs=['SF','CB','IN','TEL','EN','CD'];
   const secL={SF:'Finance',CB:'Agro',IN:'Industrie',TEL:'Telecom',EN:'Énergie',CD:'Distrib.'};
   const secAvg=secs.map(s=>{
@@ -948,7 +925,6 @@ function renderCharts() {
       plugins:{legend:{display:false}},scales:{y:{max:10,grid:{color:'#f0efea'}}}}
   });
 
-  /* Variations du jour */
   const derniere=SEANCES[SEANCES.length-1];
   const varList=Object.entries(derniere.var).filter(([t,v])=>v!==0&&!META[t]?.blacklist).sort((a,b)=>b[1]-a[1]);
   const top5H=varList.slice(0,5),top5B=varList.slice(-5).reverse();
@@ -962,7 +938,6 @@ function renderCharts() {
       plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0efea'}}}}
   });
 
-  /* Top dividendes */
   const topDiv=DATA.filter(d=>d.div>0&&!d.blacklist).sort((a,b)=>b.div-a.div).slice(0,8);
   destroyChart('ch-div');
   charts['ch-div'] = new Chart(document.getElementById('ch-div'),{
@@ -992,7 +967,6 @@ function renderStratCharts() {
       plugins:{legend:{display:false}}}
   });
 
-  /* Distribution des scores (histogramme) */
   const bins=[0,1,2,3,4,5,6,7,8,9,10];
   const counts=bins.map(b=>DATA.filter(d=>d.scoreGlobal===b&&!d.blacklist).length);
   destroyChart('ch-hist-score');
@@ -1022,9 +996,6 @@ function renderWhy() {
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   HISTORIQUE
-   ══════════════════════════════════════════════════ */
 function renderHist() {
   const q=(document.getElementById('search-hist')?.value||'').toLowerCase();
   const tickers=Object.keys(META).filter(t=>!q||META[t].nom.toLowerCase().includes(q)||t.toLowerCase().includes(q));
@@ -1049,13 +1020,10 @@ function renderHist() {
       }).join('')}
       <td style="font-weight:700;color:${vtc}">${vt>0?'+':''}${vt}%</td>
       <td>${scoreHtml}</td>
-    </tr>`;
+     </tr>`;
   }).join('');
 }
 
-/* ══════════════════════════════════════════════════
-   MODAL FICHE COMPLÈTE
-   ══════════════════════════════════════════════════ */
 let mChartInst;
 function openFiche(ticker) {
   const v=DATA.find(d=>d.t===ticker);
