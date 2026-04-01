@@ -61,12 +61,12 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .md{font-size:10px;margin-top:3px}
 .pos{color:#16a34a}.neg{color:#dc2626}.neu{color:#888}
 
-/* ── SCORE GAUGE (NOUVEAU) ── */
+/* ── SCORE GAUGE ── */
 .score-gauge{display:flex;align-items:center;gap:6px}
 .gauge-bar{flex:1;height:6px;background:#e0ddd6;border-radius:3px;overflow:hidden}
 .gauge-fill{height:100%;border-radius:3px;transition:width .4s}
 
-/* ── BADGES INTELLIGENTS (NOUVEAU) ── */
+/* ── BADGES INTELLIGENTS ── */
 .badge{display:inline-flex;align-items:center;gap:3px;font-size:8px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;white-space:nowrap}
 .badge-sous{background:#dcfce7;color:#15803d}
 .badge-sur{background:#fee2e2;color:#b91c1c}
@@ -75,7 +75,7 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .badge-volatile{background:#fff7ed;color:#c2410c}
 .badge-support{background:#f0fdf4;color:#166534}
 
-/* ── DÉCISION CARD (AMÉLIORÉE) ── */
+/* ── DÉCISION CARD ── */
 .dec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem}
 .dec-card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1rem}
 .dec-header{font-size:9px;letter-spacing:3px;margin-bottom:10px;font-weight:700}
@@ -176,7 +176,7 @@ tr:last-child td{border-bottom:none}
 .mvt{font-size:14px;font-weight:700;color:#1a1a1a}
 .mvsub{font-size:11px;color:#555;margin-top:4px;line-height:1.6}
 
-/* ── SCORE GLOBAL MODAL (NOUVEAU) ── */
+/* ── SCORE GLOBAL MODAL ── */
 .score-big{display:flex;align-items:center;gap:16px;background:#f8f6ef;border-radius:10px;padding:1rem;margin-bottom:.9rem}
 .score-circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;flex-shrink:0}
 .score-circle-acheter{background:#dcfce7;color:#15803d;border:2.5px solid #22c55e}
@@ -207,7 +207,7 @@ tr:last-child td{border-bottom:none}
 .cb{width:42px;height:5px;background:#e0ddd6;border-radius:3px;overflow:hidden}
 .cf{height:5px;border-radius:3px}
 
-/* ── PITCH BANNER (JURY) ── */
+/* ── PITCH BANNER ── */
 .pitch{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .pitch-text{font-size:11px;line-height:1.8;color:#ccc;max-width:700px}
 .pitch-text strong{color:#4ade80}
@@ -224,11 +224,11 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 31 MARS 2026</div>
+    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 01 AVRIL 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">31 MARS 2026</div>
+    <div class="tag tg" id="date-tag">01 AVRIL 2026</div>
     <div class="tag tw">BUDGET MAX 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ ACTUALISER</button>
   </div>
@@ -396,10 +396,10 @@ tr:last-child td{border-bottom:none}
   <div class="card">
     <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES OFFICIELLES BRVM</div>
     <p style="font-size:10px;color:#888;margin-bottom:1rem;line-height:1.6">
-      <span id="rsi-status2">—</span> séances enregistrées du 19/03 au 31/03/2026.
+      <span id="rsi-status2">—</span> séances enregistrées du 19/03 au 01/04/2026.
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
-    <div class="tw-wrap"> <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
+    <div class="tw-wrap">  <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
   </div>
 </div>
 
@@ -411,20 +411,15 @@ tr:last-child td{border-bottom:none}
     <div class="mt" id="m-t">—</div>
     <div class="mm" id="m-m">—</div>
     <hr class="md2">
-    <!-- Score global en tête -->
     <div class="score-big" id="m-score-big"></div>
-    <!-- KPIs -->
     <div class="mkg" id="m-k"></div>
-    <!-- Graphique cours -->
     <div style="margin-bottom:.9rem"><div class="mbt">ÉVOLUTION DU COURS</div><div style="height:90px"><canvas id="m-chart"></canvas></div></div>
-    <!-- Analyses -->
     <div class="mgrid">
       <div><div class="mbt">ANALYSE TECHNIQUE</div><div class="mtxt" id="m-tech">—</div></div>
       <div><div class="mbt">ANALYSE FONDAMENTALE</div><div class="mtxt" id="m-fond">—</div></div>
       <div><div class="mbt">POURQUOI CETTE DÉCISION ?</div><div class="mtxt" id="m-why">—</div></div>
       <div><div class="mbt">STOP-LOSS &amp; OBJECTIF</div><div class="mtxt" id="m-risq">—</div></div>
     </div>
-    <!-- Recommandation finale -->
     <div class="mverd" id="m-verd">
       <div class="mvl">RECOMMANDATION FINALE</div>
       <div class="mvt" id="m-reco">—</div>
@@ -437,9 +432,8 @@ tr:last-child td{border-bottom:none}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   DONNÉES — 9 SÉANCES RÉELLES 19/03 → 31/03/2026
-   Séance 30/03 renommée depuis l'ancienne 31/03
-   Séance 31/03 ajoutée avec les nouvelles données
+   DONNÉES — 10 SÉANCES RÉELLES 19/03 → 01/04/2026
+   Dernière séance (01/04/2026) ajoutée avec les nouveaux cours
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"19/03/2026",
@@ -477,7 +471,11 @@ const SEANCES = [
   { date:"31/03/2026",
     cours:{SDSC:1920,BOAB:7450,BOABF:5545,BOAC:8395,BOAM:4680,BOAN:2620,BOAS:6600,BICB:5100,BNBC:1590,BICC:25400,CFAC:1620,CIEC:3400,CBIBF:13800,SEMC:2000,ECOC:16500,SIVC:2950,ETIT:33,FTSC:2345,LNBB:3900,SVOC:2395,NEIC:1405,NTLC:12800,NSBC:14100,ONTBF:2950,ORGT:3655,ORAC:15200,PALC:8100,SAFC:7030,SPHC:7095,ABJC:3700,STAC:2725,SGBC:34500,CABC:3400,SICC:4045,SITAB:21500,SMBC:12500,SIBC:6900,SDCC:7500,SOGB:8010,SLBC:39000,SNTS:29000,SCRC:1610,STLC:2880,TTLS:3250,PRSC:4875,UNLC:60000,UNXC:2000,SHEC:2190},
     var:{SDSC:-1.29,BOAB:1.35,BOABF:-0.18,BOAC:3.64,BOAM:1.85,BOAN:-0.57,BOAS:0.15,BICB:0.20,BNBC:0.32,BICC:-0.29,CFAC:0.62,CIEC:3.03,CBIBF:-0.36,SEMC:-2.44,ECOC:0,SIVC:-0.84,ETIT:3.13,FTSC:1.74,LNBB:0,SVOC:0,NEIC:-1.75,NTLC:-0.78,NSBC:0.04,ONTBF:0.34,ORGT:0,ORAC:3.75,PALC:0.62,SAFC:7.49,SPHC:-0.07,ABJC:0.27,STAC:2.06,SGBC:-0.86,CABC:4.62,SICC:-0.12,SITAB:-1.83,SMBC:0,SIBC:-1.43,SDCC:1.35,SOGB:1.39,SLBC:0.78,SNTS:2.02,SCRC:3.87,STLC:-0.52,TTLS:-2.99,PRSC:0,UNLC:5.11,UNXC:0,SHEC:-0.45},
-    vol:{SDSC:4642,BOAB:5301,BOABF:5524,BOAC:91494,BOAM:9490,BOAN:3969,BOAS:10438,BICB:785,BNBC:394,BICC:363,CFAC:1727,CIEC:4494,CBIBF:258,SEMC:5474,ECOC:2932,SIVC:4727,ETIT:2372810,FTSC:206,LNBB:685,SVOC:0,NEIC:986,NTLC:155,NSBC:4403,ONTBF:3626,ORGT:2219,ORAC:499,PALC:2031,SAFC:5761,SPHC:5575,ABJC:7431,STAC:6336,SGBC:2134,CABC:10273,SICC:106,SITAB:1378,SMBC:683,SIBC:2264,SDCC:5328,SOGB:5008,SLBC:2047,SNTS:3397,SCRC:14205,STLC:11807,TTLS:4167,PRSC:1321,UNLC:352,UNXC:16780,SHEC:2734}}
+    vol:{SDSC:3767,BOAB:6505,BOABF:2988,BOAC:17590,BOAM:3775,BOAN:7882,BOAS:3205,BICB:545,BNBC:1238,BICC:1177,CFAC:1249,CIEC:1219,CBIBF:980,SEMC:4295,ECOC:12191,SIVC:2322,ETIT:320243,FTSC:2657,LNBB:1822,SVOC:0,NEIC:8446,NTLC:600,NSBC:1258,ONTBF:1751,ORGT:5011,ORAC:708,PALC:1562,SAFC:4242,SPHC:2030,ABJC:906,STAC:5824,SGBC:876,CABC:2659,SICC:172,SITAB:2341,SMBC:523,SIBC:4185,SDCC:199,SOGB:4775,SLBC:170,SNTS:1291,SCRC:10893,STLC:38621,TTLS:16958,PRSC:241,UNLC:55,UNXC:7885,SHEC:8217}},
+  { date:"01/04/2026",
+    cours:{SDSC:1925,BOAB:7600,BOABF:5550,BOAC:8500,BOAM:4680,BOAN:2700,BOAS:6785,BICB:5150,BNBC:1590,BICC:24250,CFAC:1620,CIEC:3400,CBIBF:13850,SEMC:1975,ECOC:16500,SIVC:2920,ETIT:33,FTSC:2300,LNBB:3920,SVOC:2395,NEIC:1405,NTLC:12500,NSBC:14100,ONTBF:2940,ORGT:3660,ORAC:15200,PALC:8080,SAFC:7555,SPHC:6960,ABJC:3630,STAC:2925,SGBC:34500,CABC:3655,SICC:4000,SITAB:21000,SMBC:12500,SIBC:6900,SDCC:7400,SOGB:7800,SLBC:39000,SNTS:29000,SCRC:1730,STLC:2720,TTLS:3250,PRSC:4880,UNLC:64500,UNXC:1975,SHEC:2185},
+    var:{SDSC:0.26,BOAB:1.33,BOABF:0.18,BOAC:1.25,BOAM:0,BOAN:3.05,BOAS:2.80,BICB:0.98,BNBC:0,BICC:-4.53,CFAC:0,CIEC:0,CBIBF:0.36,SEMC:-1.25,ECOC:0,SIVC:-1.02,ETIT:0,FTSC:-1.92,LNBB:0.51,SVOC:0,NEIC:0,NTLC:-2.34,NSBC:0,ONTBF:-0.34,ORGT:0.14,ORAC:0,PALC:-0.25,SAFC:7.47,SPHC:-1.90,ABJC:-1.89,STAC:7.34,SGBC:0,CABC:7.50,SICC:-1.11,SITAB:-2.33,SMBC:0,SIBC:0,SDCC:-1.33,SOGB:-2.62,SLBC:0,SNTS:0,SCRC:7.45,STLC:-5.56,TTLS:0,PRSC:0.10,UNLC:7.50,UNXC:-1.25,SHEC:-0.23},
+    vol:{SDSC:3767,BOAB:6505,BOABF:2988,BOAC:17590,BOAM:3775,BOAN:7882,BOAS:3205,BICB:545,BNBC:1238,BICC:1177,CFAC:1249,CIEC:1219,CBIBF:980,SEMC:4295,ECOC:12191,SIVC:2322,ETIT:320243,FTSC:2657,LNBB:1822,SVOC:0,NEIC:8446,NTLC:600,NSBC:1258,ONTBF:1751,ORGT:5011,ORAC:708,PALC:1562,SAFC:4242,SPHC:2030,ABJC:906,STAC:5824,SGBC:876,CABC:2659,SICC:172,SITAB:2341,SMBC:523,SIBC:4185,SDCC:199,SOGB:4775,SLBC:170,SNTS:1291,SCRC:10893,STLC:38621,TTLS:16958,PRSC:241,UNLC:55,UNXC:7885,SHEC:8217}}
 ];
 
 const META = {
@@ -494,38 +492,38 @@ const META = {
   CFAC:{nom:"CFAO MOTORS CI",pays:"CI",sec:"CD",div:5.2,per:10.5,per_s:11,jan:1430},
   CIEC:{nom:"CIE CI",pays:"CI",sec:"EN",div:8.5,per:8.8,per_s:10,jan:2360},
   CBIBF:{nom:"CORIS BANK BF",pays:"BF",sec:"SF",div:9.2,per:7.2,per_s:9,jan:10780},
-  SEMC:{nom:"CROWN SIEM CI",pays:"CI",sec:"IN",div:7.0,per:9.8,per_s:10,jan:700},
+  SEMC:{nom:"CROWN SIEM",pays:"CI",sec:"IN",div:7.0,per:9.8,per_s:10,jan:700},
   ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",div:5.0,per:8.8,per_s:9,jan:16000},
-  SIVC:{nom:"ERIUM CI",pays:"CI",sec:"EN",div:9.0,per:8.5,per_s:10,jan:1580},
+  SIVC:{nom:"ERIUM",pays:"CI",sec:"EN",div:9.0,per:8.5,per_s:10,jan:1580},
   ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",div:0.0,per:12.0,per_s:9,jan:23,blacklist:true},
   FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8,per:8.2,per_s:10,jan:2220},
   LNBB:{nom:"LOTERIE NAT. BENIN",pays:"BJ",sec:"CD",div:6.5,per:10.2,per_s:11,jan:4295},
   SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0,per:9.0,per_s:10,jan:2395,blacklist:true},
   NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1,per:9.8,per_s:11,jan:1200},
   NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5,per:18.5,per_s:8,jan:10650},
-  NSBC:{nom:"NSIA BANQUE CI",pays:"CI",sec:"SF",div:5.8,per:8.3,per_s:9,jan:11445},
+  NSBC:{nom:"NSIA BANQUE",pays:"CI",sec:"SF",div:5.8,per:8.3,per_s:9,jan:11445},
   ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TEL",div:10.5,per:7.8,per_s:9,jan:2485},
   ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",div:7.5,per:8.6,per_s:9,jan:2400},
   ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TEL",div:7.2,per:9.5,per_s:9,jan:14250},
   PALC:{nom:"PALMCI",pays:"CI",sec:"CB",div:17.0,per:5.2,per_s:8,jan:8100},
   SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",div:8.9,per:6.9,per_s:9,jan:3305},
   SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",div:12.5,per:4.8,per_s:8,jan:7900},
-  ABJC:{nom:"SERVAIR CI",pays:"CI",sec:"IN",div:6.2,per:11.2,per_s:10,jan:2900},
+  ABJC:{nom:"SERVAIR ABIDJAN CI",pays:"CI",sec:"IN",div:6.2,per:11.2,per_s:10,jan:2900},
   STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",div:6.5,per:9.1,per_s:10,jan:1325},
   SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",div:5.3,per:8.9,per_s:9,jan:29895},
   CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",div:7.5,per:8.5,per_s:10,jan:2360},
-  SICC:{nom:"SICOR CI",pays:"CI",sec:"IN",div:8.8,per:7.8,per_s:10,jan:3300},
-  SITAB:{nom:"SITAB CI",pays:"CI",sec:"CB",div:8.0,per:6.5,per_s:8,jan:19780},
+  SICC:{nom:"SICOR",pays:"CI",sec:"IN",div:8.8,per:7.8,per_s:10,jan:3300},
+  SITAB:{nom:"SITAB",pays:"CI",sec:"CB",div:8.0,per:6.5,per_s:8,jan:19780},
   SMBC:{nom:"SMB CI",pays:"CI",sec:"SF",div:7.0,per:9.2,per_s:9,jan:9500},
-  SIBC:{nom:"SIB CI",pays:"CI",sec:"SF",div:7.1,per:7.6,per_s:9,jan:5750},
-  SDCC:{nom:"SODECI CI",pays:"CI",sec:"EN",div:8.5,per:9.5,per_s:10,jan:5800},
-  SOGB:{nom:"SOGB CI",pays:"CI",sec:"CB",div:13.5,per:4.5,per_s:8,jan:7900},
+  SIBC:{nom:"SOCIETE IVOIRIENNE DE BANQUE CI",pays:"CI",sec:"SF",div:7.1,per:7.6,per_s:9,jan:5750},
+  SDCC:{nom:"SODECI",pays:"CI",sec:"EN",div:8.5,per:9.5,per_s:10,jan:5800},
+  SOGB:{nom:"SOGB",pays:"CI",sec:"CB",div:13.5,per:4.5,per_s:8,jan:7900},
   SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",div:6.0,per:9.8,per_s:8,jan:28900},
   SNTS:{nom:"SONATEL",pays:"SN",sec:"TEL",div:8.9,per:8.2,per_s:9,jan:26120},
-  SCRC:{nom:"SUCRIVOIRE CI",pays:"CI",sec:"CB",div:12.1,per:3.8,per_s:8,jan:1060},
+  SCRC:{nom:"SUCRIVOIRE",pays:"CI",sec:"CB",div:12.1,per:3.8,per_s:8,jan:1060},
   STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",div:9.8,per:7.5,per_s:10,jan:2335},
   TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",div:9.1,per:8.0,per_s:10,jan:2500},
-  PRSC:{nom:"TRACTAFRIC CI",pays:"CI",sec:"CD",div:6.5,per:9.5,per_s:11,jan:3875},
+  PRSC:{nom:"TRACTAFRIC MOTORS CI",pays:"CI",sec:"CD",div:6.5,per:9.5,per_s:11,jan:3875},
   UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",div:5.5,per:22.0,per_s:8,jan:34225},
   UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"IN",div:8.2,per:7.2,per_s:10,jan:1400},
   SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5,per:8.8,per_s:10,jan:1445}
@@ -551,7 +549,7 @@ const PROFIL_DESC = {
 };
 
 /* ══════════════════════════════════════════════════
-   CALCULS TECHNIQUES (identique à l'original)
+   CALCULS TECHNIQUES
    ══════════════════════════════════════════════════ */
 function calcRSI(h){
   if(h.length<3)return 50;
@@ -598,7 +596,7 @@ function calcSR(h){
 }
 
 /* ══════════════════════════════════════════════════
-   SCORE GLOBAL /10 + RECOMMANDATION (identique)
+   SCORE GLOBAL /10 + RECOMMANDATION
    ══════════════════════════════════════════════════ */
 function getRecommendation(stock, profilKey) {
   if (stock.blacklist) return {score:0, rec:'ÉVITER', emoji:'⛔', detail:'Liste noire — ne pas investir.'};
@@ -673,7 +671,7 @@ function getProfilMatch(stock) {
 }
 
 /* ══════════════════════════════════════════════════
-   BUILD DATA (le reste des fonctions identiques)
+   BUILD DATA
    ══════════════════════════════════════════════════ */
 function buildData() {
   const derniere = SEANCES[SEANCES.length-1];
@@ -715,7 +713,7 @@ function buildData() {
 }
 
 // Les fonctions renderTable, renderMets, renderMesPositions, renderDecisions, renderCharts, renderStratCharts, renderWhy, renderHist, openFiche, closeMod, setProfil, fSec, fRec, tri, showTab, build sont identiques à l'original
-// Je les garde identiques pour ne pas alourdir le message
+// (je les garde pour ne pas alourdir mais elles sont présentes dans le code complet)
 
 function renderTable() {
   const q = (document.getElementById('search').value||'').toLowerCase();
@@ -749,21 +747,21 @@ function renderTable() {
     const pmatch = getProfilMatch(v);
     const pmHtml = pmatch?`<span class="profil-match ${pmatch}">✓ ${profil}</span>`:'';
     return `<tr class="tr" onclick="openFiche('${v.t}')">
-      <td style="font-weight:700;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${v.nom}">${owned?'★ ':''}${nomCourt}</td>
-      <td style="color:#888;font-size:9px">${v.pays}</td>
-      <td style="font-weight:700">${v.cours.toLocaleString('fr-FR')}</td>
-      <td class="${vc(v.var)}" style="font-weight:700">${varJStr}</td>
-      <td class="${vc(v.varJan)}" style="font-size:10px">${varJanStr}</td>
-      <td style="${v.div>=9?'color:#15803d;font-weight:700':'color:#888'}">${v.div>0?v.div+'%':'—'}</td>
-      <td style="font-size:10px">${v.per}x</td>
-      <td style="font-weight:700;color:${rsiColor}">${v.rsi}${rsiSfx}</td>
-      <td style="max-width:120px">${badgesHtml}${pmHtml}</td>
+      <td style="font-weight:700;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${v.nom}">${owned?'★ ':''}${nomCourt}<\/td>
+      <td style="color:#888;font-size:9px">${v.pays}<\/td>
+      <td style="font-weight:700">${v.cours.toLocaleString('fr-FR')}<\/td>
+      <td class="${vc(v.var)}" style="font-weight:700">${varJStr}<\/td>
+      <td class="${vc(v.varJan)}" style="font-size:10px">${varJanStr}<\/td>
+      <td style="${v.div>=9?'color:#15803d;font-weight:700':'color:#888'}">${v.div>0?v.div+'%':'—'}<\/td>
+      <td style="font-size:10px">${v.per}x<\/td>
+      <td style="font-weight:700;color:${rsiColor}">${v.rsi}${rsiSfx}<\/td>
+      <td style="max-width:120px">${badgesHtml}${pmHtml}<\/td>
       <td><div style="display:flex;align-items:center;gap:6px">
         <span class="score-pill ${sc}">${v.scoreGlobal}</span>
         <div style="flex:1;min-width:40px"><div style="height:4px;background:#e0ddd6;border-radius:2px;overflow:hidden"><div style="height:4px;width:${v.scoreGlobal*10}%;background:${v.scoreGlobal>=7?'#22c55e':v.scoreGlobal>=4?'#f59e0b':'#ef4444'};border-radius:2px"></div></div></div>
-      </div></td>
-      <td><span class="rec-pill ${rc}">${v.reco.emoji} ${v.recommendation}</span></td>
-    </tr>`;
+      </div><\/td>
+      <td><span class="rec-pill ${rc}">${v.reco.emoji} ${v.recommendation}</span><\/td>
+     <\/tr>`;
   }).join('');
 }
 
@@ -1012,15 +1010,15 @@ function renderHist() {
     const d=DATA.find(d=>d.t===t);
     const scoreHtml=d?`<span class="score-pill ${d.scoreGlobal>=7?'sp-acheter':d.scoreGlobal>=4?'sp-conserver':'sp-vendre'}" style="width:auto;padding:1px 8px;border-radius:8px">${d.scoreGlobal}/10</span>`:'—';
     return`<tr>
-      <td style="font-weight:700;white-space:nowrap;position:sticky;left:0;background:${owned?'#fdf9f0':'#fff'};font-size:10px">${owned?'★ ':''}${m.nom.slice(0,18)}</td>
-      <td style="color:#888;font-size:10px">${m.jan.toLocaleString('fr-FR')}</td>
+      <td style="font-weight:700;white-space:nowrap;position:sticky;left:0;background:${owned?'#fdf9f0':'#fff'};font-size:10px">${owned?'★ ':''}${m.nom.slice(0,18)}<\/td>
+      <td style="color:#888;font-size:10px">${m.jan.toLocaleString('fr-FR')}<\/td>
       ${SEANCES.map(s=>{
         const c=s.cours[t]||0,vj=s.var[t]||0;
-        return`<td style="font-size:10px"><div>${c?c.toLocaleString('fr-FR'):'—'}</div><div style="font-size:9px;color:${vj>0?'#22c55e':vj<0?'#ef4444':'#888'}">${vj?(vj>0?'+':'')+vj+'%':''}</div></td>`;
+        return`<td style="font-size:10px"><div>${c?c.toLocaleString('fr-FR'):'—'}</div><div style="font-size:9px;color:${vj>0?'#22c55e':vj<0?'#ef4444':'#888'}">${vj?(vj>0?'+':'')+vj+'%':''}</div><\/td>`;
       }).join('')}
-      <td style="font-weight:700;color:${vtc}">${vt>0?'+':''}${vt}%</td>
-      <td>${scoreHtml}</td>
-     </tr>`;
+      <td style="font-weight:700;color:${vtc}">${vt>0?'+':''}${vt}%<\/td>
+      <td>${scoreHtml}<\/td>
+     <\/tr>`;
   }).join('');
 }
 
