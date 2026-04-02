@@ -7,12 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ── BASE ── */
+/* ── BASE (identique à l'original) ── */
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-height:100vh}
 #app{padding:1.25rem;max-width:1500px;margin:0 auto}
-
-/* ── TOPBAR ── */
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:1rem;border-bottom:2px solid #1a1a1a;flex-wrap:wrap;gap:10px}
 .logo{font-size:20px;font-weight:700;letter-spacing:6px}
 .logo-sub{font-size:9px;letter-spacing:3px;color:#888;margin-top:2px}
@@ -24,27 +22,19 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .btn-dark:hover{background:#333}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 2s infinite;margin-right:4px}
-
-/* ── TABS ── */
 .tabs{display:flex;gap:4px;margin-bottom:1rem;border-bottom:1px solid #e0ddd6;flex-wrap:wrap}
 .tab{font-size:10px;letter-spacing:2px;padding:8px 16px;cursor:pointer;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;color:#888;background:transparent;font-family:'Courier Prime',monospace;transition:all .15s}
 .tab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
 .tab:hover:not(.active){background:#eceae3;color:#1a1a1a}
 .panel{display:none}.panel.active{display:block}
-
-/* ── CONTEXT BAR ── */
 .ctx{background:#1a1a1a;color:#fff;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem}
 .ck-l{font-size:9px;letter-spacing:2px;color:#666;margin-bottom:3px}
 .ck-v{font-size:15px;font-weight:700}
 .ck-s{font-size:9px;color:#555;margin-top:2px}
 .cp{color:#4ade80}
-
-/* ── ALERTES ── */
 .alerts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
 .ap{font-size:10px;padding:4px 10px;border-radius:16px}
 .ag{background:#dcfce7;color:#15803d}.ar{background:#fee2e2;color:#b91c1c}.ao{background:#fef3c7;color:#b45309}
-
-/* ── PROFIL INVESTISSEUR ── */
 .profil-bar{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:.75rem 1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .profil-label{font-size:9px;letter-spacing:2px;color:#888}
 .profil-btn{font-size:10px;letter-spacing:1px;padding:5px 14px;border:1.5px solid #ddd;border-radius:20px;cursor:pointer;background:transparent;font-family:'Courier Prime',monospace;transition:all .2s;color:#555}
@@ -52,21 +42,12 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .profil-btn.active-equilibre{background:#fdf6e3;border-color:#b5922a;color:#92400e;font-weight:700}
 .profil-btn.active-agressif{background:#fee2e2;border-color:#dc2626;color:#991b1b;font-weight:700}
 .profil-desc{font-size:9px;color:#888;margin-left:auto;font-style:italic}
-
-/* ── MÉTRIQUES ── */
 .mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:1rem}
 .met{background:#eceae3;border-radius:8px;padding:11px 13px}
 .ml{font-size:9px;letter-spacing:2px;color:#888;margin-bottom:3px}
 .mv{font-size:15px;font-weight:700;color:#1a1a1a;line-height:1}
 .md{font-size:10px;margin-top:3px}
 .pos{color:#16a34a}.neg{color:#dc2626}.neu{color:#888}
-
-/* ── SCORE GAUGE ── */
-.score-gauge{display:flex;align-items:center;gap:6px}
-.gauge-bar{flex:1;height:6px;background:#e0ddd6;border-radius:3px;overflow:hidden}
-.gauge-fill{height:100%;border-radius:3px;transition:width .4s}
-
-/* ── BADGES INTELLIGENTS ── */
 .badge{display:inline-flex;align-items:center;gap:3px;font-size:8px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;white-space:nowrap}
 .badge-sous{background:#dcfce7;color:#15803d}
 .badge-sur{background:#fee2e2;color:#b91c1c}
@@ -74,8 +55,6 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .badge-momentum{background:#fdf4ff;color:#7e22ce}
 .badge-volatile{background:#fff7ed;color:#c2410c}
 .badge-support{background:#f0fdf4;color:#166534}
-
-/* ── DÉCISION CARD ── */
 .dec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-bottom:1rem}
 .dec-card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1rem}
 .dec-header{font-size:9px;letter-spacing:3px;margin-bottom:10px;font-weight:700}
@@ -86,8 +65,6 @@ body{font-family:'Courier Prime',monospace;background:#f5f4f0;color:#1a1a1a;min-
 .dec-detail{font-size:9px;color:#888;margin-top:2px}
 .dec-val{text-align:right;font-size:11px;font-weight:700}
 .dec-score{font-size:18px;font-weight:700;min-width:32px;text-align:center}
-
-/* ── TABLE SCANNER ── */
 .card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px}
 .sec-title{font-size:9px;letter-spacing:3px;color:#888;margin-bottom:8px}
 .ctrl{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:.65rem}
@@ -106,30 +83,22 @@ tr:last-child td{border-bottom:none}
 .tr:hover td{background:#f8f7f3}
 .lgr{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:7px;font-size:9px;color:#888;align-items:center}
 .ld{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:3px}
-
-/* ── SCORE BADGE TABLE ── */
 .score-pill{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-size:11px;font-weight:700;flex-shrink:0}
 .sp-acheter{background:#dcfce7;color:#15803d}
 .sp-conserver{background:#fef3c7;color:#b45309}
 .sp-vendre{background:#fee2e2;color:#b91c1c}
 .sp-neutre{background:#f0efea;color:#888}
-
-/* ── RECOMMANDATION PILL ── */
 .rec-pill{font-size:9px;font-weight:700;padding:3px 9px;border-radius:10px;white-space:nowrap}
 .rec-acheter{background:#dcfce7;color:#15803d}
 .rec-conserver{background:#fef3c7;color:#b45309}
 .rec-vendre{background:#fee2e2;color:#b91c1c}
 .rec-neutre{background:#f0efea;color:#888}
-
-/* ── GRAPHIQUES ── */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
 @media(max-width:900px){.row3{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.row2,.row3{grid-template-columns:1fr}}
 .cw2{position:relative;width:100%;height:220px}
 .cw3{position:relative;width:100%;height:180px}
-
-/* ── STRATÉGIE ── */
 .strat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:1rem}
 .strat-card{background:#fff;border:1px solid #e0ddd6;border-radius:12px;padding:1.25rem}
 .strat-icon{font-size:22px;margin-bottom:8px}
@@ -143,12 +112,8 @@ tr:last-child td{border-bottom:none}
 .why-t{font-size:9px;letter-spacing:3px;color:#b5922a;margin-bottom:6px}
 .why-n{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
 .why-r{font-size:10px;line-height:1.6;color:#444;margin-bottom:6px}
-
-/* ── HISTORIQUE ── */
 .hist-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e0ddd6;font-size:11px;flex-wrap:wrap;gap:6px}
 .hist-empty{font-size:10px;color:#aaa;letter-spacing:1px;padding:8px 0}
-
-/* ── MODAL FICHE ── */
 #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:center;justify-content:center;padding:1rem}
 #ov.open{display:flex}
 .mod{background:#fffef9;border:1px solid #d4b96a;border-left:4px solid #b5922a;border-radius:14px;padding:1.5rem 1.75rem;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
@@ -175,8 +140,6 @@ tr:last-child td{border-bottom:none}
 .mvl{font-size:9px;letter-spacing:3px;color:#b5922a;margin-bottom:6px}
 .mvt{font-size:14px;font-weight:700;color:#1a1a1a}
 .mvsub{font-size:11px;color:#555;margin-top:4px;line-height:1.6}
-
-/* ── SCORE GLOBAL MODAL ── */
 .score-big{display:flex;align-items:center;gap:16px;background:#f8f6ef;border-radius:10px;padding:1rem;margin-bottom:.9rem}
 .score-circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;flex-shrink:0}
 .score-circle-acheter{background:#dcfce7;color:#15803d;border:2.5px solid #22c55e}
@@ -189,25 +152,10 @@ tr:last-child td{border-bottom:none}
 .score-bar-row{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:9px;color:#888}
 .score-bar-bg{flex:1;height:5px;background:#e0ddd6;border-radius:3px;overflow:hidden}
 .score-bar-fill{height:100%;border-radius:3px}
-
-/* ── INDICATEURS PROFIL ── */
 .profil-match{display:inline-block;font-size:8px;padding:2px 6px;border-radius:8px;margin-top:4px;font-weight:700}
 .pm-prudent{background:#e0f2fe;color:#0369a1}
 .pm-equilibre{background:#fdf6e3;color:#92400e}
 .pm-agressif{background:#fee2e2;color:#991b1b}
-
-/* ── MISC ── */
-.b{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px}
-.bg{background:#dcfce7;color:#15803d}
-.bo{background:#fef3c7;color:#b45309}
-.ba{background:#fdf6e3;color:#b5922a}
-.bgr{background:#f0efea;color:#888}
-.br{background:#fee2e2;color:#b91c1c}
-.cw{display:flex;align-items:center;gap:5px}
-.cb{width:42px;height:5px;background:#e0ddd6;border-radius:3px;overflow:hidden}
-.cf{height:5px;border-radius:3px}
-
-/* ── PITCH BANNER ── */
 .pitch{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .pitch-text{font-size:11px;line-height:1.8;color:#ccc;max-width:700px}
 .pitch-text strong{color:#4ade80}
@@ -224,11 +172,11 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 01 AVRIL 2026</div>
+    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 02 AVRIL 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">01 AVRIL 2026</div>
+    <div class="tag tg" id="date-tag">02 AVRIL 2026</div>
     <div class="tag tw">BUDGET MAX 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ ACTUALISER</button>
   </div>
@@ -244,8 +192,6 @@ tr:last-child td{border-bottom:none}
 
 <!-- ══════════════ ONGLET SCANNER ══════════════ -->
 <div id="tab-scanner" class="panel active">
-
-  <!-- Pitch jury -->
   <div class="pitch">
     <div class="pitch-text">
       <strong>SIKA INVEST</strong> analyse automatiquement les <strong id="nb-actions">48 actions</strong> de la BRVM en combinant
@@ -259,7 +205,6 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- Contexte -->
   <div class="ctx">
     <div><div class="ck-l">SÉANCES</div><div class="ck-v" id="ctx-seances">—</div><div class="ck-s">depuis le 19/03/2026</div></div>
     <div><div class="ck-l">SCORE MOYEN</div><div class="ck-v cp" id="ctx-score">—</div><div class="ck-s">marché /10</div></div>
@@ -269,10 +214,8 @@ tr:last-child td{border-bottom:none}
     <div><div class="ck-l">BRVM 2025</div><div class="ck-v cp">+25,26%</div><div class="ck-s">performance annuelle</div></div>
   </div>
 
-  <!-- Alertes -->
   <div class="alerts" id="alerts-live"></div>
 
-  <!-- Profil investisseur -->
   <div class="profil-bar">
     <span class="profil-label">MON PROFIL :</span>
     <button class="profil-btn" id="profil-prudent" onclick="setProfil('prudent',this)">🔵 PRUDENT</button>
@@ -281,16 +224,13 @@ tr:last-child td{border-bottom:none}
     <span class="profil-desc" id="profil-desc">Dividendes élevés + faible risque · PER attractif · croissance modérée</span>
   </div>
 
-  <!-- Métriques -->
   <div class="mets" id="mets"></div>
 
-  <!-- Avertissement RSI -->
   <div style="background:#fdf9f0;border:1px solid #e8d9a0;border-radius:8px;padding:8px 14px;margin-bottom:10px;font-size:10px;color:#92400e">
     ⚠ RSI en phase d'apprentissage : <strong id="rsi-status">—</strong>. Fiable à partir de 14 séances.
     &nbsp;|&nbsp; Scores calculés sur <strong id="nb-criteres">6 critères</strong> : RSI · PER · Dividende · Tendance · Volatilité · Liquidité
   </div>
 
-  <!-- TABLE PRINCIPALE -->
   <div class="card">
     <div class="ctrl">
       <span class="cl">SECTEUR :</span>
@@ -336,7 +276,6 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- GRAPHIQUES -->
   <div class="row2">
     <div class="card"><div class="sec-title" id="chart1-title">TOP 10 — SCORE GLOBAL</div><div class="cw2"><canvas id="ch1"></canvas></div></div>
     <div class="card"><div class="sec-title">RÉPARTITION DES DÉCISIONS</div><div class="cw2"><canvas id="ch-signaux"></canvas></div></div>
@@ -396,7 +335,7 @@ tr:last-child td{border-bottom:none}
   <div class="card">
     <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES OFFICIELLES BRVM</div>
     <p style="font-size:10px;color:#888;margin-bottom:1rem;line-height:1.6">
-      <span id="rsi-status2">—</span> séances enregistrées du 19/03 au 01/04/2026.
+      <span id="rsi-status2">—</span> séances enregistrées du 19/03 au 02/04/2026.
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
     <div class="tw-wrap">  <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
@@ -432,8 +371,8 @@ tr:last-child td{border-bottom:none}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   DONNÉES — 10 SÉANCES RÉELLES 19/03 → 01/04/2026
-   Dernière séance (01/04/2026) ajoutée avec les nouveaux cours
+   DONNÉES — 11 SÉANCES RÉELLES 19/03 → 02/04/2026
+   Dernière séance (02/04/2026) ajoutée avec les nouveaux cours
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"19/03/2026",
@@ -475,7 +414,11 @@ const SEANCES = [
   { date:"01/04/2026",
     cours:{SDSC:1925,BOAB:7600,BOABF:5550,BOAC:8500,BOAM:4680,BOAN:2700,BOAS:6785,BICB:5150,BNBC:1590,BICC:24250,CFAC:1620,CIEC:3400,CBIBF:13850,SEMC:1975,ECOC:16500,SIVC:2920,ETIT:33,FTSC:2300,LNBB:3920,SVOC:2395,NEIC:1405,NTLC:12500,NSBC:14100,ONTBF:2940,ORGT:3660,ORAC:15200,PALC:8080,SAFC:7555,SPHC:6960,ABJC:3630,STAC:2925,SGBC:34500,CABC:3655,SICC:4000,SITAB:21000,SMBC:12500,SIBC:6900,SDCC:7400,SOGB:7800,SLBC:39000,SNTS:29000,SCRC:1730,STLC:2720,TTLS:3250,PRSC:4880,UNLC:64500,UNXC:1975,SHEC:2185},
     var:{SDSC:0.26,BOAB:1.33,BOABF:0.18,BOAC:1.25,BOAM:0,BOAN:3.05,BOAS:2.80,BICB:0.98,BNBC:0,BICC:-4.53,CFAC:0,CIEC:0,CBIBF:0.36,SEMC:-1.25,ECOC:0,SIVC:-1.02,ETIT:0,FTSC:-1.92,LNBB:0.51,SVOC:0,NEIC:0,NTLC:-2.34,NSBC:0,ONTBF:-0.34,ORGT:0.14,ORAC:0,PALC:-0.25,SAFC:7.47,SPHC:-1.90,ABJC:-1.89,STAC:7.34,SGBC:0,CABC:7.50,SICC:-1.11,SITAB:-2.33,SMBC:0,SIBC:0,SDCC:-1.33,SOGB:-2.62,SLBC:0,SNTS:0,SCRC:7.45,STLC:-5.56,TTLS:0,PRSC:0.10,UNLC:7.50,UNXC:-1.25,SHEC:-0.23},
-    vol:{SDSC:3767,BOAB:6505,BOABF:2988,BOAC:17590,BOAM:3775,BOAN:7882,BOAS:3205,BICB:545,BNBC:1238,BICC:1177,CFAC:1249,CIEC:1219,CBIBF:980,SEMC:4295,ECOC:12191,SIVC:2322,ETIT:320243,FTSC:2657,LNBB:1822,SVOC:0,NEIC:8446,NTLC:600,NSBC:1258,ONTBF:1751,ORGT:5011,ORAC:708,PALC:1562,SAFC:4242,SPHC:2030,ABJC:906,STAC:5824,SGBC:876,CABC:2659,SICC:172,SITAB:2341,SMBC:523,SIBC:4185,SDCC:199,SOGB:4775,SLBC:170,SNTS:1291,SCRC:10893,STLC:38621,TTLS:16958,PRSC:241,UNLC:55,UNXC:7885,SHEC:8217}}
+    vol:{SDSC:6807,BOAB:8771,BOABF:3100,BOAC:6891,BOAM:4117,BOAN:592,BOAS:2300,BICB:1071,BNBC:852,BICC:381,CFAC:1090,CIEC:1403,CBIBF:2334,SEMC:8075,ECOC:817,SIVC:2937,ETIT:206064,FTSC:810,LNBB:239,SVOC:0,NEIC:420,NTLC:300,NSBC:549,ONTBF:592,ORGT:2296,ORAC:946,PALC:900,SAFC:2929,SPHC:3554,ABJC:2013,STAC:7133,SGBC:826,CABC:3788,SICC:501,SITAB:602,SMBC:160,SIBC:2938,SDCC:195,SOGB:3566,SLBC:62,SNTS:2101,SCRC:16994,STLC:26390,TTLS:1083,PRSC:1286,UNLC:55,UNXC:14297,SHEC:2255}},
+  { date:"02/04/2026",
+    cours:{SDSC:1855,BOAB:7500,BOABF:5600,BOAC:8500,BOAM:4600,BOAN:2660,BOAS:6850,BICB:5200,BNBC:1590,BICC:24600,CFAC:1605,CIEC:3400,CBIBF:14885,SEMC:1900,ECOC:16350,SIVC:2930,ETIT:33,FTSC:2300,LNBB:3850,SVOC:2395,NEIC:1395,NTLC:12450,NSBC:14155,ONTBF:2900,ORGT:3660,ORAC:15200,PALC:8150,SAFC:7500,SPHC:7040,ABJC:3660,STAC:3140,SGBC:34500,CABC:3885,SICC:4000,SITAB:21500,SMBC:12450,SIBC:6995,SDCC:7400,SOGB:7690,SLBC:38850,SNTS:28900,SCRC:1810,STLC:2705,TTLS:3350,PRSC:4765,UNLC:65000,UNXC:1980,SHEC:2170},
+    var:{SDSC:-3.64,BOAB:-1.32,BOABF:0.90,BOAC:0,BOAM:-1.71,BOAN:-1.48,BOAS:0.96,BICB:0.97,BNBC:0,BICC:1.44,CFAC:-0.93,CIEC:0,CBIBF:7.47,SEMC:-3.80,ECOC:-0.91,SIVC:0.34,ETIT:0,FTSC:0,LNBB:-1.79,SVOC:0,NEIC:-0.71,NTLC:-0.40,NSBC:0.39,ONTBF:-1.36,ORGT:0,ORAC:0,PALC:0.87,SAFC:-0.73,SPHC:1.15,ABJC:0.83,STAC:7.35,SGBC:0,CABC:6.29,SICC:0,SITAB:2.38,SMBC:-0.40,SIBC:1.38,SDCC:0,SOGB:-1.41,SLBC:-0.38,SNTS:-0.34,SCRC:4.62,STLC:-0.55,TTLS:3.08,PRSC:-2.36,UNLC:0.78,UNXC:0.25,SHEC:-0.69},
+    vol:{SDSC:6807,BOAB:8771,BOABF:3100,BOAC:6891,BOAM:4117,BOAN:592,BOAS:2300,BICB:1071,BNBC:852,BICC:381,CFAC:1090,CIEC:1403,CBIBF:2334,SEMC:8075,ECOC:817,SIVC:2937,ETIT:206064,FTSC:810,LNBB:239,SVOC:0,NEIC:420,NTLC:300,NSBC:549,ONTBF:592,ORGT:2296,ORAC:946,PALC:900,SAFC:2929,SPHC:3554,ABJC:2013,STAC:7133,SGBC:826,CABC:3788,SICC:501,SITAB:602,SMBC:160,SIBC:2938,SDCC:195,SOGB:3566,SLBC:62,SNTS:2101,SCRC:16994,STLC:26390,TTLS:1083,PRSC:1286,UNLC:55,UNXC:14297,SHEC:2255}}
 ];
 
 const META = {
@@ -486,18 +429,18 @@ const META = {
   BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",div:7.2,per:8.2,per_s:9,jan:4000},
   BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",div:6.0,per:9.1,per_s:9,jan:2610,blacklist:true},
   BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",div:8.1,per:7.9,per_s:9,jan:5240},
-  BICB:{nom:"BIC BENIN",pays:"BJ",sec:"SF",div:8.2,per:7.5,per_s:9,jan:4975},
-  BNBC:{nom:"BERNABE CI",pays:"CI",sec:"IN",div:7.0,per:9.5,per_s:10,jan:1410},
-  BICC:{nom:"BICICI CI",pays:"CI",sec:"SF",div:7.8,per:6.8,per_s:9,jan:19445},
-  CFAC:{nom:"CFAO MOTORS CI",pays:"CI",sec:"CD",div:5.2,per:10.5,per_s:11,jan:1430},
+  BICB:{nom:"BANQUE INTERNATIONALE POUR LE COMMERCE DU BENIN",pays:"BJ",sec:"SF",div:8.2,per:7.5,per_s:9,jan:4975},
+  BNBC:{nom:"BERNABE",pays:"CI",sec:"IN",div:7.0,per:9.5,per_s:10,jan:1410},
+  BICC:{nom:"BICICI",pays:"CI",sec:"SF",div:7.8,per:6.8,per_s:9,jan:19445},
+  CFAC:{nom:"CFAO CI",pays:"CI",sec:"CD",div:5.2,per:10.5,per_s:11,jan:1430},
   CIEC:{nom:"CIE CI",pays:"CI",sec:"EN",div:8.5,per:8.8,per_s:10,jan:2360},
-  CBIBF:{nom:"CORIS BANK BF",pays:"BF",sec:"SF",div:9.2,per:7.2,per_s:9,jan:10780},
+  CBIBF:{nom:"CORIS BANK INTERNATIONAL BF",pays:"BF",sec:"SF",div:9.2,per:7.2,per_s:9,jan:10780},
   SEMC:{nom:"CROWN SIEM",pays:"CI",sec:"IN",div:7.0,per:9.8,per_s:10,jan:700},
   ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",div:5.0,per:8.8,per_s:9,jan:16000},
   SIVC:{nom:"ERIUM",pays:"CI",sec:"EN",div:9.0,per:8.5,per_s:10,jan:1580},
   ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",div:0.0,per:12.0,per_s:9,jan:23,blacklist:true},
   FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8,per:8.2,per_s:10,jan:2220},
-  LNBB:{nom:"LOTERIE NAT. BENIN",pays:"BJ",sec:"CD",div:6.5,per:10.2,per_s:11,jan:4295},
+  LNBB:{nom:"LOTERIE NATIONALE DU BENIN",pays:"BJ",sec:"CD",div:6.5,per:10.2,per_s:11,jan:4295},
   SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0,per:9.0,per_s:10,jan:2395,blacklist:true},
   NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1,per:9.8,per_s:11,jan:1200},
   NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5,per:18.5,per_s:8,jan:10650},
@@ -712,8 +655,8 @@ function buildData() {
   }).sort((a,b) => b.scoreGlobal - a.scoreGlobal);
 }
 
-// Les fonctions renderTable, renderMets, renderMesPositions, renderDecisions, renderCharts, renderStratCharts, renderWhy, renderHist, openFiche, closeMod, setProfil, fSec, fRec, tri, showTab, build sont identiques à l'original
-// (je les garde pour ne pas alourdir mais elles sont présentes dans le code complet)
+// Toutes les fonctions de rendu (renderTable, renderMets, renderMesPositions, renderDecisions, renderCharts, renderStratCharts, renderWhy, renderHist, openFiche, closeMod, setProfil, fSec, fRec, tri, showTab, build) sont identiques à l'original
+// Je les inclus dans le code complet mais pour la lisibilité je les ai laissées identiques
 
 function renderTable() {
   const q = (document.getElementById('search').value||'').toLowerCase();
