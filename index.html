@@ -372,7 +372,6 @@ tr:last-child td{border-bottom:none}
 <script>
 /* ══════════════════════════════════════════════════════
    DONNÉES — 11 SÉANCES RÉELLES 19/03 → 02/04/2026
-   Dernière séance (02/04/2026) ajoutée avec les nouveaux cours
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"19/03/2026",
@@ -472,11 +471,10 @@ const META = {
   SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5,per:8.8,per_s:10,jan:1445}
 };
 
-const POSITIONS_REAL = [
-  {ticker:"PALC",cours_achat:9400,date_achat:"23/03/2026",quantite:212},
-  {ticker:"SCRC",cours_achat:1590,date_achat:"23/03/2026",quantite:1257},
-  {ticker:"STLC",cours_achat:2995,date_achat:"23/03/2026",quantite:668}
-];
+/* ══════════════════════════════════════════════════
+   POSITIONS — VIDES (aucune position enregistrée)
+   ══════════════════════════════════════════════════ */
+const POSITIONS_REAL = [];
 
 /* ══════════════════════════════════════════════════
    ÉTAT GLOBAL
@@ -655,9 +653,6 @@ function buildData() {
   }).sort((a,b) => b.scoreGlobal - a.scoreGlobal);
 }
 
-// Toutes les fonctions de rendu (renderTable, renderMets, renderMesPositions, renderDecisions, renderCharts, renderStratCharts, renderWhy, renderHist, openFiche, closeMod, setProfil, fSec, fRec, tri, showTab, build) sont identiques à l'original
-// Je les inclus dans le code complet mais pour la lisibilité je les ai laissées identiques
-
 function renderTable() {
   const q = (document.getElementById('search').value||'').toLowerCase();
   let d = [...DATA];
@@ -734,7 +729,7 @@ function renderMets() {
     {l:'⚠ SURACHETÉES',v:sur.length,d:'RSI ≥ 70',   c:'neg'},
   ].map(m=>`<div class="met"><div class="ml">${m.l}</div><div class="mv">${m.v}</div><div class="md ${m.c}">${m.d}</div></div>`).join('');
 
-  const derniere = SEANCES[SEANCES.length-1];
+  const derniere=SEANCES[SEANCES.length-1];
   const topH = Object.entries(derniere.var).filter(([,v])=>v>4).sort((a,b)=>b[1]-a[1]).slice(0,3);
   const topB = Object.entries(derniere.var).filter(([,v])=>v<-4).sort((a,b)=>a[1]-b[1]).slice(0,3);
   let html = '';
@@ -747,7 +742,7 @@ function renderMets() {
 
 function renderMesPositions() {
   if(!POSITIONS_REAL.length){
-    document.getElementById('mes-positions').innerHTML='<div class="hist-empty">Aucune position renseignée.</div>';
+    document.getElementById('mes-positions').innerHTML='<div class="hist-empty">Aucune position enregistrée.</div>';
     return;
   }
   document.getElementById('mes-positions').innerHTML = POSITIONS_REAL.map(pos=>{
