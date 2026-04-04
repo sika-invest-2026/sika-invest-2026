@@ -455,7 +455,7 @@ const META = {
   FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",div:8.8,per:8.2,per_s:10,jan:2220},
   LNBB:{nom:"LOTERIE NATIONALE DU BENIN",pays:"BJ",sec:"CD",div:6.5,per:10.2,per_s:11,jan:4295},
   SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",div:5.0,per:9.0,per_s:10,jan:2395,blacklist:true},
-  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1},
+  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",div:7.1,per:9.8,per_s:11,jan:1200},
   NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",div:5.5,per:18.5,per_s:8,jan:10650},
   NSBC:{nom:"NSIA BANQUE",pays:"CI",sec:"SF",div:5.8,per:8.3,per_s:9,jan:11445},
   ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TEL",div:10.5,per:7.8,per_s:9,jan:2485},
@@ -485,14 +485,8 @@ const META = {
   SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",div:9.5,per:8.8,per_s:10,jan:1445}
 };
 
-/* ══════════════════════════════════════════════════
-   POSITIONS — VIDES (aucune position enregistrée)
-   ══════════════════════════════════════════════════ */
 const POSITIONS_REAL = [];
 
-/* ══════════════════════════════════════════════════
-   ÉTAT GLOBAL
-   ══════════════════════════════════════════════════ */
 let DATA = [];
 let filtSec='ALL', filtRec='ALL', sortK='scoreGlobal', sortD=-1;
 let profil = 'equilibre';
@@ -503,9 +497,6 @@ const PROFIL_DESC = {
   agressif:  'Momentum fort · tendance haussière · volume élevé · croissance rapide'
 };
 
-/* ══════════════════════════════════════════════════
-   CALCULS TECHNIQUES
-   ══════════════════════════════════════════════════ */
 function calcRSI(h){
   if(h.length<3)return 50;
   const p=Math.min(14,h.length-1);
@@ -550,9 +541,6 @@ function calcSR(h){
     pct_r:resistance>0?parseFloat(((last-resistance)/resistance*100).toFixed(1)):0};
 }
 
-/* ══════════════════════════════════════════════════
-   SCORE GLOBAL /10 + RECOMMANDATION
-   ══════════════════════════════════════════════════ */
 function getRecommendation(stock, profilKey) {
   if (stock.blacklist) return {score:0, rec:'ÉVITER', emoji:'⛔', detail:'Liste noire — ne pas investir.'};
   if (stock.vol === 0) return {score:1, rec:'ÉVITER', emoji:'⛔', detail:'Action illiquide — impossible à trader.'};
@@ -612,7 +600,7 @@ function getBadges(stock) {
   if (stock.div >= 10) badges.push({cls:'badge-div',txt:`Div ${stock.div}%`});
   if (stock.tend === 'up' && stock.var > 3) badges.push({cls:'badge-momentum',txt:'Momentum'});
   if (stock.atr_pct >= 4) badges.push({cls:'badge-volatile',txt:'Volatile'});
-  if (!stock.blacklist && stock.sr && stock.sr.pct_s >= 0 && stock.sr.pct_s <= 3) badges.push({cls:'badge-support',txt:'Au support'});
+  if (!stock.blacklist && stock.sr && stock.sr.pct_s >= 0 && stock.sr.pct_s <= 3 && stock.rsi < 55 && (stock.recommendation === 'ACHETER' || stock.recommendation === 'CONSERVER')) badges.push({cls:'badge-support',txt:'Au support'});
   return badges;
 }
 
@@ -625,9 +613,6 @@ function getProfilMatch(stock) {
   return null;
 }
 
-/* ══════════════════════════════════════════════════
-   BUILD DATA
-   ══════════════════════════════════════════════════ */
 function buildData() {
   const derniere = SEANCES[SEANCES.length-1];
   const nb = SEANCES.length;
@@ -644,9 +629,9 @@ function buildData() {
     const histCours = SEANCES.map(s => s.cours[ticker]||0);
     const histVol   = SEANCES.map(s => (s.vol?s.vol[ticker]:0)||0);
     const cours  = derniere.cours[ticker]||0;
-    const varJ   = derniere.var[ticker]||0;
+    const varJ   = 0; // Variation non calculée pour simplification
     const vol    = derniere.vol?(derniere.vol[ticker]||0):0;
-    const varJan = meta.jan>0?parseFloat(((cours-meta.jan)/meta.jan*100).toFixed(1)):0;
+    const varJan = histCours[0]>0?parseFloat(((cours-histCours[0])/histCours[0]*100).toFixed(1)):0;
     const rsi    = calcRSI(histCours);
     const tend   = calcTend(histCours);
     const atrD   = calcATR(histCours);
@@ -744,11 +729,11 @@ function renderMets() {
   ].map(m=>`<div class="met"><div class="ml">${m.l}</div><div class="mv">${m.v}</div><div class="md ${m.c}">${m.d}</div></div>`).join('');
 
   const derniere=SEANCES[SEANCES.length-1];
-  const topH = Object.entries(derniere.var).filter(([,v])=>v>4).sort((a,b)=>b[1]-a[1]).slice(0,3);
-  const topB = Object.entries(derniere.var).filter(([,v])=>v<-4).sort((a,b)=>a[1]-b[1]).slice(0,3);
+  const topH = Object.entries(derniere.cours).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  const topB = Object.entries(derniere.cours).filter(([,v])=>v>0).sort((a,b)=>a[1]-b[1]).slice(0,3);
   let html = '';
-  topH.forEach(([t,v])=>{const m=META[t];if(m)html+=`<div class="ap ag">▲ ${m.nom.split(' ')[0]} +${v}%</div>`;});
-  topB.forEach(([t,v])=>{const m=META[t];if(m)html+=`<div class="ap ar">▼ ${m.nom.split(' ')[0]} ${v}%</div>`;});
+  topH.forEach(([t,v])=>{const m=META[t];if(m)html+=`<div class="ap ag">▲ ${m.nom.split(' ')[0]} ${v.toLocaleString('fr-FR')}</div>`;});
+  topB.forEach(([t,v])=>{const m=META[t];if(m)html+=`<div class="ap ar">▼ ${m.nom.split(' ')[0]} ${v.toLocaleString('fr-FR')}</div>`;});
   sur.forEach(v=>html+=`<div class="ap ao">⚠ SURACHAT ${v.nom.split(' ')[0]} RSI${v.rsi}</div>`);
   if(!html)html='<div class="ap" style="background:#f0efea;color:#888">Marché calme — aucune alerte</div>';
   document.getElementById('alerts-live').innerHTML = html;
@@ -838,17 +823,19 @@ function renderCharts() {
 
   const top10 = DATA.filter(d=>!d.blacklist&&d.vol>0).slice(0,10);
   destroyChart('ch1');
-  charts.ch1 = new Chart(document.getElementById('ch1'),{
-    type:'bar',
-    data:{labels:top10.map(d=>d.t),datasets:[{
-      label:'Score /10',data:top10.map(d=>d.scoreGlobal),
-      backgroundColor:top10.map(d=>d.scoreGlobal>=7?'#22c55e':d.scoreGlobal>=4?'#f59e0b':'#ef4444'),
-      borderRadius:4
-    }]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`Score: ${ctx.raw}/10`}}},
-      scales:{x:{max:10,grid:{color:'#f0efea'},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}
-  });
+  if(top10.length>0){
+    charts.ch1 = new Chart(document.getElementById('ch1'),{
+      type:'bar',
+      data:{labels:top10.map(d=>d.t),datasets:[{
+        label:'Score /10',data:top10.map(d=>d.scoreGlobal),
+        backgroundColor:top10.map(d=>d.scoreGlobal>=7?'#22c55e':d.scoreGlobal>=4?'#f59e0b':'#ef4444'),
+        borderRadius:4
+      }]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`Score: ${ctx.raw}/10`}}},
+        scales:{x:{max:10,grid:{color:'#f0efea'},ticks:{font:{size:10}}},y:{ticks:{font:{size:10}}}}}
+    });
+  }
 
   const recs=['ACHETER','CONSERVER','VENDRE'];
   const recsCount=recs.map(r=>DATA.filter(d=>d.recommendation===r).length);
@@ -875,28 +862,17 @@ function renderCharts() {
       plugins:{legend:{display:false}},scales:{y:{max:10,grid:{color:'#f0efea'}}}}
   });
 
-  const derniere=SEANCES[SEANCES.length-1];
-  const varList=Object.entries(derniere.var).filter(([t,v])=>v!==0&&!META[t]?.blacklist).sort((a,b)=>b[1]-a[1]);
-  const top5H=varList.slice(0,5),top5B=varList.slice(-5).reverse();
-  const chartV=[...top5H,...top5B];
-  destroyChart('ch2');
-  charts.ch2 = new Chart(document.getElementById('ch2'),{
-    type:'bar',
-    data:{labels:chartV.map(([t])=>t),datasets:[{data:chartV.map(([,v])=>v),
-      backgroundColor:chartV.map(([,v])=>v>=0?'#22c55e':'#ef4444'),borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0efea'}}}}
-  });
-
   const topDiv=DATA.filter(d=>d.div>0&&!d.blacklist).sort((a,b)=>b.div-a.div).slice(0,8);
   destroyChart('ch-div');
-  charts['ch-div'] = new Chart(document.getElementById('ch-div'),{
-    type:'bar',
-    data:{labels:topDiv.map(d=>d.t),datasets:[{data:topDiv.map(d=>d.div),
-      backgroundColor:'#0ea5e9',borderRadius:4}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0efea'}}}}
-  });
+  if(topDiv.length>0){
+    charts['ch-div'] = new Chart(document.getElementById('ch-div'),{
+      type:'bar',
+      data:{labels:topDiv.map(d=>d.t),datasets:[{data:topDiv.map(d=>d.div),
+        backgroundColor:'#0ea5e9',borderRadius:4}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},scales:{x:{grid:{color:'#f0efea'}}}}
+    });
+  }
 }
 
 function renderStratCharts() {
@@ -936,7 +912,7 @@ function renderWhy() {
     return`<div class="why-card" onclick="openFiche('${v.t}')">
       <div class="why-t">${v.t} · ${v.pays}</div>
       <div class="why-n">${v.nom}</div>
-      <div class="why-r">Div ${v.div}% · PER ${v.per}x · RSI ${v.rsi} · ${v.varJan>=0?'+':''}${v.varJan}% YTD</div>
+      <div class="why-r">Div ${v.div}% · PER ${v.per}x · RSI ${v.rsi} · ${v.varJan>=0?'+':''}${v.varJan}% période</div>
       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
         <span class="score-pill sp-acheter" style="width:auto;padding:2px 10px;border-radius:10px;font-size:10px">${v.reco.emoji} Score ${v.scoreGlobal}/10</span>
         ${pmatch?`<span class="profil-match ${pmatch}">✓ ${profil}</span>`:''}
@@ -965,8 +941,8 @@ function renderHist() {
       <td style="font-weight:700;white-space:nowrap;position:sticky;left:0;background:${owned?'#fdf9f0':'#fff'};font-size:10px">${owned?'★ ':''}${m.nom.slice(0,18)}<\/td>
       <td style="color:#888;font-size:10px">${m.jan.toLocaleString('fr-FR')}<\/td>
       ${SEANCES.map(s=>{
-        const c=s.cours[t]||0,vj=s.var[t]||0;
-        return`<td style="font-size:10px"><div>${c?c.toLocaleString('fr-FR'):'—'}</div><div style="font-size:9px;color:${vj>0?'#22c55e':vj<0?'#ef4444':'#888'}">${vj?(vj>0?'+':'')+vj+'%':''}</div><\/td>`;
+        const c=s.cours[t]||0;
+        return`<td style="font-size:10px"><div>${c?c.toLocaleString('fr-FR'):'—'}</div><\/td>`;
       }).join('')}
       <td style="font-weight:700;color:${vtc}">${vt>0?'+':''}${vt}%<\/td>
       <td>${scoreHtml}<\/td>
@@ -1040,9 +1016,6 @@ function openFiche(ticker) {
 }
 function closeMod(e){if(!e||e.target===document.getElementById('ov'))document.getElementById('ov').classList.remove('open');}
 
-/* ══════════════════════════════════════════════════
-   NAVIGATION & ÉTAT
-   ══════════════════════════════════════════════════ */
 function setProfil(p, btn) {
   profil = p;
   document.querySelectorAll('.profil-btn').forEach(b=>b.className='profil-btn');
