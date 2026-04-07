@@ -163,6 +163,39 @@ tr:last-child td{border-bottom:none}
 .pitch-kpi-item{text-align:center}
 .pitch-kpi-v{font-size:20px;font-weight:700;color:#4ade80}
 .pitch-kpi-l{font-size:8px;letter-spacing:2px;color:#888;margin-top:2px}
+
+/* ── AI ANALYSIS MODULE ── */
+.ai-btn{display:flex;align-items:center;gap:8px;width:100%;padding:10px 16px;background:linear-gradient(135deg,#1a1a1a,#2d2d2d);color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:1px;margin-top:10px;transition:all .2s}
+.ai-btn:hover{background:linear-gradient(135deg,#333,#444)}
+.ai-btn:disabled{opacity:.5;cursor:not-allowed}
+.ai-spinner{width:14px;height:14px;border:2px solid #ffffff40;border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ai-panel{background:#0f0f0f;border:1px solid #333;border-radius:10px;padding:1rem;margin-top:10px;display:none}
+.ai-panel.open{display:block}
+.ai-section{margin-bottom:12px}
+.ai-section-title{font-size:9px;letter-spacing:3px;color:#4ade80;margin-bottom:6px;font-weight:700}
+.ai-text{font-size:11px;color:#d4d4d4;line-height:1.8;white-space:pre-wrap}
+.ai-news-item{background:#1a1a1a;border-left:3px solid #b5922a;border-radius:0 6px 6px 0;padding:8px 12px;margin-bottom:6px}
+.ai-news-title{font-size:11px;color:#fff;font-weight:700;margin-bottom:3px}
+.ai-news-meta{font-size:9px;color:#888;margin-bottom:4px}
+.ai-news-body{font-size:10px;color:#aaa;line-height:1.6}
+.ai-verdict{border-radius:8px;padding:10px 14px;margin-top:10px}
+.ai-verdict-acheter{background:#0a2e0a;border:1px solid #22c55e}
+.ai-verdict-conserver{background:#2a200a;border:1px solid #f59e0b}
+.ai-verdict-vendre{background:#2e0a0a;border:1px solid #ef4444}
+.ai-verdict-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.ai-verdict-text{font-size:10px;color:#aaa;line-height:1.6}
+.ai-score-row{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:9px;color:#888}
+.ai-score-label{min-width:100px}
+.ai-score-bar{flex:1;height:4px;background:#333;border-radius:2px;overflow:hidden}
+.ai-score-fill{height:100%;border-radius:2px;transition:width .5s}
+.ai-error{background:#1a0a0a;border:1px solid #ef4444;border-radius:8px;padding:10px 14px;color:#ef4444;font-size:11px}
+.ai-tabs{display:flex;gap:4px;margin-bottom:10px}
+.ai-tab{font-size:9px;letter-spacing:1px;padding:4px 12px;border:1px solid #333;border-radius:6px;cursor:pointer;background:transparent;color:#888;font-family:'Courier Prime',monospace;transition:all .15s}
+.ai-tab.active{background:#4ade80;color:#000;border-color:#4ade80;font-weight:700}
+.ai-tab-content{display:none}.ai-tab-content.active{display:block}
+.ai-loading-text{font-size:10px;color:#4ade80;letter-spacing:2px;animation:pulse 1.5s infinite}
+
 </style>
 </head>
 <body>
@@ -360,6 +393,26 @@ tr:last-child td{border-bottom:none}
       <div class="mvl">RECOMMANDATION FINALE</div>
       <div class="mvt" id="m-reco">—</div>
       <div class="mvsub" id="m-reco-sub">—</div>
+    </div>
+      <button class="ai-btn" id="ai-analyze-btn" onclick="runAIAnalysis()">
+      <span id="ai-btn-icon">🤖</span>
+      <span id="ai-btn-text">ANALYSE IA APPROFONDIE + ACTUALITÉS</span>
+    </button>
+    <div class="ai-panel" id="ai-panel">
+      <div class="ai-tabs">
+        <button class="ai-tab active" onclick="switchAITab('analyse',this)">📊 ANALYSE</button>
+        <button class="ai-tab" onclick="switchAITab('news',this)">📰 ACTUALITÉS</button>
+        <button class="ai-tab" onclick="switchAITab('verdict',this)">🎯 VERDICT FINAL</button>
+      </div>
+      <div class="ai-tab-content active" id="ai-tab-analyse">
+        <div id="ai-analyse-content"><div class="ai-loading-text">Analyse en cours...</div></div>
+      </div>
+      <div class="ai-tab-content" id="ai-tab-news">
+        <div id="ai-news-content"><div class="ai-loading-text">Recherche d'actualités...</div></div>
+      </div>
+      <div class="ai-tab-content" id="ai-tab-verdict">
+        <div id="ai-verdict-content"><div class="ai-loading-text">Calcul du verdict...</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1268,6 +1321,16 @@ function openFiche(ticker) {
     :r.rec==='CONSERVER'?`Score ${r.score}/10 — Maintenir sans renforcer. Surveiller RSI.`
     :`Score ${r.score}/10 — Éviter ou sortir de position. Réévaluer à la prochaine séance.`;
 
+  // Reset AI panel
+  currentAITicker = ticker;
+  const aiPanel = document.getElementById('ai-panel');
+  if (aiPanel) aiPanel.classList.remove('open');
+  const aiBtn = document.getElementById('ai-analyze-btn');
+  if (aiBtn) { aiBtn.disabled=false; aiBtn.innerHTML='<span>🤖</span><span>ANALYSE IA APPROFONDIE + ACTUALITÉS</span>'; }
+  // Reset AI tab to first
+  document.querySelectorAll('.ai-tab').forEach((b,i)=>{ b.classList.toggle('active', i===0); });
+  document.querySelectorAll('.ai-tab-content').forEach((c,i)=>{ c.classList.toggle('active', i===0); });
+
   document.getElementById('ov').classList.add('open');
 }
 function closeMod(e){if(!e||e.target===document.getElementById('ov'))document.getElementById('ov').classList.remove('open');}
@@ -1303,6 +1366,232 @@ function build(){
   if(typeof Chart!=='undefined'){renderCharts();renderStratCharts();}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
+
+
+
+/* ══════════════════════════════════════════════════
+   MODULE IA — ANALYSE APPROFONDIE + ACTUALITÉS
+   ══════════════════════════════════════════════════ */
+let currentAITicker = null;
+
+function switchAITab(tab, btn) {
+  document.querySelectorAll('.ai-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.ai-tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ai-tab-' + tab).classList.add('active');
+}
+
+/* Robust JSON extractor — handles truncation, extra text, markdown fences */
+function extractJSON(raw) {
+  // 1. Strip markdown fences
+  let s = raw.replace(/```json\s*/gi,'').replace(/```\s*/g,'').trim();
+
+  // 2. Find first { and try to parse progressively
+  const start = s.indexOf('{');
+  if (start === -1) throw new Error('Aucun JSON trouvé dans la réponse');
+  s = s.slice(start);
+
+  // 3. Try full parse first
+  try { return JSON.parse(s); } catch(_) {}
+
+  // 4. Try to find matching closing brace (handles truncation)
+  let depth = 0, inStr = false, escape = false, end = -1;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (escape) { escape = false; continue; }
+    if (c === '\\' && inStr) { escape = true; continue; }
+    if (c === '"' && !escape) { inStr = !inStr; continue; }
+    if (!inStr) {
+      if (c === '{') depth++;
+      else if (c === '}') { depth--; if (depth === 0) { end = i; break; } }
+    }
+  }
+  if (end > 0) {
+    try { return JSON.parse(s.slice(0, end+1)); } catch(_) {}
+  }
+
+  // 5. Last resort: fix truncated strings by closing unclosed quotes/braces
+  let fixed = s;
+  // Count open braces
+  let opens = (fixed.match(/{/g)||[]).length - (fixed.match(/}/g)||[]).length;
+  // If string ends mid-value, close it
+  if (!fixed.trimEnd().endsWith('}')) {
+    // Remove trailing comma or incomplete value
+    fixed = fixed.replace(/,\s*$/, '').replace(/:\s*"[^"]*$/, ': "..."');
+    while (opens-- > 0) fixed += '}';
+  }
+  try { return JSON.parse(fixed); } catch(e) {
+    throw new Error('JSON invalide: ' + e.message.slice(0,80));
+  }
+}
+
+/* Call Claude API with retry on JSON error */
+async function callClaude(system, userMsg, useWebSearch, maxTokens) {
+  const body = {
+    model: "claude-sonnet-4-20250514",
+    max_tokens: maxTokens || 1200,
+    system,
+    messages: [{ role: "user", content: userMsg }]
+  };
+  if (useWebSearch) body.tools = [{ type: "web_search_20250305", name: "web_search" }];
+
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  });
+  const data = await res.json();
+  const raw = (data.content || []).map(i => i.text || '').filter(Boolean).join('');
+  return extractJSON(raw);
+}
+
+async function runAIAnalysis() {
+  const btn = document.getElementById('ai-analyze-btn');
+  const panel = document.getElementById('ai-panel');
+  if (!currentAITicker) return;
+  const stock = DATA.find(d => d.t === currentAITicker);
+  if (!stock) return;
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="ai-spinner"></div><span>Analyse IA en cours...</span>';
+  panel.classList.add('open');
+  ['ai-analyse-content','ai-news-content','ai-verdict-content'].forEach(id => {
+    document.getElementById(id).innerHTML = '<div class="ai-loading-text">⚡ En cours...</div>';
+  });
+
+  const histCours = SEANCES.map(s => s.cours[currentAITicker]||0).filter(v=>v>0);
+  const first = histCours[0], last = histCours[histCours.length-1];
+  const perfPct = first > 0 ? ((last-first)/first*100).toFixed(1) : 0;
+  const varJ = (SEANCES[SEANCES.length-1].var[currentAITicker]||0);
+
+  const ctx = `Action: ${stock.nom} (${stock.t}) | Pays: ${stock.pays} | Secteur: ${stock.sec}
+Cours: ${stock.cours.toLocaleString('fr-FR')} FCFA | Variation jour: ${varJ}%
+RSI(67j): ${stock.rsi} | Tendance: ${stock.tend} | ATR: ${stock.atr_pct}%
+Dividende: ${stock.div}% | PER: ${stock.per}x (secteur moy: ${stock.per_s}x)
+Performance YTD 2026: ${perfPct}% | Vol moyen: ${(stock.avgVol||0).toLocaleString('fr-FR')} titres/j
+Score SIKA: ${stock.scoreGlobal}/10 | Recommandation: ${stock.recommendation} | Profil: ${profil}
+Cours min/max 2026: ${Math.min(...histCours).toLocaleString('fr-FR')} / ${Math.max(...histCours).toLocaleString('fr-FR')} FCFA`;
+
+  // ── RUN 3 CALLS IN PARALLEL ─────────────────────────────────────────────
+
+  const [analyseResult, newsResult, verdictResult] = await Promise.allSettled([
+
+    callClaude(
+      `Expert analyste BRVM. Réponds UNIQUEMENT en JSON strict sur une seule ligne, sans texte avant ni après, sans markdown:
+{"technique":"string","fondamentale":"string","risques":"string","opportunites":"string","scores":{"technique":5,"fondamental":5,"momentum":5}}`,
+      `Analyse cette action BRVM en JSON strict:\n${ctx}`,
+      false, 900
+    ),
+
+    callClaude(
+      `Expert BRVM avec accès web. Recherche les actualités récentes sur l'entreprise. Réponds UNIQUEMENT en JSON strict sur une seule ligne:
+{"news":[{"titre":"string","date":"string","resume":"string","impact":"positif"}],"sentiment_global":"neutre","resume_actualites":"string"}`,
+      `Actualités récentes 2025-2026 sur ${stock.nom} (${stock.t}), BRVM ${stock.pays}, secteur ${stock.sec}. JSON strict uniquement.`,
+      true, 900
+    ),
+
+    callClaude(
+      `Gestionnaire de portefeuille senior BRVM 15 ans d'expérience. Réponds UNIQUEMENT en JSON strict sur une seule ligne:
+{"verdict":"ACHETER","conviction":"FORTE","horizon":"Moyen terme","prix_entree":"string","objectif_cours":"string","stop_loss":"string","justification":"string","score_global":65}`,
+      `Verdict d'investissement pour:\n${ctx}\nJSON strict uniquement.`,
+      true, 900
+    )
+  ]);
+
+  // ── RENDER ANALYSE ──────────────────────────────────────────────────────
+  if (analyseResult.status === 'fulfilled') {
+    const a = analyseResult.value;
+    const sc = a.scores || {};
+    const scoreBar = (label, val) => {
+      const v = Math.min(10, Math.max(0, parseInt(val)||5));
+      const col = v>=7?'#22c55e':v>=4?'#f59e0b':'#ef4444';
+      return `<div class="ai-score-row"><span class="ai-score-label">${label}</span><div class="ai-score-bar"><div class="ai-score-fill" style="width:${v*10}%;background:${col}"></div></div><span style="color:${col};font-weight:700">${v}/10</span></div>`;
+    };
+    document.getElementById('ai-analyse-content').innerHTML = `
+      <div class="ai-section"><div class="ai-section-title">📈 ANALYSE TECHNIQUE</div><div class="ai-text">${a.technique||'—'}</div></div>
+      <div class="ai-section"><div class="ai-section-title">🏢 ANALYSE FONDAMENTALE</div><div class="ai-text">${a.fondamentale||'—'}</div></div>
+      <div class="ai-section"><div class="ai-section-title">⚠️ RISQUES</div><div class="ai-text">${a.risques||'—'}</div></div>
+      <div class="ai-section"><div class="ai-section-title">✅ OPPORTUNITÉS</div><div class="ai-text">${a.opportunites||'—'}</div></div>
+      <div class="ai-section"><div class="ai-section-title">📊 SCORES IA</div>
+        ${scoreBar('Technique', sc.technique)}
+        ${scoreBar('Fondamental', sc.fondamental)}
+        ${scoreBar('Momentum', sc.momentum)}
+      </div>`;
+  } else {
+    document.getElementById('ai-analyse-content').innerHTML = `<div class="ai-error">⚠️ ${analyseResult.reason?.message||'Erreur analyse'}</div>`;
+  }
+
+  // ── RENDER NEWS ─────────────────────────────────────────────────────────
+  if (newsResult.status === 'fulfilled') {
+    const n = newsResult.value;
+    const sentCol = {'positif':'#22c55e','negatif':'#ef4444','neutre':'#f59e0b'};
+    const sentEmoji = {'positif':'📈','negatif':'📉','neutre':'➡️'};
+    const sg = (n.sentiment_global||'neutre').toLowerCase();
+    const newsItems = (n.news||[]).map(item => {
+      const imp = (item.impact||'neutre').toLowerCase();
+      return `<div class="ai-news-item" style="border-left-color:${sentCol[imp]||'#b5922a'}">
+        <div class="ai-news-title">${item.titre||''}</div>
+        <div class="ai-news-meta">${item.date||''} · <span style="color:${sentCol[imp]||'#f59e0b'}">${(item.impact||'').toUpperCase()}</span></div>
+        <div class="ai-news-body">${item.resume||''}</div>
+      </div>`;
+    }).join('') || '<div class="ai-text" style="color:#666">Aucune actualité récente trouvée.</div>';
+
+    document.getElementById('ai-news-content').innerHTML = `
+      <div class="ai-section">
+        <div class="ai-section-title">${sentEmoji[sg]||'➡️'} SENTIMENT: <span style="color:${sentCol[sg]||'#f59e0b'}">${sg.toUpperCase()}</span></div>
+        <div class="ai-text" style="margin-bottom:12px">${n.resume_actualites||''}</div>
+      </div>
+      <div class="ai-section"><div class="ai-section-title">📰 DERNIÈRES NOUVELLES</div>${newsItems}</div>`;
+  } else {
+    document.getElementById('ai-news-content').innerHTML = `<div class="ai-error">⚠️ ${newsResult.reason?.message||'Erreur actualités'}</div>`;
+  }
+
+  // ── RENDER VERDICT ──────────────────────────────────────────────────────
+  if (verdictResult.status === 'fulfilled') {
+    const vd = verdictResult.value;
+    const vCol  = {'ACHETER':'#22c55e','RENFORCER':'#22c55e','CONSERVER':'#f59e0b','ALLEGER':'#f59e0b','VENDRE':'#ef4444'};
+    const vCls  = {'ACHETER':'ai-verdict-acheter','RENFORCER':'ai-verdict-acheter','CONSERVER':'ai-verdict-conserver','ALLEGER':'ai-verdict-conserver','VENDRE':'ai-verdict-vendre'};
+    const cEmoji = {'FORTE':'🔥','MOYENNE':'⚡','FAIBLE':'💧'};
+    const verdict = (vd.verdict||'CONSERVER').toUpperCase();
+    const conviction = (vd.conviction||'MOYENNE').toUpperCase();
+    const score = Math.min(100, Math.max(0, parseInt(vd.score_global)||50));
+    const sCol = score>=70?'#22c55e':score>=45?'#f59e0b':'#ef4444';
+
+    document.getElementById('ai-verdict-content').innerHTML = `
+      <div class="ai-verdict ${vCls[verdict]||'ai-verdict-conserver'}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="color:${vCol[verdict]||'#f59e0b'};font-size:22px;font-weight:700">${verdict}</div>
+          <div style="text-align:right">
+            <div style="font-size:26px;font-weight:700;color:${sCol}">${score}</div>
+            <div style="font-size:8px;color:#888">SCORE IA /100</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span style="background:#ffffff15;padding:2px 10px;border-radius:6px;font-size:9px;color:#ccc">${cEmoji[conviction]||'⚡'} ${conviction}</span>
+          <span style="background:#ffffff15;padding:2px 10px;border-radius:6px;font-size:9px;color:#ccc">🕐 ${vd.horizon||'—'}</span>
+        </div>
+        <div class="ai-verdict-text">${vd.justification||'—'}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+        <div style="background:#1a1a1a;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:9px;color:#4ade80;letter-spacing:2px;margin-bottom:4px">ENTRÉE</div>
+          <div style="font-size:11px;font-weight:700;color:#fff">${vd.prix_entree||'—'}</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:9px;color:#f59e0b;letter-spacing:2px;margin-bottom:4px">OBJECTIF</div>
+          <div style="font-size:11px;font-weight:700;color:#fff">${vd.objectif_cours||'—'}</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:9px;color:#ef4444;letter-spacing:2px;margin-bottom:4px">STOP-LOSS</div>
+          <div style="font-size:11px;font-weight:700;color:#fff">${vd.stop_loss||'—'}</div>
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('ai-verdict-content').innerHTML = `<div class="ai-error">⚠️ ${verdictResult.reason?.message||'Erreur verdict'}</div>`;
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<span>🤖</span><span>RELANCER L\'ANALYSE IA</span>';
+}
+
 </script>
-</body>
-</html>
