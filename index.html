@@ -205,11 +205,11 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 13 AVRIL 2026</div>
+    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 14 AVRIL 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">13 AVRIL 2026</div>
+    <div class="tag tg" id="date-tag">14 AVRIL 2026</div>
     <div class="tag tw">BUDGET MAX 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ ACTUALISER</button>
   </div>
@@ -322,19 +322,53 @@ tr:last-child td{border-bottom:none}
   <p style="font-size:11px;color:#888;margin-bottom:1rem;line-height:1.7">
     Préparez vos ordres <strong>ce soir</strong> pour <strong>demain matin</strong>. Décisions basées sur votre profil <strong id="dec-profil-label">ÉQUILIBRÉ</strong> et les cours de clôture du jour.
   </p>
-  <div class="card" style="margin-bottom:10px">
-    <div class="sec-title">📋 MES POSITIONS</div>
-    <div id="mes-positions" style="font-size:10px;padding:6px 0"></div>
-    <div style="font-size:9px;color:#888;margin-top:6px;padding-top:6px;border-top:1px solid #e0ddd6">
-      💡 Modifiez <strong>POSITIONS_REAL</strong> dans le code pour suivre vos vrais achats.
+  <!-- ── CHALLENGE DASHBOARD ── -->
+  <div class="card" style="margin-bottom:10px;border-left:4px solid #b5922a">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div class="sec-title" style="margin:0">🏆 SIKA INVEST CHALLENGE</div>
+      <div id="challenge-date" style="font-size:9px;color:#888;letter-spacing:1px"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:12px" id="challenge-kpis"></div>
+    <div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-bottom:4px">
+        <span>CAPITAL INVESTI</span><span id="challenge-pct-label"></span>
+      </div>
+      <div style="height:6px;background:#e0ddd6;border-radius:3px;overflow:hidden">
+        <div id="challenge-bar" style="height:100%;border-radius:3px;transition:width .5s;width:50%"></div>
+      </div>
+    </div>
+    <div class="tw-wrap">
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">ACTION</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">QTÉ</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">P.ACHAT</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">COURS</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">VAR%</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">P&amp;L FCFA</th>
+            <th style="text-align:right;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">VALEUR</th>
+            <th style="text-align:center;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">ALERTE</th>
+            <th style="text-align:center;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">SCORE</th>
+          </tr>
+        </thead>
+        <tbody id="mes-positions"></tbody>
+        <tfoot id="positions-total"></tfoot>
+      </table>
     </div>
   </div>
   <div class="dec-grid" id="dec-grid"></div>
+  <!-- ── DIVIDENDES À VENIR ── -->
+  <div class="card" style="margin-top:10px;border-left:4px solid #22c55e">
+    <div class="sec-title">💰 DIVIDENDES À VENIR — 2026</div>
+    <div id="div-calendrier" style="margin-top:6px"></div>
+  </div>
+
   <div class="card" style="margin-top:10px">
     <div class="sec-title">LOGIQUE DE SCORING</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;font-size:10px;line-height:1.7;color:#444">
       <div style="background:#f0fdf4;border-radius:8px;padding:.75rem"><strong style="color:#15803d">RSI &lt; 30</strong><br>+2 pts — Zone de survente, rebond probable</div>
-      <div style="background:#f0fdf4;border-radius:8px;padding:.75rem"><strong style="color:#15803d">Dividende ≥ 9%</strong><br>+2 pts — Rendement exceptionnel BRVM</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:.75rem"><strong style="color:#15803d">Dividende ≥ 6%</strong><br>+2 pts — Top 25% BRVM (médiane : 5.2%)</div>
       <div style="background:#f0fdf4;border-radius:8px;padding:.75rem"><strong style="color:#15803d">PER &lt; secteur</strong><br>+2 pts — Action sous-évaluée</div>
       <div style="background:#fef3c7;border-radius:8px;padding:.75rem"><strong style="color:#b45309">RSI 30–55</strong><br>+1 pt — Zone neutre favorable</div>
       <div style="background:#fef3c7;border-radius:8px;padding:.75rem"><strong style="color:#b45309">Dividende 5–9%</strong><br>+1 pt — Rendement correct</div>
@@ -346,12 +380,12 @@ tr:last-child td{border-bottom:none}
 <!-- ══════════════ ONGLET STRATÉGIE ══════════════ -->
 <div id="tab-strategie" class="panel">
   <div class="strat-grid">
-    <div class="strat-card"><div class="strat-icon">🎯</div><div class="strat-title">PHILOSOPHIE BRVM</div><div class="strat-text">Sur la BRVM, <strong>le dividende est roi</strong>. La majorité du rendement total vient du dividende annuel. Stratégie gagnante : dividende >9% + PER sous la moyenne sectorielle + RSI entre 30 et 55.</div><div class="rule-box">📌 Règle d'or : Div ≥9% + PER &lt; secteur + RSI 30–55 = opportunité d'achat.</div></div>
+    <div class="strat-card"><div class="strat-icon">🎯</div><div class="strat-title">PHILOSOPHIE BRVM</div><div class="strat-text">Sur la BRVM, <strong>le dividende est roi</strong>. La majorité du rendement total vient du dividende annuel. Stratégie gagnante : dividende ≥6% (médiane BRVM : 5.2%) + PER sous la médiane sectorielle + RSI entre 30 et 55.</div><div class="rule-box">📌 Règle d'or BRVM : Div ≥6% + PER &lt; médiane secteur + RSI 30–55 = opportunité d'achat.</div></div>
     <div class="strat-card"><div class="strat-icon">🔢</div><div class="strat-title">SCORE GLOBAL /10</div><div class="strat-text">Combinaison de <strong>6 critères</strong> pondérés : RSI (zone d'achat), PER (valorisation vs secteur), Dividende (rendement), Tendance, Volatilité (ATR) et Liquidité (volume). Score ≥7 → ACHETER, 4–6 → CONSERVER, &lt;4 → VENDRE.</div><div class="rule-box">Score adapté selon votre profil : Prudent priorise dividende · Agressif priorise croissance</div></div>
-    <div class="strat-card"><div class="strat-icon">👤</div><div class="strat-title">PROFILS INVESTISSEUR</div><div class="strat-text"><strong>🔵 Prudent</strong> : dividendes élevés (≥9%), faible volatilité, actions défensives.<br><br><strong>🟡 Équilibré</strong> : balance dividende + croissance + PER attractif.<br><br><strong>🔴 Agressif</strong> : momentum, volume élevé, tendance haussière.</div></div>
+    <div class="strat-card"><div class="strat-icon">👤</div><div class="strat-title">PROFILS INVESTISSEUR</div><div class="strat-text"><strong>🔵 Prudent</strong> : dividendes élevés (≥6%), faible volatilité, actions défensives.<br><br><strong>🟡 Équilibré</strong> : balance dividende + croissance + PER attractif.<br><br><strong>🔴 Agressif</strong> : momentum, volume élevé, tendance haussière.</div></div>
     <div class="strat-card"><div class="strat-icon">🚪</div><div class="strat-title">RÈGLES DE SORTIE</div><div class="strat-text"><strong>VENDRE si :</strong><br>· Perte ≥ −10% (stop-loss automatique)<br>· Gain ≥ +15% (objectif atteint)<br>· RSI ≥ 75 (surachat extrême)<br><br><strong>ALLÉGER si :</strong><br>· Gain ≥ +10% · RSI ≥ 68</div></div>
     <div class="strat-card"><div class="strat-icon">📡</div><div class="strat-title">INDICATEURS CLÉ</div><div class="strat-text"><strong>RSI</strong> — Momentum. &lt;30 = survente (opportunité), &gt;70 = surachat (danger).<br><br><strong>ATR</strong> — Volatilité réelle. &gt;3% = action instable.<br><br><strong>Volume Surge</strong> — Activité anormale. Surge &gt;2x sur baisse = panique → rebond.</div></div>
-    <div class="strat-card"><div class="strat-icon">⛔</div><div class="strat-title">LISTE NOIRE</div><div class="strat-text"><strong>BOA NIGER</strong> — Profit Warning officiel.<br><br><strong>ETI TG</strong> — Zéro dividende malgré BN record.<br><br><strong>MOVIS CI</strong> — Volume nul, illiquide.</div><div class="rule-box">🔴 Ces 3 actions sont exclues de toutes les recommandations.</div></div>
+    <div class="strat-card"><div class="strat-icon">⛔</div><div class="strat-title">LISTE NOIRE</div><div class="strat-text"><strong>BOA NIGER</strong> — BNPA effondré de 484 à 19 FCFA (-96%).<br><strong>BERNABE</strong> — RN 2024 : 7M FCFA, quasi faillite.<br><strong>CROWN SIEM</strong> — RN 2024 : -95%, 45M FCFA.<br><strong>ERIUM</strong> — Jamais de dividende, résultats irréguliers.<br><strong>ETI TG</strong> — Zéro dividende malgré bénéfices.<br><strong>MOVIS CI</strong> — Volume nul, données 2019.<br><strong>NEI CEDA</strong> — Perte en 2024, pas de dividende.<br><strong>ORAGROUP</strong> — Pertes 2023 (-18Md) et 2024 (-44Md).<br><strong>SAFCA CI</strong> — 5 ans de pertes consécutives.<br><strong>SETAO CI</strong> — CA -80% en 2024, pertes depuis 2022.<br><strong>SICOR</strong> — CA effondré, données périmées.<br><strong>UNILEVER CI</strong> — Pertes quasi continues depuis 2019.<br><strong>UNIWAX CI</strong> — Pertes depuis 2022, zéro dividende.</div><div class="rule-box">🔴 Ces 13 actions sont exclues de toutes les recommandations.</div></div>
   </div>
   <div class="card"><div class="sec-title">TOP OPPORTUNITÉS ACTUELLES</div><div class="why-grid" id="why-grid"></div></div>
   <div class="row2" style="margin-top:10px">
@@ -365,7 +399,7 @@ tr:last-child td{border-bottom:none}
   <div class="card">
     <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES OFFICIELLES BRVM</div>
     <p style="font-size:10px;color:#888;margin-bottom:1rem;line-height:1.6">
-      <span id="rsi-status2">—</span> séances enregistrées du 01/01 au 13/04/2026.
+      <span id="rsi-status2">—</span> séances enregistrées du 01/01 au 14/04/2026.
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
     <div class="tw-wrap">  <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
@@ -421,7 +455,7 @@ tr:last-child td{border-bottom:none}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   DONNÉES — 69 SÉANCES RÉELLES 01/01 → 13/04/2026
+   DONNÉES — 70 SÉANCES RÉELLES 01/01 → 14/04/2026
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"01/01/2026",
@@ -711,64 +745,98 @@ const SEANCES = [
   { date:"13/04/2026",
     cours:{SDSC:1900,BOAB:7450,BOABF:5680,BOAC:8500,BOAM:4580,BOAN:2895,BOAS:6730,BICB:5120,BNBC:1550,BICC:22500,CFAC:1630,CIEC:3150,CBIBF:15215,SEMC:1940,ECOC:15615,SIVC:3215,ETIT:34,FTSC:2295,LNBB:3855,SVOC:2395,NEIC:1405,NTLC:12000,NSBC:14175,ONTBF:2850,ORGT:3555,ORAC:14790,PALC:8500,SAFC:7395,SPHC:7320,ABJC:3475,STAC:3500,SGBC:33900,CABC:4190,SICC:4200,SITAB:21000,SMBC:11900,SIBC:7000,SDCC:7150,SOGB:7900,SLBC:37200,SNTS:28800,SCRC:1995,STLC:2795,TTLS:3000,PRSC:4900,UNLC:61995,UNXC:1975,SHEC:2150},
     var:{SDSC:0.26,BOAB:-0.67,BOABF:0.0,BOAC:0.18,BOAM:-1.08,BOAN:2.48,BOAS:0.6,BICB:-0.58,BNBC:-1.9,BICC:-4.26,CFAC:-0.61,CIEC:-1.41,CBIBF:0.1,SEMC:0.78,ECOC:-3.67,SIVC:5.07,ETIT:0.0,FTSC:-0.43,LNBB:-1.03,SVOC:0.0,NEIC:2.55,NTLC:-2.28,NSBC:-0.18,ONTBF:2.15,ORGT:-2.6,ORAC:-1.43,PALC:-1.16,SAFC:-0.54,SPHC:-1.68,ABJC:0.14,STAC:1.45,SGBC:-0.29,CABC:-3.46,SICC:5.13,SITAB:-1.06,SMBC:2.59,SIBC:-1.34,SDCC:-1.38,SOGB:-0.88,SLBC:0.0,SNTS:0.0,SCRC:-1.48,STLC:-0.18,TTLS:-4.91,PRSC:-2.97,UNLC:6.89,UNXC:0.77,SHEC:-1.83},
-    vol:{SDSC:6363,BOAB:2264,BOABF:4150,BOAC:13208,BOAM:2052,BOAN:8701,BOAS:1902,BICB:1478,BNBC:837,BICC:1872,CFAC:1571,CIEC:3550,CBIBF:907,SEMC:1253,ECOC:2516,SIVC:3388,ETIT:382722,FTSC:1511,LNBB:365,SVOC:0,NEIC:14443,NTLC:953,NSBC:816,ONTBF:1709,ORGT:2169,ORAC:2356,PALC:577,SAFC:1507,SPHC:3754,ABJC:2240,STAC:3950,SGBC:871,CABC:4324,SICC:23,SITAB:2137,SMBC:1645,SIBC:3879,SDCC:318,SOGB:1033,SLBC:398,SNTS:2934,SCRC:27061,STLC:1469,TTLS:1147,PRSC:600,UNLC:21,UNXC:4591,SHEC:4690}}
+    vol:{SDSC:6363,BOAB:2264,BOABF:4150,BOAC:13208,BOAM:2052,BOAN:8701,BOAS:1902,BICB:1478,BNBC:837,BICC:1872,CFAC:1571,CIEC:3550,CBIBF:907,SEMC:1253,ECOC:2516,SIVC:3388,ETIT:382722,FTSC:1511,LNBB:365,SVOC:0,NEIC:14443,NTLC:953,NSBC:816,ONTBF:1709,ORGT:2169,ORAC:2356,PALC:577,SAFC:1507,SPHC:3754,ABJC:2240,STAC:3950,SGBC:871,CABC:4324,SICC:23,SITAB:2137,SMBC:1645,SIBC:3879,SDCC:318,SOGB:1033,SLBC:398,SNTS:2934,SCRC:27061,STLC:1469,TTLS:1147,PRSC:600,UNLC:21,UNXC:4591,SHEC:4690}},
+  { date:"14/04/2026",
+    cours:{SDSC:1890,BOAB:7400,BOABF:5645,BOAC:8500,BOAM:4590,BOAN:2830,BOAS:6750,BICB:5135,BNBC:1565,BICC:23010,CFAC:1600,CIEC:3135,CBIBF:15350,SEMC:1905,ECOC:15620,SIVC:3160,ETIT:32,FTSC:2220,LNBB:3855,SVOC:2395,NEIC:1400,NTLC:12000,NSBC:14100,ONTBF:2900,ORGT:3435,ORAC:15170,PALC:8300,SAFC:6845,SPHC:7395,ABJC:3430,STAC:3240,SGBC:33505,CABC:3995,SICC:4225,SITAB:21050,SMBC:11850,SIBC:7000,SDCC:7150,SOGB:7850,SLBC:38395,SNTS:28000,SCRC:2000,STLC:2840,TTLS:2995,PRSC:5000,UNLC:61995,UNXC:1955,SHEC:2050},
+    var:{SDSC:-0.53,BOAB:-0.67,BOABF:-0.62,BOAC:0.0,BOAM:0.22,BOAN:-2.25,BOAS:0.3,BICB:0.29,BNBC:0.97,BICC:2.27,CFAC:-1.84,CIEC:-0.48,CBIBF:0.89,SEMC:-1.8,ECOC:0.03,SIVC:-1.71,ETIT:-5.88,FTSC:-3.27,LNBB:0.0,SVOC:0.0,NEIC:-0.36,NTLC:0.0,NSBC:-0.53,ONTBF:1.75,ORGT:-3.38,ORAC:2.57,PALC:-2.35,SAFC:-7.44,SPHC:1.02,ABJC:-1.29,STAC:-7.43,SGBC:-1.17,CABC:-4.65,SICC:0.6,SITAB:0.24,SMBC:-0.42,SIBC:0.0,SDCC:0.0,SOGB:-0.63,SLBC:3.21,SNTS:-2.78,SCRC:0.25,STLC:1.61,TTLS:-0.17,PRSC:2.04,UNLC:0.0,UNXC:-1.01,SHEC:-4.65},
+    vol:{SDSC:4456,BOAB:3663,BOABF:3266,BOAC:31865,BOAM:7197,BOAN:5755,BOAS:4732,BICB:2210,BNBC:564,BICC:959,CFAC:1814,CIEC:4873,CBIBF:193,SEMC:5728,ECOC:1959,SIVC:3365,ETIT:1179604,FTSC:5137,LNBB:928,SVOC:0,NEIC:7228,NTLC:295,NSBC:1372,ONTBF:2018,ORGT:5036,ORAC:219,PALC:5425,SAFC:6472,SPHC:901,ABJC:693,STAC:6473,SGBC:751,CABC:1334,SICC:279,SITAB:3418,SMBC:611,SIBC:10282,SDCC:414,SOGB:1110,SLBC:67,SNTS:57899,SCRC:33434,STLC:2957,TTLS:4558,PRSC:570,UNLC:13,UNXC:8374,SHEC:4748}}
 ];
 
 const META = {
-  SDSC:{nom:"AFRICA GLOBAL LOGISTICS",pays:"CI",sec:"IN",bpa:164.67,div_xof:98,per_s:10,jan:1515},
-  BOAB:{nom:"BOA BENIN",pays:"BJ",sec:"SF",bpa:750.0,div_xof:497,per_s:9,jan:5850},
-  BOABF:{nom:"BOA BURKINA FASO",pays:"BF",sec:"SF",bpa:468.75,div_xof:270,per_s:9,jan:3750},
-  BOAC:{nom:"BOA CI",pays:"CI",sec:"SF",bpa:844.71,div_xof:503,per_s:9,jan:7180},
-  BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",bpa:487.8,div_xof:288,per_s:9,jan:4000},
-  BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",bpa:286.81,div_xof:157,per_s:9,jan:2610,blacklist:true},
-  BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",bpa:663.29,div_xof:424,per_s:9,jan:5240},
-  BICB:{nom:"BANQUE INTERNATIONALE POUR LE COMMERCE DU BENIN",pays:"BJ",sec:"SF",bpa:663.33,div_xof:408,per_s:9,jan:4975},
-  BNBC:{nom:"BERNABE",pays:"CI",sec:"IN",bpa:148.42,div_xof:99,per_s:10,jan:1410},
-  BICC:{nom:"BICICI",pays:"CI",sec:"SF",bpa:2859.56,div_xof:1517,per_s:9,jan:19445},
-  CFAC:{nom:"CFAO CI",pays:"CI",sec:"CD",bpa:136.19,div_xof:74,per_s:11,jan:1430},
-  CIEC:{nom:"CIE CI",pays:"CI",sec:"SP",bpa:0,div_xof:0,per_s:10,jan:0},
-  CBIBF:{nom:"CORIS BANK INTERNATIONAL BF",pays:"BF",sec:"SF",bpa:1314.63,div_xof:808,per_s:9,jan:10780},
-  SEMC:{nom:"CROWN SIEM",pays:"CI",sec:"IN",bpa:0,div_xof:0,per_s:13,jan:0},
-  ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",bpa:2222.22,div_xof:1088,per_s:9,jan:16000},
-  SIVC:{nom:"ERIUM",pays:"CI",sec:"IN",bpa:141.07,div_xof:87,per_s:13,jan:1580},
-  ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",bpa:1.53,div_xof:0,per_s:15,jan:23,blacklist:true},
-  FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",bpa:233.68,div_xof:151,per_s:10,jan:2220},
-  LNBB:{nom:"LOTERIE NATIONALE DU BENIN",pays:"BJ",sec:"CD",bpa:421.08,div_xof:236,per_s:11,jan:4295},
-  SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",bpa:0,div_xof:0,per_s:10,jan:2395,blacklist:true},
-  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",bpa:114.29,div_xof:70,per_s:11,jan:1200},
-  NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",bpa:926.09,div_xof:554,per_s:12,jan:10650},
-  NSBC:{nom:"NSIA BANQUE",pays:"CI",sec:"SF",bpa:1346.47,div_xof:744,per_s:9,jan:11445},
-  ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TC",bpa:345.14,div_xof:236,per_s:9,jan:2485},
-  ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",bpa:244.9,div_xof:149,per_s:10,jan:2400},
-  ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TC",bpa:1676.47,div_xof:1069,per_s:9,jan:14250},
-  PALC:{nom:"PALMCI",pays:"CI",sec:"CB",bpa:1557.69,div_xof:1377,per_s:8,jan:8100},
-  SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",bpa:440.67,div_xof:281,per_s:9,jan:3305},
-  SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",bpa:0,div_xof:0,per_s:8,jan:0},
-  ABJC:{nom:"SERVAIR ABIDJAN CI",pays:"CI",sec:"CD",bpa:276.19,div_xof:160,per_s:11,jan:2900},
-  STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",bpa:110.42,div_xof:60,per_s:13,jan:1325},
-  SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",bpa:3645.73,div_xof:2152,per_s:9,jan:29895},
-  CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",bpa:248.42,div_xof:153,per_s:10,jan:2360},
-  SICC:{nom:"SICOR",pays:"CI",sec:"CB",bpa:358.7,div_xof:224,per_s:10,jan:3300},
-  SITAB:{nom:"SITAB",pays:"CI",sec:"CB",bpa:2637.33,div_xof:1820,per_s:9,jan:19780},
-  SMBC:{nom:"SMB CI",pays:"CI",sec:"EN",bpa:931.37,div_xof:551,per_s:11,jan:9500},
-  SIBC:{nom:"SOCIETE IVOIRIENNE DE BANQUE CI",pays:"CI",sec:"SF",bpa:653.41,div_xof:391,per_s:9,jan:5750},
-  SDCC:{nom:"SODECI",pays:"CI",sec:"SP",bpa:682.35,div_xof:435,per_s:10,jan:5800},
-  SOGB:{nom:"SOGB",pays:"CI",sec:"CB",bpa:1012.82,div_xof:648,per_s:9,jan:7900},
-  SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",bpa:3853.33,div_xof:2456,per_s:9,jan:28900},
-  SNTS:{nom:"SONATEL",pays:"SN",sec:"TC",bpa:3185.37,div_xof:2037,per_s:9,jan:26120},
-  SCRC:{nom:"SUCRIVOIRE",pays:"CI",sec:"CB",bpa:92.17,div_xof:58,per_s:12,jan:1060},
-  STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",bpa:311.33,div_xof:229,per_s:10,jan:2335},
-  TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",bpa:312.5,div_xof:228,per_s:10,jan:2500},
-  PRSC:{nom:"TRACTAFRIC MOTORS CI",pays:"CI",sec:"CD",bpa:407.89,div_xof:240,per_s:10,jan:3875},
-  UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",bpa:2738.0,div_xof:1540,per_s:13,jan:34225},
-  UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"CD",bpa:194.44,div_xof:115,per_s:10,jan:1400},
-  SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",bpa:170.0,div_xof:108,per_s:9,jan:1445},
+  SDSC:{nom:"AFRICA GLOBAL LOGISTICS",pays:"CI",sec:"IN",bpa:387.0,div_xof:92,per_s:12.5,jan:1515},
+  BOAB:{nom:"BOA BENIN",pays:"BJ",sec:"SF",bpa:484.0,div_xof:468,per_s:14,jan:5850},
+  BOABF:{nom:"BOA BURKINA FASO",pays:"BF",sec:"SF",bpa:437.55,div_xof:397,per_s:14,jan:3750},
+  BOAC:{nom:"BOA CI",pays:"CI",sec:"SF",bpa:888.50,div_xof:595,per_s:14,jan:7180},
+  BOAM:{nom:"BOA MALI",pays:"ML",sec:"SF",bpa:403.69,div_xof:305,per_s:14,jan:4000},
+  BOAN:{nom:"BOA NIGER",pays:"NE",sec:"SF",bpa:19.68,div_xof:0,per_s:14,jan:2610,blacklist:true},
+  BOAS:{nom:"BOA SENEGAL",pays:"SN",sec:"SF",bpa:608.47,div_xof:450,per_s:14,jan:5240},
+  BICB:{nom:"BANQUE INTERNATIONALE POUR LE COMMERCE DU BENIN",pays:"BJ",sec:"SF",bpa:525.29,div_xof:255,per_s:14,jan:4975},
+  BNBC:{nom:"BERNABE",pays:"CI",sec:"IN",bpa:1.10,div_xof:0,per_s:12.5,jan:1410,blacklist:true},
+  BICC:{nom:"BICICI",pays:"CI",sec:"SF",bpa:1574.0,div_xof:831,per_s:14,jan:19445},
+  CFAC:{nom:"CFAO CI",pays:"CI",sec:"CD",bpa:25.90,div_xof:7,per_s:19.5,jan:1430},
+  CIEC:{nom:"CIE CI",pays:"CI",sec:"SP",bpa:180.0,div_xof:158,per_s:16,jan:0},
+  CBIBF:{nom:"CORIS BANK INTERNATIONAL BF",pays:"BF",sec:"SF",bpa:2046.73,div_xof:900,per_s:14,jan:10780},
+  SEMC:{nom:"CROWN SIEM",pays:"CI",sec:"IN",bpa:1.79,div_xof:0,per_s:12.5,jan:0,blacklist:true},
+  ECOC:{nom:"ECOBANK CI",pays:"CI",sec:"SF",bpa:1153.16,div_xof:781,per_s:14,jan:16000},
+  SIVC:{nom:"ERIUM",pays:"CI",sec:"IN",bpa:43.16,div_xof:0,per_s:12.5,jan:1580,blacklist:true},
+  ETIT:{nom:"ETI TG",pays:"TG",sec:"SF",bpa:16.57,div_xof:0,per_s:14,jan:23,blacklist:true},
+  FTSC:{nom:"FILTISAC CI",pays:"CI",sec:"IN",bpa:1318.0,div_xof:130,per_s:12.5,jan:2220},
+  LNBB:{nom:"LOTERIE NATIONALE DU BENIN",pays:"BJ",sec:"CD",bpa:358.78,div_xof:276,per_s:19.5,jan:4295},
+  SVOC:{nom:"MOVIS CI",pays:"CI",sec:"IN",bpa:0,div_xof:0,per_s:12.5,jan:2395,blacklist:true},
+  NEIC:{nom:"NEI CEDA CI",pays:"CI",sec:"CD",bpa:0,div_xof:0,per_s:19.5,jan:1200,blacklist:true},
+  NTLC:{nom:"NESTLE CI",pays:"CI",sec:"CB",bpa:822.0,div_xof:722,per_s:14,jan:10650},
+  NSBC:{nom:"NSIA BANQUE",pays:"CI",sec:"SF",bpa:1541.0,div_xof:671,per_s:14,jan:11445},
+  ONTBF:{nom:"ONATEL BF",pays:"BF",sec:"TC",bpa:233.63,div_xof:145,per_s:10.5,jan:2485},
+  ORGT:{nom:"ORAGROUP TOGO",pays:"TG",sec:"SF",bpa:0,div_xof:0,per_s:14,jan:2400,blacklist:true},
+  ORAC:{nom:"ORANGE CI",pays:"CI",sec:"TC",bpa:1114.0,div_xof:704,per_s:10.5,jan:14250},
+  PALC:{nom:"PALMCI",pays:"CI",sec:"CB",bpa:1003.0,div_xof:441,per_s:14,jan:8100},
+  SAFC:{nom:"SAFCA CI",pays:"CI",sec:"SF",bpa:0,div_xof:0,per_s:14,jan:3305,blacklist:true},
+  SPHC:{nom:"SAPH CI",pays:"CI",sec:"CB",bpa:977.07,div_xof:430,per_s:14,jan:0},
+  ABJC:{nom:"SERVAIR ABIDJAN CI",pays:"CI",sec:"CD",bpa:139.22,div_xof:0,per_s:19.5,jan:2900},
+  STAC:{nom:"SETAO CI",pays:"CI",sec:"IN",bpa:0,div_xof:0,per_s:12.5,jan:1325,blacklist:true},
+  SGBC:{nom:"SGBCI",pays:"CI",sec:"SF",bpa:3254.0,div_xof:1639,per_s:14,jan:29895},
+  CABC:{nom:"SICABLE CI",pays:"CI",sec:"IN",bpa:287.91,div_xof:152,per_s:12.5,jan:2360},
+  SICC:{nom:"SICOR",pays:"CI",sec:"CB",bpa:0,div_xof:0,per_s:14,jan:3300,blacklist:true},
+  SITAB:{nom:"SITAB",pays:"CI",sec:"CB",bpa:2491.25,div_xof:675,per_s:14,jan:19780},
+  SMBC:{nom:"SMB CI",pays:"CI",sec:"EN",bpa:1116.0,div_xof:616,per_s:16,jan:9500},
+  SIBC:{nom:"SOCIETE IVOIRIENNE DE BANQUE CI",pays:"CI",sec:"SF",bpa:502.0,div_xof:330,per_s:14,jan:5750},
+  SDCC:{nom:"SODECI",pays:"CI",sec:"SP",bpa:396.0,div_xof:352,per_s:16,jan:5800},
+  SOGB:{nom:"SOGB",pays:"CI",sec:"CB",bpa:607.0,div_xof:528,per_s:14,jan:7900},
+  SLBC:{nom:"SOLIBRA CI",pays:"CI",sec:"CB",bpa:1304.0,div_xof:1074,per_s:14,jan:28900},
+  SNTS:{nom:"SONATEL",pays:"SN",sec:"TC",bpa:4136.0,div_xof:1740,per_s:10.5,jan:26120},
+  SCRC:{nom:"SUCRIVOIRE",pays:"CI",sec:"CB",bpa:132.0,div_xof:0,per_s:14,jan:1060},
+  STLC:{nom:"TOTAL CI",pays:"CI",sec:"EN",bpa:144.33,div_xof:140,per_s:16,jan:2335},
+  TTLS:{nom:"TOTAL SENEGAL",pays:"SN",sec:"EN",bpa:218.0,div_xof:222,per_s:16,jan:2500},
+  PRSC:{nom:"TRACTAFRIC MOTORS CI",pays:"CI",sec:"CD",bpa:229.0,div_xof:182,per_s:19.5,jan:3875},
+  UNLC:{nom:"UNILEVER CI",pays:"CI",sec:"CB",bpa:0,div_xof:0,per_s:14,jan:34225,blacklist:true},
+  UNXC:{nom:"UNIWAX CI",pays:"CI",sec:"CD",bpa:0,div_xof:0,per_s:19.5,jan:1400,blacklist:true},
+  SHEC:{nom:"VIVO ENERGY CI",pays:"CI",sec:"EN",bpa:84.98,div_xof:75,per_s:16,jan:1445},
 };
 
 /* ══════════════════════════════════════════════════
    POSITIONS — VIDES (aucune position enregistrée)
    ══════════════════════════════════════════════════ */
-const POSITIONS_REAL = [];
+const DIVIDENDES = {
+  BOABF:{montant:397.00,  date:"22/04/2026", rendu:7.03},
+  BOAC: {montant:594.50,  date:"A préciser",  rendu:6.99},
+  BOAM: {montant:305.04,  date:"01/06/2026",  rendu:6.65},
+  BOAS: {montant:450.00,  date:"28/05/2026",  rendu:6.67},
+  CBIBF:{montant:900.00,  date:"A préciser",  rendu:5.86},
+  ECOC: {montant:781.00,  date:"A préciser",  rendu:5.00},
+  ETIT: {montant:0.93,    date:"A préciser",  rendu:2.91},
+  ONTBF:{montant:145.32,  date:"12/06/2026",  rendu:5.01},
+  ORAC: {montant:704.00,  date:"A préciser",  rendu:4.64},
+  PALC: {montant:441.76,  date:"A préciser",  rendu:5.32},
+  SPHC: {montant:430.32,  date:"A préciser",  rendu:5.82},
+  CABC: {montant:152.02,  date:"A préciser",  rendu:3.81},
+  SNTS: {montant:1740.00, date:"22/05/2026",  rendu:6.21},
+  STLC: {montant:139.77,  date:"A préciser",  rendu:4.92},
+};
+
+const POSITIONS_REAL = [
+  {ticker:'BOAB', nom:'BOA BENIN',          quantite:140, cours_achat:7638, date_achat:'2026'},
+  {ticker:'BOAC', nom:'BOA CI',             quantite:150, cours_achat:8509, date_achat:'2026'},
+  {ticker:'BOAS', nom:'BOA SENEGAL',        quantite:150, cours_achat:6777, date_achat:'2026'},
+  {ticker:'CFAC', nom:'CFAO CI',            quantite:300, cours_achat:1717, date_achat:'2026'},
+  {ticker:'ONTBF',nom:'ONATEL BF',          quantite:150, cours_achat:2786, date_achat:'2026'},
+  {ticker:'PALC', nom:'PALMCI',             quantite:50,  cours_achat:8307, date_achat:'2026'},
+  {ticker:'SAFC', nom:'SAFCA CI',           quantite:150, cours_achat:7527, date_achat:'2026'},
+  {ticker:'SDCC', nom:'SODECI',             quantite:150, cours_achat:7299, date_achat:'2026'},
+  {ticker:'SOGB', nom:'SOGB',               quantite:25,  cours_achat:7901, date_achat:'2026'},
+  {ticker:'SPHC', nom:'SAPH CI',            quantite:50,  cours_achat:7142, date_achat:'2026'},
+  {ticker:'STLC', nom:'TOTAL CI',           quantite:50,  cours_achat:2684, date_achat:'2026'},
+  {ticker:'UNXC', nom:'UNIWAX CI',          quantite:10,  cours_achat:2006, date_achat:'2026'},
+];
 
 /* ══════════════════════════════════════════════════
    ÉTAT GLOBAL
@@ -787,22 +855,44 @@ const PROFIL_DESC = {
    CALCULS TECHNIQUES
    ══════════════════════════════════════════════════ */
 function calcRSI(h){
-  if(h.length<3)return 50;
-  const p=Math.min(14,h.length-1);
-  const ch=h.slice(1).map((v,i)=>v-h[i]).slice(-p);
-  let g=0,l=0;
-  ch.forEach(c=>{c>0?g+=c:l+=Math.abs(c)});
-  const ag=g/p,al=l/p;
-  if(al===0)return ch.some(c=>c>0)?70:50;
+  /* RSI Wilder (1978) — lissage exponentiel correct */
+  const period=14;
+  if(h.length<period+1)return 50;
+  const ch=h.slice(1).map((v,i)=>v-h[i]);
+  const gains=ch.map(c=>c>0?c:0);
+  const losses=ch.map(c=>c<0?Math.abs(c):0);
+  /* Première moyenne simple sur period */
+  let ag=gains.slice(0,period).reduce((a,b)=>a+b,0)/period;
+  let al=losses.slice(0,period).reduce((a,b)=>a+b,0)/period;
+  /* Lissage Wilder pour le reste */
+  for(let i=period;i<ch.length;i++){
+    ag=(ag*(period-1)+gains[i])/period;
+    al=(al*(period-1)+losses[i])/period;
+  }
+  if(al===0)return 99;
   return Math.min(99,Math.max(1,Math.round(100-100/(1+ag/al))));
 }
 function calcTend(h){
-  if(h.length<2)return'flat';
-  const n=Math.min(5,h.length);
-  const ma=h.slice(-n).reduce((a,b)=>a+b,0)/n;
+  /* Tendance : régression linéaire sur 10 séances + MA20 vs MA50 */
+  if(h.length<5)return'flat';
+  /* Pente sur les 10 dernières séances */
+  const n=Math.min(10,h.length);
+  const rec=h.slice(-n);
+  const xm=(n-1)/2, ym=rec.reduce((a,b)=>a+b,0)/n;
+  let num=0,den=0;
+  rec.forEach((v,i)=>{num+=(i-xm)*(v-ym);den+=(i-xm)*(i-xm);});
+  const slope=den>0?num/den:0;
+  const slopePct=ym>0?slope/ym*100:0;
+  /* MA20 vs MA50 pour confirmation */
+  const ma20=h.slice(-Math.min(20,h.length)).reduce((a,b)=>a+b,0)/Math.min(20,h.length);
+  const ma50=h.slice(-Math.min(50,h.length)).reduce((a,b)=>a+b,0)/Math.min(50,h.length);
   const last=h[h.length-1];
-  if(last>ma*1.015)return'up';
-  if(last<ma*0.985)return'down';
+  const maConfirm = ma20>ma50*1.005?'up':ma20<ma50*0.995?'down':'flat';
+  /* Tendance confirmée si pente ET MA concordent */
+  if(slopePct>0.3 && maConfirm!=='down')return'up';
+  if(slopePct<-0.3 && maConfirm!=='up')return'down';
+  if(slopePct>0.5)return'up';
+  if(slopePct<-0.5)return'down';
   return'flat';
 }
 function calcATR(h){
@@ -822,7 +912,9 @@ function calcVolSurge(vols){
 }
 function calcSR(h){
   if(h.length<2){const v=h[0]||0;return{support:v,resistance:v,pct_s:0,pct_r:0}}
-  const valid=h.filter(v=>v>0);
+  /* Utilise les 30 dernières séances uniquement pour les niveaux récents */
+  const window=h.slice(-Math.min(30,h.length));
+  const valid=window.filter(v=>v>0);
   const support=Math.min(...valid),resistance=Math.max(...valid);
   const last=h[h.length-1];
   return{support,resistance,
@@ -849,13 +941,17 @@ function getRecommendation(stock, profilKey) {
 
   // ── 2. Valorisation PER vs secteur ─────────── max 2 pts
   const ratio = stock.per_s > 0 ? stock.per / stock.per_s : 1;
-  if      (ratio <= 0.65)           { score += 2; details.push('PER très décoté ≤65% secteur (+2)'); }
-  else if (ratio <= 0.85)           { score += 1; details.push('PER décoté ≤85% secteur (+1)'); }
-  else if (ratio >= 1.30)           { score -= 1; details.push('PER premium ≥130% secteur (−1)'); }
+  /* PER calibré sur médianes sectorielles BRVM réelles */
+  if      (ratio <= 0.70)           { score += 2; details.push('PER bien décoté ≤70% médiane secteur (+2)'); }
+  else if (ratio <= 0.90)           { score += 1; details.push('PER légèrement décoté ≤90% médiane (+1)'); }
+  else if (ratio >= 1.20)           { score -= 1; details.push('PER premium ≥120% médiane secteur (−1)'); }
 
   // ── 3. Dividende ───────────────────────────── max 2 pts
-  if      (stock.div >= 10)         { score += 2; details.push(`Div ${stock.div}% exceptionnel (+2)`); }
-  else if (stock.div >= 7)          { score += 1; details.push(`Div ${stock.div}% attractif (+1)`); }
+  /* Seuils calibrés sur médiane BRVM réelle 5.2% */
+  if      (stock.div >= 6)          { score += 2; details.push(`Div ${stock.div}% excellent — top 25% BRVM (+2)`); }
+  else if (stock.div >= 5)          { score += 1; details.push(`Div ${stock.div}% correct — au-dessus médiane BRVM (+1)`); }
+  else if (stock.div >= 4)          { details.push(`Div ${stock.div}% dans la moyenne BRVM`); }
+  else if (stock.div > 0)           { score -= 1; details.push(`Div ${stock.div}% faible pour la BRVM (−1)`); }
   else if (stock.div === 0)         { score -= 1; details.push('Zéro dividende (−1)'); }
 
   // ── 4. Tendance ────────────────────────────── max 2 pts
@@ -883,7 +979,7 @@ function getRecommendation(stock, profilKey) {
   // ── 8. Ajustements par profil ──────────────────────────────
   if (profilKey === 'prudent') {
     if (stock.atr_pct >= 4)         { score -= 1; details.push('Profil prudent: trop volatile (−1)'); }
-    if (stock.div >= 9)             { score += 1; details.push('Profil prudent: div exceptionnel (+1)'); }
+    if (stock.div >= 6)             { score += 1; details.push('Profil prudent: div excellent (+1)'); }
     if (stock.tend === 'down')      { score -= 1; details.push('Profil prudent: tendance baissière (−1)'); }
   }
   if (profilKey === 'agressif') {
@@ -941,6 +1037,35 @@ function buildData() {
   document.getElementById('chart1-title').textContent = 'TOP 10 SCORES — ' + derniere.date;
   document.getElementById('chart2-title').textContent = 'VARIATIONS — ' + derniere.date;
   document.getElementById('dec-profil-label').textContent = profil.toUpperCase();
+
+  // Calendrier dividendes
+  const divEl = document.getElementById('div-calendrier');
+  if(divEl && typeof DIVIDENDES !== 'undefined') {
+    const rows = Object.entries(DIVIDENDES).map(([t, d]) => {
+      const v = DATA.find(x => x.t === t);
+      const nom = v ? (v.nom.length > 28 ? v.nom.slice(0,26)+'…' : v.nom) : t;
+      const inPortfolio = POSITIONS_REAL.some(p => p.ticker === t);
+      const badge = inPortfolio ? '<span style="font-size:8px;background:#dcfce7;color:#15803d;padding:1px 5px;border-radius:8px;font-weight:700;margin-left:4px">MON PORTEF.</span>' : '';
+      const dateCls = d.date === 'A préciser' ? 'color:#b45309' : 'color:#15803d;font-weight:700';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0eeea;flex-wrap:wrap;gap:4px">
+        <div>
+          <span style="font-size:11px;font-weight:700">${nom}</span>${badge}
+          <div style="font-size:9px;color:#888;margin-top:1px">${t}</div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="text-align:right">
+            <div style="font-size:12px;font-weight:700;color:#15803d">${d.montant.toLocaleString('fr-FR')} FCFA</div>
+            <div style="font-size:9px;color:#888">${d.rendu}% de rendement</div>
+          </div>
+          <div style="text-align:right;min-width:80px">
+            <div style="font-size:9px;${dateCls}">${d.date}</div>
+            <div style="font-size:8px;color:#aaa">détachement</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    divEl.innerHTML = rows || '<div style="font-size:10px;color:#aaa">Aucun dividende calendrier</div>';
+  }
 
   return Object.keys(META).map(ticker => {
     const meta = META[ticker];
@@ -1063,30 +1188,136 @@ function renderMets() {
 }
 
 function renderMesPositions() {
+  const tbody = document.getElementById('mes-positions');
+  if(!tbody) return;
   if(!POSITIONS_REAL.length){
-    document.getElementById('mes-positions').innerHTML='<div class="hist-empty">Aucune position enregistrée.</div>';
+    tbody.innerHTML='<tr><td colspan="9" style="color:#aaa;font-size:10px;padding:8px">Aucune position.</td></tr>';
     return;
   }
-  document.getElementById('mes-positions').innerHTML = POSITIONS_REAL.map(pos=>{
-    const v=DATA.find(d=>d.t===pos.ticker);
-    if(!v)return`<div class="hist-item"><span>❌ ${pos.ticker}</span></div>`;
-    const pnl=((v.cours-pos.cours_achat)/pos.cours_achat*100).toFixed(1);
-    const pnlAbs=((v.cours-pos.cours_achat)*pos.quantite).toLocaleString('fr-FR');
-    const cls=parseFloat(pnl)>=0?'pos':'neg';
-    const rc=v.reco.emoji+' '+v.recommendation;
-    return`<div class="hist-item" onclick="openFiche('${pos.ticker}')" style="cursor:pointer">
-      <div><strong>${v.nom.length>22?v.nom.slice(0,20)+'…':v.nom}</strong><br>
-      <span style="font-size:9px;color:#888">Entrée ${pos.cours_achat.toLocaleString('fr-FR')} F · ${pos.quantite} titres · ${pos.date_achat}</span></div>
-      <div style="text-align:right">
-        <div class="${cls}" style="font-weight:700">${parseFloat(pnl)>=0?'+':''}${pnl}%</div>
-        <div style="font-size:9px;color:#888">${parseFloat(pnl)>=0?'+':''}${pnlAbs} F</div>
-        <div style="font-size:9px;margin-top:2px">${rc}</div>
-      </div></div>`;
-  }).join('');
+
+  let totalAchat=0, totalActuel=0, totalPnl=0;
+  const rows = POSITIONS_REAL.map(pos=>{
+    const v = DATA.find(d=>d.t===pos.ticker);
+    const cours = v ? v.cours : pos.cours_achat;
+    const valAchat = pos.cours_achat * pos.quantite;
+    const valAct   = cours * pos.quantite;
+    const pnlAbs   = valAct - valAchat;
+    const pnlPct   = (pnlAbs / valAchat * 100);
+    totalAchat  += valAchat;
+    totalActuel += valAct;
+    totalPnl    += pnlAbs;
+
+    const pnlCls  = pnlAbs >= 0 ? '#16a34a' : '#dc2626';
+    const pnlSign = pnlAbs >= 0 ? '+' : '';
+
+    // Alerte
+    let alerte = '', alerteColor = '#888';
+    if(!v) { alerte='N/A'; }
+    else if(v.blacklist) { alerte='⛔ BLACKLIST'; alerteColor='#dc2626'; }
+    else if(pnlPct <= -10) { alerte='🔴 STOP-LOSS'; alerteColor='#dc2626'; }
+    else if(pnlPct >= 15)  { alerte='🎯 OBJECTIF'; alerteColor='#15803d'; }
+    else if(v.rsi >= 75)   { alerte='⚠ SURACHAT'; alerteColor='#b45309'; }
+    else if(pnlPct <= -5)  { alerte='⚠ -5%'; alerteColor='#b45309'; }
+    else if(pnlPct >= 10)  { alerte='💰 +10%'; alerteColor='#15803d'; }
+    else { alerte='—'; }
+
+    const score = v ? v.scoreGlobal : 0;
+    const scoreCls = score>=7?'sp-acheter':score>=4?'sp-conserver':'sp-vendre';
+    const nom = v ? (v.nom.length>22?v.nom.slice(0,20)+'…':v.nom) : pos.ticker;
+
+    return `<tr class="tr" onclick="openFiche('${pos.ticker}')">
+      <td><strong style="font-size:11px">${nom}</strong></td>
+      <td style="text-align:right">${pos.quantite}</td>
+      <td style="text-align:right">${pos.cours_achat.toLocaleString('fr-FR')}</td>
+      <td style="text-align:right;font-weight:700">${cours.toLocaleString('fr-FR')}</td>
+      <td style="text-align:right;color:${pnlCls};font-weight:700">${pnlSign}${pnlPct.toFixed(2)}%</td>
+      <td style="text-align:right;color:${pnlCls};font-weight:700">${pnlSign}${pnlAbs.toLocaleString('fr-FR',{maximumFractionDigits:0})}</td>
+      <td style="text-align:right">${valAct.toLocaleString('fr-FR',{maximumFractionDigits:0})}</td>
+      <td style="text-align:center;font-size:9px;color:${alerteColor};font-weight:700">${alerte}</td>
+      <td style="text-align:center"><span class="score-pill ${scoreCls}" style="width:22px;height:22px;font-size:10px">${score}</span></td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rows.join('');
+
+  // Total row
+  const tPct = (totalPnl/totalAchat*100);
+  const tCls = totalPnl>=0?'#16a34a':'#dc2626';
+  const tSign = totalPnl>=0?'+':'';
+  document.getElementById('positions-total').innerHTML =
+    `<tr style="border-top:2px solid #1a1a1a;font-weight:700">
+      <td colspan="4" style="padding-top:8px;font-size:10px;letter-spacing:1px">TOTAL PORTEFEUILLE</td>
+      <td style="text-align:right;color:${tCls};padding-top:8px">${tSign}${tPct.toFixed(2)}%</td>
+      <td style="text-align:right;color:${tCls};padding-top:8px">${tSign}${totalPnl.toLocaleString('fr-FR',{maximumFractionDigits:0})}</td>
+      <td style="text-align:right;padding-top:8px">${totalActuel.toLocaleString('fr-FR',{maximumFractionDigits:0})}</td>
+      <td colspan="2"></td>
+    </tr>`;
+
+  // KPIs
+  const gains = POSITIONS_REAL.filter(p=>{ const v=DATA.find(d=>d.t===p.ticker); return v&&(v.cours-p.cours_achat)*p.quantite>0;}).length;
+  const pertes = POSITIONS_REAL.length - gains;
+  const bestPos = POSITIONS_REAL.map(p=>{ const v=DATA.find(d=>d.t===p.ticker); return v?{t:p.ticker,pct:(v.cours-p.cours_achat)/p.cours_achat*100}:{t:p.ticker,pct:0};}).sort((a,b)=>b.pct-a.pct)[0];
+  const worstPos = POSITIONS_REAL.map(p=>{ const v=DATA.find(d=>d.t===p.ticker); return v?{t:p.ticker,pct:(v.cours-p.cours_achat)/p.cours_achat*100}:{t:p.ticker,pct:0};}).sort((a,b)=>a.pct-b.pct)[0];
+
+  const kpi = (label,val,sub,color)=>
+    `<div style="background:#f8f6ef;border-radius:8px;padding:10px 12px">
+      <div style="font-size:9px;letter-spacing:2px;color:#888;margin-bottom:3px">${label}</div>
+      <div style="font-size:16px;font-weight:700;color:${color}">${val}</div>
+      <div style="font-size:9px;color:#888;margin-top:2px">${sub}</div>
+    </div>`;
+
+  document.getElementById('challenge-kpis').innerHTML =
+    kpi('P&L TOTAL', `${tSign}${Math.round(totalPnl).toLocaleString('fr-FR')} F`, `sur ${totalAchat.toLocaleString('fr-FR')} F investi`, totalPnl>=0?'#16a34a':'#dc2626') +
+    kpi('PERFORMANCE', `${tSign}${tPct.toFixed(2)}%`, `${POSITIONS_REAL.length} positions`, totalPnl>=0?'#16a34a':'#dc2626') +
+    kpi('GAGNANTES', `${gains}/${POSITIONS_REAL.length}`, `${pertes} en perte`, '#15803d') +
+    kpi('MEILLEURE', `${bestPos.t}`, `${bestPos.pct>=0?'+':''}${bestPos.pct.toFixed(1)}%`, '#15803d') +
+    kpi('PIRE', `${worstPos.t}`, `${worstPos.pct.toFixed(1)}%`, '#dc2626') +
+    kpi('VALEUR ACTUELLE', `${Math.round(totalActuel/1000)}k F`, `investi: ${Math.round(totalAchat/1000)}k F`, '#1a1a1a');
+
+  // Progress bar
+  const barColor = tPct>=0?'#22c55e':'#ef4444';
+  const barWidth = Math.min(100, Math.max(2, 50 + tPct*5));
+  document.getElementById('challenge-bar').style.background = barColor;
+  document.getElementById('challenge-bar').style.width = barWidth+'%';
+  document.getElementById('challenge-pct-label').textContent = `${tSign}${tPct.toFixed(2)}%`;
+  document.getElementById('challenge-pct-label').style.color = barColor;
+
+  // Date
+  const d = SEANCES[SEANCES.length-1].date;
+  document.getElementById('challenge-date').textContent = 'AU ' + d;
 }
 
 function renderDecisions() {
   document.getElementById('dec-profil-label').textContent = profil.toUpperCase();
+
+  // Calendrier dividendes
+  const divEl = document.getElementById('div-calendrier');
+  if(divEl && typeof DIVIDENDES !== 'undefined') {
+    const rows = Object.entries(DIVIDENDES).map(([t, d]) => {
+      const v = DATA.find(x => x.t === t);
+      const nom = v ? (v.nom.length > 28 ? v.nom.slice(0,26)+'…' : v.nom) : t;
+      const inPortfolio = POSITIONS_REAL.some(p => p.ticker === t);
+      const badge = inPortfolio ? '<span style="font-size:8px;background:#dcfce7;color:#15803d;padding:1px 5px;border-radius:8px;font-weight:700;margin-left:4px">MON PORTEF.</span>' : '';
+      const dateCls = d.date === 'A préciser' ? 'color:#b45309' : 'color:#15803d;font-weight:700';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0eeea;flex-wrap:wrap;gap:4px">
+        <div>
+          <span style="font-size:11px;font-weight:700">${nom}</span>${badge}
+          <div style="font-size:9px;color:#888;margin-top:1px">${t}</div>
+        </div>
+        <div style="display:flex;gap:16px;align-items:center">
+          <div style="text-align:right">
+            <div style="font-size:12px;font-weight:700;color:#15803d">${d.montant.toLocaleString('fr-FR')} FCFA</div>
+            <div style="font-size:9px;color:#888">${d.rendu}% de rendement</div>
+          </div>
+          <div style="text-align:right;min-width:80px">
+            <div style="font-size:9px;${dateCls}">${d.date}</div>
+            <div style="font-size:8px;color:#aaa">détachement</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    divEl.innerHTML = rows || '<div style="font-size:10px;color:#aaa">Aucun dividende calendrier</div>';
+  }
   const acheter   = DATA.filter(d=>d.recommendation==='ACHETER'&&d.vol>0&&!d.blacklist).sort((a,b)=>b.scoreGlobal-a.scoreGlobal).slice(0,5);
   const conserver = DATA.filter(d=>d.recommendation==='CONSERVER'&&!d.blacklist).sort((a,b)=>b.scoreGlobal-a.scoreGlobal).slice(0,5);
   const surveiller= DATA.filter(d=>d.var<=-5&&d.scoreGlobal>=4&&!d.blacklist).sort((a,b)=>b.scoreGlobal-a.scoreGlobal).slice(0,4);
