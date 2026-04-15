@@ -205,11 +205,11 @@ tr:last-child td{border-bottom:none}
 <div class="topbar">
   <div>
     <div class="logo">SIKA INVEST</div>
-    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 14 AVRIL 2026</div>
+    <div class="logo-sub" id="date-sub">ASSISTANT DE DÉCISION BRVM · 15 AVRIL 2026</div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span class="dot"></span>
-    <div class="tag tg" id="date-tag">14 AVRIL 2026</div>
+    <div class="tag tg" id="date-tag">15 AVRIL 2026</div>
     <div class="tag tw">BUDGET MAX 20M FCFA</div>
     <button class="btn btn-dark" onclick="build()">↺ ACTUALISER</button>
   </div>
@@ -322,6 +322,49 @@ tr:last-child td{border-bottom:none}
   <p style="font-size:11px;color:#888;margin-bottom:1rem;line-height:1.7">
     Préparez vos ordres <strong>ce soir</strong> pour <strong>demain matin</strong>. Décisions basées sur votre profil <strong id="dec-profil-label">ÉQUILIBRÉ</strong> et les cours de clôture du jour.
   </p>
+  <!-- ── SIKA INVEST CHALLENGE OFFICIEL ── -->
+  <div class="card" style="margin-bottom:10px;border-left:4px solid #7c3aed">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div class="sec-title" style="margin:0">🏆 SIKA INVEST CHALLENGE — CONCOURS OFFICIEL</div>
+      <div id="sic-date" style="font-size:9px;color:#888;letter-spacing:1px"></div>
+    </div>
+    <!-- KPIs -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px" id="sic-kpis"></div>
+    <!-- Barre -->
+    <div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#888;margin-bottom:4px">
+        <span>PERFORMANCE VS CAPITAL INITIAL (21 000 000 FCFA)</span>
+        <span id="sic-pct-label" style="font-weight:700"></span>
+      </div>
+      <div style="height:6px;background:#e0ddd6;border-radius:3px;overflow:hidden">
+        <div id="sic-bar" style="height:100%;border-radius:3px;transition:width .5s;width:50%"></div>
+      </div>
+    </div>
+    <!-- Tableau -->
+    <div class="tw-wrap">
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:9px;letter-spacing:1px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">ACTION</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">QTÉ</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">P.ACHAT</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">COURS</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">VAR%</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">P&amp;L FCFA</th>
+            <th style="text-align:right;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">VALEUR</th>
+            <th style="text-align:center;font-size:9px;color:#888;font-weight:400;padding:0 6px 7px 0;border-bottom:1px solid #e0ddd6">SCORE</th>
+          </tr>
+        </thead>
+        <tbody id="sic-positions"></tbody>
+        <tfoot id="sic-total"></tfoot>
+      </table>
+    </div>
+    <div style="margin-top:10px;padding:8px 10px;background:#f8f6ef;border-radius:8px;font-size:9px;color:#888">
+      💰 Liquidités disponibles : <strong id="sic-liquidites" style="color:#1a1a1a"></strong> FCFA
+      &nbsp;·&nbsp; Classement poule : <strong style="color:#7c3aed">Non classé</strong>
+    </div>
+  </div>
+
   <!-- ── CHALLENGE DASHBOARD ── -->
   <div class="card" style="margin-bottom:10px;border-left:4px solid #b5922a">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
@@ -399,7 +442,7 @@ tr:last-child td{border-bottom:none}
   <div class="card">
     <div class="sec-title">ÉVOLUTION DES COURS — DONNÉES OFFICIELLES BRVM</div>
     <p style="font-size:10px;color:#888;margin-bottom:1rem;line-height:1.6">
-      <span id="rsi-status2">—</span> séances enregistrées du 01/01 au 14/04/2026.
+      <span id="rsi-status2">—</span> séances enregistrées du 01/01 au 15/04/2026.
     </p>
     <div class="ctrl"><input class="sb" id="search-hist" placeholder="Rechercher..." oninput="renderHist()" style="width:200px"></div>
     <div class="tw-wrap">  <table> <thead id="hist-thead"></thead> <tbody id="hist-tbody"></tbody> </table> </div>
@@ -455,7 +498,7 @@ tr:last-child td{border-bottom:none}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   DONNÉES — 70 SÉANCES RÉELLES 01/01 → 14/04/2026
+   DONNÉES — 71 SÉANCES RÉELLES 01/01 → 15/04/2026
    ══════════════════════════════════════════════════════ */
 const SEANCES = [
   { date:"01/01/2026",
@@ -749,7 +792,11 @@ const SEANCES = [
   { date:"14/04/2026",
     cours:{SDSC:1890,BOAB:7400,BOABF:5645,BOAC:8500,BOAM:4590,BOAN:2830,BOAS:6750,BICB:5135,BNBC:1565,BICC:23010,CFAC:1600,CIEC:3135,CBIBF:15350,SEMC:1905,ECOC:15620,SIVC:3160,ETIT:32,FTSC:2220,LNBB:3855,SVOC:2395,NEIC:1400,NTLC:12000,NSBC:14100,ONTBF:2900,ORGT:3435,ORAC:15170,PALC:8300,SAFC:6845,SPHC:7395,ABJC:3430,STAC:3240,SGBC:33505,CABC:3995,SICC:4225,SITAB:21050,SMBC:11850,SIBC:7000,SDCC:7150,SOGB:7850,SLBC:38395,SNTS:28000,SCRC:2000,STLC:2840,TTLS:2995,PRSC:5000,UNLC:61995,UNXC:1955,SHEC:2050},
     var:{SDSC:-0.53,BOAB:-0.67,BOABF:-0.62,BOAC:0.0,BOAM:0.22,BOAN:-2.25,BOAS:0.3,BICB:0.29,BNBC:0.97,BICC:2.27,CFAC:-1.84,CIEC:-0.48,CBIBF:0.89,SEMC:-1.8,ECOC:0.03,SIVC:-1.71,ETIT:-5.88,FTSC:-3.27,LNBB:0.0,SVOC:0.0,NEIC:-0.36,NTLC:0.0,NSBC:-0.53,ONTBF:1.75,ORGT:-3.38,ORAC:2.57,PALC:-2.35,SAFC:-7.44,SPHC:1.02,ABJC:-1.29,STAC:-7.43,SGBC:-1.17,CABC:-4.65,SICC:0.6,SITAB:0.24,SMBC:-0.42,SIBC:0.0,SDCC:0.0,SOGB:-0.63,SLBC:3.21,SNTS:-2.78,SCRC:0.25,STLC:1.61,TTLS:-0.17,PRSC:2.04,UNLC:0.0,UNXC:-1.01,SHEC:-4.65},
-    vol:{SDSC:4456,BOAB:3663,BOABF:3266,BOAC:31865,BOAM:7197,BOAN:5755,BOAS:4732,BICB:2210,BNBC:564,BICC:959,CFAC:1814,CIEC:4873,CBIBF:193,SEMC:5728,ECOC:1959,SIVC:3365,ETIT:1179604,FTSC:5137,LNBB:928,SVOC:0,NEIC:7228,NTLC:295,NSBC:1372,ONTBF:2018,ORGT:5036,ORAC:219,PALC:5425,SAFC:6472,SPHC:901,ABJC:693,STAC:6473,SGBC:751,CABC:1334,SICC:279,SITAB:3418,SMBC:611,SIBC:10282,SDCC:414,SOGB:1110,SLBC:67,SNTS:57899,SCRC:33434,STLC:2957,TTLS:4558,PRSC:570,UNLC:13,UNXC:8374,SHEC:4748}}
+    vol:{SDSC:4456,BOAB:3663,BOABF:3266,BOAC:31865,BOAM:7197,BOAN:5755,BOAS:4732,BICB:2210,BNBC:564,BICC:959,CFAC:1814,CIEC:4873,CBIBF:193,SEMC:5728,ECOC:1959,SIVC:3365,ETIT:1179604,FTSC:5137,LNBB:928,SVOC:0,NEIC:7228,NTLC:295,NSBC:1372,ONTBF:2018,ORGT:5036,ORAC:219,PALC:5425,SAFC:6472,SPHC:901,ABJC:693,STAC:6473,SGBC:751,CABC:1334,SICC:279,SITAB:3418,SMBC:611,SIBC:10282,SDCC:414,SOGB:1110,SLBC:67,SNTS:57899,SCRC:33434,STLC:2957,TTLS:4558,PRSC:570,UNLC:13,UNXC:8374,SHEC:4748}},
+  { date:"15/04/2026",
+    cours:{SDSC:1875,BOAB:7650,BOABF:5630,BOAC:8400,BOAM:4590,BOAN:2830,BOAS:6750,BICB:5150,BNBC:1570,BICC:23250,CFAC:1500,CIEC:3140,CBIBF:15700,SEMC:1890,ECOC:15700,SIVC:2925,ETIT:30,FTSC:2260,LNBB:3855,SVOC:2395,NEIC:1385,NTLC:11995,NSBC:14170,ONTBF:2795,ORGT:3435,ORAC:15165,PALC:8035,SAFC:6335,SPHC:7100,ABJC:3430,STAC:3000,SGBC:33000,CABC:3895,SICC:4225,SITAB:20800,SMBC:11650,SIBC:7000,SDCC:7150,SOGB:7920,SLBC:39000,SNTS:28500,SCRC:1995,STLC:2795,TTLS:3215,PRSC:4995,UNLC:62000,UNXC:1855,SHEC:2000},
+    var:{SDSC:-0.79,BOAB:3.38,BOABF:-0.27,BOAC:-1.18,BOAM:0.0,BOAN:0.0,BOAS:0.0,BICB:0.29,BNBC:0.32,BICC:1.04,CFAC:-6.25,CIEC:0.16,CBIBF:2.28,SEMC:-0.79,ECOC:0.51,SIVC:-7.44,ETIT:-6.25,FTSC:1.8,LNBB:0.0,SVOC:0.0,NEIC:-1.07,NTLC:-0.04,NSBC:0.5,ONTBF:-3.62,ORGT:0.0,ORAC:-0.03,PALC:-3.19,SAFC:-7.45,SPHC:-3.99,ABJC:0.0,STAC:-7.41,SGBC:-1.51,CABC:-2.5,SICC:0.0,SITAB:-1.19,SMBC:-1.69,SIBC:0.0,SDCC:0.0,SOGB:0.89,SLBC:1.58,SNTS:1.79,SCRC:-0.25,STLC:-1.58,TTLS:7.35,PRSC:-0.1,UNLC:0.01,UNXC:-5.12,SHEC:-2.44},
+    vol:{SDSC:5634,BOAB:13974,BOABF:2763,BOAC:10078,BOAM:4106,BOAN:3810,BOAS:9884,BICB:4091,BNBC:1111,BICC:554,CFAC:4917,CIEC:1757,CBIBF:611,SEMC:6172,ECOC:1649,SIVC:6359,ETIT:1169560,FTSC:8359,LNBB:2124,SVOC:0,NEIC:1560,NTLC:391,NSBC:665,ONTBF:903,ORGT:3384,ORAC:1062,PALC:937,SAFC:1330,SPHC:36970,ABJC:1106,STAC:1572,SGBC:1349,CABC:3588,SICC:135,SITAB:1077,SMBC:659,SIBC:5060,SDCC:716,SOGB:1635,SLBC:563,SNTS:19792,SCRC:9718,STLC:912,TTLS:3048,PRSC:435,UNLC:27,UNXC:14246,SHEC:6324}}
 ];
 
 const META = {
@@ -823,6 +870,7 @@ const DIVIDENDES = {
   STLC: {montant:139.77,  date:"A préciser",  rendu:4.92},
 };
 
+/* Portefeuille réel (compte de trading) */
 const POSITIONS_REAL = [
   {ticker:'BOAB', nom:'BOA BENIN',          quantite:140, cours_achat:7638, date_achat:'2026'},
   {ticker:'BOAC', nom:'BOA CI',             quantite:150, cours_achat:8509, date_achat:'2026'},
@@ -837,6 +885,18 @@ const POSITIONS_REAL = [
   {ticker:'STLC', nom:'TOTAL CI',           quantite:50,  cours_achat:2684, date_achat:'2026'},
   {ticker:'UNXC', nom:'UNIWAX CI',          quantite:10,  cours_achat:2006, date_achat:'2026'},
 ];
+
+/* Portefeuille SIKA INVEST CHALLENGE (concours officiel) */
+const POSITIONS_CHALLENGE = [
+  {ticker:'BOAS', nom:'BOA SENEGAL',   quantite:301, cours_achat:6556,  capital_init:1973329},
+  {ticker:'ECOC', nom:'ECOBANK CI',    quantite:120, cours_achat:15813, capital_init:1897552},
+  {ticker:'NTLC', nom:'NESTLE CI',     quantite:150, cours_achat:11953, capital_init:1793010},
+  {ticker:'PALC', nom:'PALMCI',        quantite:230, cours_achat:8215,  capital_init:1889549},
+  {ticker:'SPHC', nom:'SAPH CI',       quantite:260, cours_achat:7197,  capital_init:1871315},
+  {ticker:'STLC', nom:'TOTAL CI',      quantite:500, cours_achat:2700,  capital_init:1349823},
+];
+const CHALLENGE_LIQUIDITES = 8930090;
+const CHALLENGE_CAPITAL_TOTAL = 21000000;
 
 /* ══════════════════════════════════════════════════
    ÉTAT GLOBAL
@@ -1185,6 +1245,102 @@ function renderMets() {
   sur.forEach(v=>html+=`<div class="ap ao">⚠ SURACHAT ${v.nom.split(' ')[0]} RSI${v.rsi}</div>`);
   if(!html)html='<div class="ap" style="background:#f0efea;color:#888">Marché calme — aucune alerte</div>';
   document.getElementById('alerts-live').innerHTML = html;
+}
+
+function renderChallengeOfficiel() {
+  const tbody = document.getElementById('sic-positions');
+  if(!tbody || typeof POSITIONS_CHALLENGE === 'undefined') return;
+
+  let totalAchat=0, totalActuel=0;
+  const rows = POSITIONS_CHALLENGE.map(pos => {
+    const v = DATA.find(d => d.t === pos.ticker);
+    const cours = v ? v.cours : pos.cours_achat;
+    const valAchat = pos.capital_init;
+    const valAct   = cours * pos.quantite;
+    const pnl      = valAct - valAchat;
+    const pnlPct   = pnl / valAchat * 100;
+    totalAchat  += valAchat;
+    totalActuel += valAct;
+
+    const cl = pnl >= 0 ? '#16a34a' : '#dc2626';
+    const sg = pnl >= 0 ? '+' : '';
+    const nom = v ? (v.nom.length>24?v.nom.slice(0,22)+'…':v.nom) : pos.ticker;
+    const score = v ? v.scoreGlobal : 0;
+    const scls = score>=7?'sp-acheter':score>=4?'sp-conserver':'sp-vendre';
+
+    return `<tr class="tr" onclick="openFiche('${pos.ticker}')">
+      <td><strong style="font-size:11px">${nom}</strong></td>
+      <td style="text-align:right">${pos.quantite}</td>
+      <td style="text-align:right">${pos.cours_achat.toLocaleString('fr-FR')}</td>
+      <td style="text-align:right;font-weight:700">${cours.toLocaleString('fr-FR')}</td>
+      <td style="text-align:right;color:${cl};font-weight:700">${sg}${pnlPct.toFixed(2)}%</td>
+      <td style="text-align:right;color:${cl};font-weight:700">${sg}${Math.round(pnl).toLocaleString('fr-FR')}</td>
+      <td style="text-align:right">${Math.round(valAct).toLocaleString('fr-FR')}</td>
+      <td style="text-align:center"><span class="score-pill ${scls}" style="width:22px;height:22px;font-size:10px">${score}</span></td>
+    </tr>`;
+  });
+  tbody.innerHTML = rows.join('');
+
+  // Total investi (hors liquidités)
+  const totalPnl = totalActuel - totalAchat;
+  const cl = totalPnl>=0?'#16a34a':'#dc2626';
+  const sg = totalPnl>=0?'+':'';
+  document.getElementById('sic-total').innerHTML =
+    `<tr style="border-top:2px solid #1a1a1a;font-weight:700">
+      <td colspan="4" style="padding-top:8px;font-size:10px;letter-spacing:1px">TOTAL TITRES</td>
+      <td style="text-align:right;color:${cl};padding-top:8px">${sg}${(totalPnl/totalAchat*100).toFixed(2)}%</td>
+      <td style="text-align:right;color:${cl};padding-top:8px">${sg}${Math.round(totalPnl).toLocaleString('fr-FR')}</td>
+      <td style="text-align:right;padding-top:8px">${Math.round(totalActuel).toLocaleString('fr-FR')}</td>
+      <td></td>
+    </tr>`;
+
+  // Performance globale sur capital total
+  const capitalTotal = CHALLENGE_CAPITAL_TOTAL;
+  const valeurTotale = totalActuel + CHALLENGE_LIQUIDITES;
+  const perfGlobale  = (valeurTotale - capitalTotal) / capitalTotal * 100;
+  const clG = perfGlobale>=0?'#16a34a':'#dc2626';
+  const sgG = perfGlobale>=0?'+':'';
+
+  // Liquidités
+  const liqEl = document.getElementById('sic-liquidites');
+  if(liqEl) liqEl.textContent = CHALLENGE_LIQUIDITES.toLocaleString('fr-FR');
+
+  // KPIs
+  const kpi = (label,val,sub,color)=>
+    `<div style="background:#f5f3ff;border-radius:8px;padding:10px 12px">
+      <div style="font-size:9px;letter-spacing:2px;color:#888;margin-bottom:3px">${label}</div>
+      <div style="font-size:15px;font-weight:700;color:${color}">${val}</div>
+      <div style="font-size:9px;color:#888;margin-top:2px">${sub}</div>
+    </div>`;
+
+  const best = POSITIONS_CHALLENGE.map(p=>{
+    const v=DATA.find(d=>d.t===p.ticker);
+    return v?{t:p.ticker,pct:(v.cours-p.cours_achat)/p.cours_achat*100}:{t:p.ticker,pct:0};
+  }).sort((a,b)=>b.pct-a.pct)[0];
+  const worst = POSITIONS_CHALLENGE.map(p=>{
+    const v=DATA.find(d=>d.t===p.ticker);
+    return v?{t:p.ticker,pct:(v.cours-p.cours_achat)/p.cours_achat*100}:{t:p.ticker,pct:0};
+  }).sort((a,b)=>a.pct-b.pct)[0];
+
+  document.getElementById('sic-kpis').innerHTML =
+    kpi('VALEUR TOTALE', Math.round(valeurTotale/1000)+'k F', `capital: ${Math.round(capitalTotal/1000)}k F`, '#1a1a1a') +
+    kpi('PERFORMANCE', `${sgG}${perfGlobale.toFixed(2)}%`, 'sur capital total', clG) +
+    kpi('P&L TITRES', `${sgG}${Math.round(totalPnl).toLocaleString('fr-FR')} F`, `sur ${Math.round(totalAchat/1000)}k investi`, clG) +
+    kpi('LIQUIDITÉS', Math.round(CHALLENGE_LIQUIDITES/1000)+'k F', `${(CHALLENGE_LIQUIDITES/capitalTotal*100).toFixed(1)}% du capital`, '#6b7280') +
+    kpi('MEILLEURE', best.t, `${best.pct>=0?'+':''}${best.pct.toFixed(1)}%`, '#15803d') +
+    kpi('PIRE', worst.t, `${worst.pct.toFixed(1)}%`, '#dc2626');
+
+  // Barre
+  const barEl = document.getElementById('sic-bar');
+  const pctEl = document.getElementById('sic-pct-label');
+  if(barEl){
+    barEl.style.background = perfGlobale>=0?'#7c3aed':'#ef4444';
+    barEl.style.width = Math.min(100,Math.max(2,50+perfGlobale*5))+'%';
+  }
+  if(pctEl){ pctEl.textContent=`${sgG}${perfGlobale.toFixed(2)}%`; pctEl.style.color=clG; }
+
+  const dateEl = document.getElementById('sic-date');
+  if(dateEl && SEANCES.length) dateEl.textContent = 'AU '+SEANCES[SEANCES.length-1].date;
 }
 
 function renderMesPositions() {
