@@ -1,7 +1,7 @@
-// Données SIKA INVEST — Mis à jour le 30/06/2026 19:19
+// Données SIKA INVEST — Mis à jour le 01/07/2026 19:18
 // Source : brvm.org · 42/44 cours live
 const dailyData = {
-  "date": "30/06/2026 19:19",
+  "date": "01/07/2026 19:18",
   "valeurs": [
     {
       "t": "SOGB",
@@ -20,14 +20,14 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 53/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 30/06/2026 19:19"
+      "risq": "Données historiques · 01/07/2026 19:18"
     },
     {
       "t": "PALC",
       "nom": "PALM CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 9896,
+      "cours": 7989,
       "var": 8700,
       "vol": 0,
       "div": 17,
@@ -39,15 +39,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 50/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SPHC",
       "nom": "SAPH CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 957,
-      "var": 7685,
+      "cours": 1761,
+      "var": 7995,
       "vol": 0,
       "div": 12.5,
       "per": 7.2,
@@ -58,15 +58,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 50/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SCRC",
       "nom": "SUCRIVOIRE CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 2724,
-      "var": 3280,
+      "cours": 7146,
+      "var": 3385,
       "vol": 0,
       "div": 12.1,
       "per": 7.2,
@@ -77,7 +77,7 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 50/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "STLC",
@@ -96,15 +96,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "historique",
       "actu": "Score 49/100 · RSI 50 · ACHAT.",
-      "risq": "Données historiques · 30/06/2026 19:19"
+      "risq": "Données historiques · 01/07/2026 19:18"
     },
     {
       "t": "CBIBF",
       "nom": "CORIS BANK BF",
       "pays": "BF",
       "sec": "SF",
-      "cours": 1983,
-      "var": 23500,
+      "cours": 1464,
+      "var": 24000,
       "vol": 0,
       "div": 9.2,
       "per": 8.1,
@@ -115,15 +115,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 46/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ONTBF",
       "nom": "ONATEL BF",
       "pays": "BF",
       "sec": "TEL",
-      "cours": 4149,
-      "var": 2850,
+      "cours": 2393,
+      "var": 2800,
       "vol": 0,
       "div": 10.5,
       "per": 8.1,
@@ -134,15 +134,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 46/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SIVC",
       "nom": "ERIUM CI",
       "pays": "CI",
       "sec": "EN",
-      "cours": 6817,
-      "var": 2505,
+      "cours": 6010,
+      "var": 2500,
       "vol": 0,
       "div": 9,
       "per": 9,
@@ -153,15 +153,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 46/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "TTLS",
       "nom": "TOTAL SENEGAL",
       "pays": "SN",
       "sec": "EN",
-      "cours": 2280,
-      "var": 3895,
+      "cours": 3398,
+      "var": 4000,
       "vol": 0,
       "div": 9.1,
       "per": 9,
@@ -172,15 +172,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 46/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SHEC",
       "nom": "VIVO ENERGY CI",
       "pays": "CI",
       "sec": "EN",
-      "cours": 9371,
-      "var": 2170,
+      "cours": 2147,
+      "var": 2165,
       "vol": 0,
       "div": 9.5,
       "per": 9,
@@ -191,15 +191,15 @@ const dailyData = {
       "signal": "ACHAT",
       "source": "live",
       "actu": "Score 46/100 · RSI 50 · ACHAT.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ABJC",
       "nom": "SERVAIR CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 862,
-      "var": 3275,
+      "cours": 1120,
+      "var": 3280,
       "vol": 0,
       "div": 6.5,
       "per": 9,
@@ -210,15 +210,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BICB",
       "nom": "BIC BENIN",
       "pays": "BJ",
       "sec": "SF",
-      "cours": 6588,
-      "var": 5870,
+      "cours": 6287,
+      "var": 5865,
       "vol": 0,
       "div": 8.2,
       "per": 8.1,
@@ -229,14 +229,14 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BICC",
       "nom": "BICICI CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 344,
+      "cours": 363,
       "var": 29000,
       "vol": 0,
       "div": 7.8,
@@ -248,14 +248,14 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BNBC",
       "nom": "BERNABE CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 3477,
+      "cours": 945,
       "var": 1985,
       "vol": 0,
       "div": 7,
@@ -267,15 +267,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOAB",
       "nom": "BOA BENIN",
       "pays": "BJ",
       "sec": "SF",
-      "cours": 2801,
-      "var": 9000,
+      "cours": 19914,
+      "var": 8995,
       "vol": 0,
       "div": 8.5,
       "per": 8.1,
@@ -286,15 +286,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOABF",
       "nom": "BOA BURKINA",
       "pays": "BF",
       "sec": "SF",
-      "cours": 6849,
-      "var": 5850,
+      "cours": 30402,
+      "var": 5900,
       "vol": 0,
       "div": 7.2,
       "per": 8.1,
@@ -305,14 +305,14 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOAC",
       "nom": "BOA CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 19595,
+      "cours": 22017,
       "var": 9395,
       "vol": 0,
       "div": 7,
@@ -324,15 +324,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOAM",
       "nom": "BOA MALI",
       "pays": "ML",
       "sec": "SF",
-      "cours": 15079,
-      "var": 5000,
+      "cours": 4022,
+      "var": 4980,
       "vol": 0,
       "div": 7.2,
       "per": 8.1,
@@ -343,15 +343,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOAN",
       "nom": "BOA NIGER",
       "pays": "NE",
       "sec": "SF",
-      "cours": 7661,
-      "var": 4185,
+      "cours": 5161,
+      "var": 4195,
       "vol": 0,
       "div": 6,
       "per": 8.1,
@@ -362,15 +362,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "BOAS",
       "nom": "BOA SENEGAL",
       "pays": "SN",
       "sec": "SF",
-      "cours": 2766,
-      "var": 7350,
+      "cours": 5262,
+      "var": 7440,
       "vol": 0,
       "div": 8.1,
       "per": 8.1,
@@ -381,15 +381,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "CABC",
       "nom": "SICABLE CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 1445,
-      "var": 4500,
+      "cours": 2155,
+      "var": 4190,
       "vol": 0,
       "div": 7.5,
       "per": 9,
@@ -400,14 +400,14 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "CIEC",
       "nom": "CIE CI",
       "pays": "CI",
       "sec": "EN",
-      "cours": 3311,
+      "cours": 7945,
       "var": 5300,
       "vol": 0,
       "div": 8.5,
@@ -419,15 +419,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "FTSC",
       "nom": "FILTISAC CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 11281,
-      "var": 1990,
+      "cours": 3930,
+      "var": 2000,
       "vol": 0,
       "div": 8.8,
       "per": 9,
@@ -438,15 +438,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "LNBB",
       "nom": "LOTERIE NAT.BJ",
       "pays": "BJ",
       "sec": "CD",
-      "cours": 2840,
-      "var": 4435,
+      "cours": 820,
+      "var": 4300,
       "vol": 0,
       "div": 6.5,
       "per": 9.9,
@@ -457,15 +457,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "NEIC",
       "nom": "NEI CEDA CI",
       "pays": "CI",
       "sec": "CD",
-      "cours": 522,
-      "var": 2350,
+      "cours": 2178,
+      "var": 2300,
       "vol": 0,
       "div": 7.1,
       "per": 9.9,
@@ -476,15 +476,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ORAC",
       "nom": "ORANGE CI",
       "pays": "CI",
       "sec": "TEL",
-      "cours": 3014,
-      "var": 16750,
+      "cours": 9546,
+      "var": 16800,
       "vol": 0,
       "div": 7.2,
       "per": 8.1,
@@ -495,15 +495,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ORGT",
       "nom": "ORAGROUP TG",
       "pays": "TG",
       "sec": "SF",
-      "cours": 2345,
-      "var": 2685,
+      "cours": 3998,
+      "var": 2740,
       "vol": 0,
       "div": 7.5,
       "per": 8.1,
@@ -514,15 +514,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "PRSC",
       "nom": "TRACTAFRIC CI",
       "pays": "CI",
       "sec": "CD",
-      "cours": 1263,
-      "var": 4650,
+      "cours": 312,
+      "var": 4595,
       "vol": 0,
       "div": 6.5,
       "per": 9.9,
@@ -533,15 +533,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SAFC",
       "nom": "SAFCA CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 3428,
-      "var": 4795,
+      "cours": 3118,
+      "var": 4600,
       "vol": 0,
       "div": 8.9,
       "per": 8.1,
@@ -552,15 +552,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SDSC",
       "nom": "AFRICA GLOBAL",
       "pays": "CI",
       "sec": "IN",
-      "cours": 18493,
-      "var": 2450,
+      "cours": 24280,
+      "var": 2395,
       "vol": 0,
       "div": 6.5,
       "per": 9,
@@ -571,15 +571,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SEMC",
       "nom": "CROWN SIEM CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 3112,
-      "var": 1540,
+      "cours": 2884,
+      "var": 1535,
       "vol": 0,
       "div": 7,
       "per": 9,
@@ -590,15 +590,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SIBC",
       "nom": "SIB CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 8326,
-      "var": 8895,
+      "cours": 3484,
+      "var": 9010,
       "vol": 0,
       "div": 7.1,
       "per": 8.1,
@@ -609,15 +609,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SICC",
       "nom": "SICOR CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 25,
-      "var": 4600,
+      "cours": 12,
+      "var": 4700,
       "vol": 0,
       "div": 8.8,
       "per": 9,
@@ -628,15 +628,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SLBC",
       "nom": "SOLIBRA CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 207,
-      "var": 38795,
+      "cours": 951,
+      "var": 38950,
       "vol": 0,
       "div": 6,
       "per": 7.2,
@@ -647,15 +647,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SNTS",
       "nom": "SONATEL",
       "pays": "SN",
       "sec": "TEL",
-      "cours": 1891,
-      "var": 28500,
+      "cours": 1736,
+      "var": 29495,
       "vol": 0,
       "div": 8.9,
       "per": 8.1,
@@ -666,15 +666,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "STAC",
       "nom": "SETAO CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 1332,
-      "var": 3490,
+      "cours": 1873,
+      "var": 3450,
       "vol": 0,
       "div": 6.5,
       "per": 9,
@@ -685,15 +685,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "UNXC",
       "nom": "UNIWAX CI",
       "pays": "CI",
       "sec": "IN",
-      "cours": 9324,
-      "var": 1825,
+      "cours": 10132,
+      "var": 1690,
       "vol": 0,
       "div": 8.2,
       "per": 9,
@@ -704,15 +704,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 40/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "CFAC",
       "nom": "CFAO MOTORS CI",
       "pays": "CI",
       "sec": "CD",
-      "cours": 2476,
-      "var": 1750,
+      "cours": 1590,
+      "var": 1760,
       "vol": 0,
       "div": 5.2,
       "per": 9.9,
@@ -723,15 +723,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ECOC",
       "nom": "ECOBANK CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 1217,
-      "var": 16900,
+      "cours": 3155,
+      "var": 16250,
       "vol": 0,
       "div": 5,
       "per": 8.1,
@@ -742,14 +742,14 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "NSBC",
       "nom": "NSIA BANQUE CI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 1403,
+      "cours": 578,
       "var": 19650,
       "vol": 0,
       "div": 5.8,
@@ -761,15 +761,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "NTLC",
       "nom": "NESTLE CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 847,
-      "var": 15495,
+      "cours": 1095,
+      "var": 16000,
       "vol": 0,
       "div": 5.5,
       "per": 7.2,
@@ -780,15 +780,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "SGBC",
       "nom": "SGBCI",
       "pays": "CI",
       "sec": "SF",
-      "cours": 1863,
-      "var": 39000,
+      "cours": 2929,
+      "var": 38995,
       "vol": 0,
       "div": 5.3,
       "per": 8.1,
@@ -799,15 +799,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "UNLC",
       "nom": "UNILEVER CI",
       "pays": "CI",
       "sec": "CB",
-      "cours": 6,
-      "var": 56020,
+      "cours": 56,
+      "var": 55600,
       "vol": 0,
       "div": 5.5,
       "per": 7.2,
@@ -818,15 +818,15 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 35/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     },
     {
       "t": "ETIT",
       "nom": "ETI TG",
       "pays": "TG",
       "sec": "SF",
-      "cours": 1076706,
-      "var": 40,
+      "cours": 803964,
+      "var": 42,
       "vol": 0,
       "div": 0,
       "per": 8.1,
@@ -837,7 +837,7 @@ const dailyData = {
       "signal": "NEUTRE",
       "source": "live",
       "actu": "Score 30/100 · RSI 50 · NEUTRE.",
-      "risq": "Source: brvm.org · 30/06/2026 19:19"
+      "risq": "Source: brvm.org · 01/07/2026 19:18"
     }
   ]
 };
